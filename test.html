@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Invoice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .invoice-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .invoice-header h2 {
+            font-weight: bold;
+            color: #000;
+        }
+        .invoice-header .invoice-info {
+            text-align: right;
+        }
+        .invoice-info {
+            margin-bottom: 30px;
+        }
+        .invoice-info h6 {
+            margin-bottom: 5px;
+            color: #888;
+        }
+        .invoice-info p {
+            margin: 0;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+            border-top: none;
+            border-bottom: 2px solid #eee;
+        }
+        .table th {
+            background-color: #f9f9f9;
+        }
+        .summary {
+            margin-top: 30px;
+            text-align: right;
+        }
+        .summary p {
+            margin: 0;
+            line-height: 2;
+        }
+        .summary h4 {
+            font-weight: bold;
+            color: #000;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer div {
+            width: 30%;
+        }
+        .footer p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+        .footer-icons {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <div>
+                <h2>DISEE</h2>
+            </div>
+            <div class="invoice-info">
+                <p><strong>Invoice Number:</strong> #45613</p>
+                <p><strong>Invoice Date:</strong> 24 Jan 2022</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h6>Invoice To</h6>
+                <p>Theme Vessel</p>
+                <p>info@themevessel.com</p>
+                <p>21-12 Green Street, Meherpur, Bangladesh</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h6>Bill To</h6>
+                <p>Apexo Inc</p>
+                <p>billing@apexo.com</p>
+                <p>169 Teroghoria, Bangladesh</p>
+                <p><strong>Payment Method:</strong> Credit Card</p>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Totals</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>BS-200</td>
+                        <td>Customize web application</td>
+                        <td>$10.99</td>
+                        <td>1</td>
+                        <td>$10.99</td>
+                    </tr>
+                    <tr>
+                        <td>BS-201</td>
+                        <td>Website SEO improvement of Website development</td>
+                        <td>$20.00</td>
+                        <td>3</td>
+                        <td>$60.00</td>
+                    </tr>
+                    <tr>
+                        <td>BS-200</td>
+                        <td>Customize web application</td>
+                        <td>$10.99</td>
+                        <td>1</td>
+                        <td>$10.99</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="summary">
+            <p><strong>Subtotal:</strong> $710.99</p>
+            <p><strong>Tax:</strong> $85.99</p>
+            <h4><strong>Grand Total:</strong> $795.99</h4>
+        </div>
+
+        <div class="footer">
+            <div>
+                <h6>Payment Info</h6>
+                <p>Account Name: 00 123 647 840</p>
+                <p>Account Number: John Doe</p>
+                <p>Branch Name: xyz</p>
+            </div>
+            <div>
+                <h6>Terms and Conditions</h6>
+                <p>Once order done, money can’t refund. Delivery might delay due to ...</p>
+            </div>
+            <div>
+                <h6>Notes</h6>
+                <p>This is a computer-generated invoice and physical signature...</p>
+            </div>
+        </div>
+
+        <div class="footer-icons text-center">
+            <p>
+                <span>&#9742; +00 123 647 840</span> | 
+                <span>&#9993; info@themevessel.com</span> | 
+                <span>&#127968; 169 Teroghoria, Bangladesh</span>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

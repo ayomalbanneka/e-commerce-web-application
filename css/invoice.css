@@ -1,0 +1,106 @@
+@font-face {
+    font-family: "Caveat";
+    src: url("fonts/Caveat-Bold.ttf");
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.invoice-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-header {
+    font-family: "Caveat";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.invoice-header1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.invoice-header h2 {
+    font-weight: bold;
+    color: #000;
+}
+
+.invoice-header .invoice-info {
+    text-align: right;
+}
+
+.invoice-info {
+    margin-bottom: 30px;
+}
+
+.invoice-info h6 {
+    margin-bottom: 5px;
+    color: #888;
+}
+
+.invoice-info p {
+    margin: 0;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    border-top: none;
+    border-bottom: 2px solid #eee;
+}
+
+.table th {
+    background-color: #f9f9f9;
+}
+
+.summary {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.summary p {
+    margin: 0;
+    line-height: 2;
+}
+
+.summary h4 {
+    font-weight: bold;
+    color: #000;
+}
+
+.footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer div {
+    width: 30%;
+}
+
+.footer p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.footer-icons {
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+}

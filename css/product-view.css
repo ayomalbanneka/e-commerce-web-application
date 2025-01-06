@@ -1,0 +1,93 @@
+/* Sort */
+
+.srt {
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.305);
+}
+
+.srt-inpt input {
+    height: 40px;
+    border: 0.2px solid rgba(0, 0, 0, 0.245);
+    padding: 0px 20px;
+    font-size: 13px;
+    outline: none;
+}
+
+.srt-btn div button {
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+}
+
+.inpt {
+    gap: 15px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inpt input {
+    width: 95%;
+    outline: none;
+    border: 0.1px solid rgba(0, 0, 0, 0.245);
+    padding: 0px 20px;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+.inpt button {
+    width: 5%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.col-lg-3 {
+    border-radius: 5px;
+}
+
+.custom-checkbox:checked {
+    background-color: red;
+}
+
+@media screen and (min-width: 992px) {
+
+    .custom-price-input,
+    input[type=text] {
+        width: 190px;
+        margin-top: 0;
+    }
+
+}
+
+@media screen and (max-width: 1800px) {
+
+    .custom-price-input,
+    input[type=text] {
+        width: 350px;
+        margin-top: 0;
+    }
+
+}
+
+@media screen and (max-width: 1600px) {
+
+    .custom-price-input,
+    input[type=text] {
+        width: 100%;
+        margin-top: 0;
+    }
+
+}
+
+/* @media screen and (max-width: 1226px) {
+
+    .custom-price-input,
+    input[type=text] {
+        width: 90%;
+        margin-top: 0;
+    }
+} */
+
+/* Sort */
