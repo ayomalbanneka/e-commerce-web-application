@@ -1,3 +1,4 @@
 img/product_images/*
 img/profile_images/*
 .vscode
+.gitignore
