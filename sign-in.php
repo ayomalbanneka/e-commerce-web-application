@@ -83,7 +83,7 @@ include "connection.php"
                             </div>
 
                             <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
-                                <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn" onclick="signInWithEmail();">
+                                <button class="fw-bold btn btn-outline-dark py-2" id="sweetBtn" onclick="signInWithEmail();">
                                     <i class="bi bi-envelope-fill"></i> Sign up with Email
                                 </button>
                             </div>
@@ -117,9 +117,6 @@ include "connection.php"
                             </div>
 
                             <div class="col-12 col-lg-1 col-md-12 d-flex justify-content-center d-lg-none d-md-none align-items-center">
-                                <button class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn" onclick="signInWithEmail();">
-                                    <i class="bi bi-envelope-fill"></i>
-                                </button>
                                 <button class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn">
                                     <img src="img/google_icon.ico" class="google_icon" alt="google" />
                                 </button>
