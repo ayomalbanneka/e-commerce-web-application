@@ -82,6 +82,12 @@ include "connection.php"
                                 <button class="fw-bold btn btn-dark py-2" onclick="signIn();" id="sweetBtn">Sign In</button>
                             </div>
 
+                            <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
+                                <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn" onclick="signInWithEmail();">
+                                    <i class="bi bi-envelope-fill"></i> Sign up with Email
+                                </button>
+                            </div>
+
                             <!-- <div class="col-12 col-lg-10 col-md-6 mt-3">
                                 <p>Don't have an account? <a class="link link-primary text-decoration-none" href="sign-up.php">Sign Up</a> </p>
                             </div> -->
@@ -94,12 +100,6 @@ include "connection.php"
 
                                 <p class="text-center fw-bold mx-3 mb-0 fw-bold">OR</p>
 
-                            </div>
-
-                            <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
-                                <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn" onclick="signInWithEmail();">
-                                    <i class="bi bi-envelope-fill"></i> Sign up with Email
-                                </button>
                             </div>
 
                             <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid ">
