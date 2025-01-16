@@ -26,7 +26,7 @@ include "connection.php"
 <body>
     <!-- upper nav bar  -->
 
-    <?php  include "profile-header.php"  ?>
+    <?php include "profile-header.php"  ?>
 
     <!-- upper nav bar  -->
 
@@ -44,18 +44,18 @@ include "connection.php"
 
                                 <div class="col-12 col-lg-10 col-md-12 mb-2">
 
-                                    <?php 
-                                    
+                                    <?php
+
                                     $email = "";
                                     $password = "";
 
-                                    if(isset($_COOKIE["email"])){
+                                    if (isset($_COOKIE["email"])) {
                                         $email = $_COOKIE["email"];
                                     }
-                                    if(isset($_COOKIE["password"])){
+                                    if (isset($_COOKIE["password"])) {
                                         $password = $_COOKIE["password"];
                                     }
-                                    
+
                                     ?>
 
                                     <label class="form-label" for="email"> Email Address <i class="bi bi-envelope"></i></label>
@@ -82,13 +82,52 @@ include "connection.php"
                                 <button class="fw-bold btn btn-dark py-2" onclick="signIn();" id="sweetBtn">Sign In</button>
                             </div>
 
-                            <div class="col-12 col-lg-10 col-md-6 mt-3">
+                            <!-- <div class="col-12 col-lg-10 col-md-6 mt-3">
                                 <p>Don't have an account? <a class="link link-primary text-decoration-none" href="sign-up.php">Sign Up</a> </p>
+                            </div> -->
+
+                            <!-- <div class="col-12 col-lg-10 col-md-7 mt-3">
+                                <p>Are you an administrator? <a class="link link-primary text-decoration-none" href="admin-sign-in.php">Login Here</a> </p>
+                            </div> -->
+
+                            <div class="divider d-flex align-items-center my-4 col-12 col-lg-10 col-md-10">
+
+                                <p class="text-center fw-bold mx-3 mb-0 fw-bold">OR</p>
+
                             </div>
 
-                            <div class="col-12 col-lg-10 col-md-7 mt-3">
-                                <p>Are you an administrator? <a class="link link-primary text-decoration-none" href="admin-sign-in.php">Login Here</a> </p>
+                            <div class="col-12 col-lg-10 col-md-10 mt-3 d-grid">
+                                <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn" onclick="signInWithEmail();">
+                                    <i class="bi bi-envelope-fill"></i> Sign up with Email
+                                </button>
                             </div>
+
+                            <div class="col-12 col-lg-10 col-md-10 mt-3 d-grid ">
+                                <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn">
+                                    <img src="img/google_icon.ico" class="google_icon" alt="google" />
+                                    Sign in with Google
+                                </button>
+                            </div>
+
+                            <div class="col-12 col-lg-10 col-md-10 mt-3 d-grid">
+                                <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn">
+                                    <img src="img/facebook_icon.ico" class="facebook_icon" alt="">
+                                    Sign in with facebook
+                                </button>
+                            </div>
+
+                            <div class="col-12 col-lg-1 col-md-12 d-flex justify-content-center d-lg-none d-md-none align-items-center">
+                                <button class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn" onclick="signInWithEmail();">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </button>
+                                <button class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn">
+                                    <img src="img/google_icon.ico" class="google_icon" alt="google" />
+                                </button>
+                                <button class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn">
+                                    <img src="img/facebook_icon.ico" class="facebook_icon" alt="">
+                                </button>
+                            </div>
+
 
                         </div>
 
@@ -121,9 +160,9 @@ include "connection.php"
 
     <script src="js/script.js"></script>
     <!--Remove this for borderless sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--Use this for borderless sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
 </body>
 

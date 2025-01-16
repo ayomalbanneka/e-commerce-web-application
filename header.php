@@ -74,11 +74,11 @@
                         <a class="btn btn-outline-dark custom-nav-btn" id="searchBtn" href="#"><i class="bi bi-search"></i></a>
                         <a class="btn btn-outline-dark custom-nav-btn position-relative" href="cart.php"><i class="bi bi-bag"></i>
 
-                            <?php 
-                            
-                            $cart_rs = Database::search("SELECT * FROM `cart` WHERE `cart_users_email` = '".$email."'");
+                            <?php
+
+                            $cart_rs = Database::search("SELECT * FROM `cart` WHERE `cart_users_email` = '" . $email . "'");
                             $cart_num = $cart_rs->num_rows;
-                            
+
                             ?>
 
                             <span class="position-absolute top-0 h6 mt-1 mx-2 translate-middle badge rounded-pill bg-danger">
