@@ -78,7 +78,7 @@ include "connection.php"
                                 <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
 
-                            <div class="col-12 col-lg-10 col-md-10 mt-3 d-grid">
+                            <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
                                 <button class="fw-bold btn btn-dark py-2" onclick="signIn();" id="sweetBtn">Sign In</button>
                             </div>
 
@@ -90,26 +90,26 @@ include "connection.php"
                                 <p>Are you an administrator? <a class="link link-primary text-decoration-none" href="admin-sign-in.php">Login Here</a> </p>
                             </div> -->
 
-                            <div class="divider d-flex align-items-center my-4 col-12 col-lg-10 col-md-10">
+                            <div class="divider d-flex align-items-center my-4 col-12 col-lg-10 col-md-12">
 
                                 <p class="text-center fw-bold mx-3 mb-0 fw-bold">OR</p>
 
                             </div>
 
-                            <div class="col-12 col-lg-10 col-md-10 mt-3 d-grid">
+                            <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
                                 <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn" onclick="signInWithEmail();">
                                     <i class="bi bi-envelope-fill"></i> Sign up with Email
                                 </button>
                             </div>
 
-                            <div class="col-12 col-lg-10 col-md-10 mt-3 d-grid ">
+                            <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid ">
                                 <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn">
                                     <img src="img/google_icon.ico" class="google_icon" alt="google" />
                                     Sign in with Google
                                 </button>
                             </div>
 
-                            <div class="col-12 col-lg-10 col-md-10 mt-3 d-grid">
+                            <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
                                 <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn">
                                     <img src="img/facebook_icon.ico" class="facebook_icon" alt="">
                                     Sign in with facebook
