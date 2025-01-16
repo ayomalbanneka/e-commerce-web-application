@@ -100,6 +100,11 @@ function signUp() {
     request.send(form);
 
 }
+
+function signInWithEmail(){
+    window.location.href = "sign-up.php";
+}
+
 //This will stop multiple alert repeting when click the button
 document.getElementById("sweetBtn").removeEventListener('click', signUp);
 document.getElementById("sweetBtn").addEventListener('click', function (event) {
