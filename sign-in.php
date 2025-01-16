@@ -150,7 +150,7 @@ include "connection.php"
 
     <!-- footer  -->
 
-    <div class="anime">
+    <div>
 
         <?php include "footer.php"; ?>
 
