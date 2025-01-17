@@ -31,7 +31,7 @@ $selected_num = $selected_rs->num_rows;
     <link rel="stylesheet" href="../../css/product-view.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="shortcut icon" href="../../favicon.ico" />
-    <title>Women - Dresses | UrbanElegance</title>
+    <title>Kids - Girls | UrbanElegance</title>
 </head>
 
 <body>
