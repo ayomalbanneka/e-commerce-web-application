@@ -173,12 +173,12 @@ if (isset($_GET['code'])) {
                                 </div>
 
                                 <div class="col-12 col-lg-1 col-md-12 d-flex justify-content-center d-lg-none d-md-none align-items-center">
-                                    <button class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn">
+                                    <a href="<?php echo $client->createAuthUrl() ?>" class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn">
                                         <img src="img/google_icon.ico" class="google_icon" alt="google" />
-                                    </button>
-                                    <button class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn">
+                                    </a>
+                                    <a href="<?php echo $loginUrl ?>" class="fw-bold btn d-flex rounded rounded-5 mx-2 py-2" id="sweetBtn">
                                         <img src="img/facebook_icon.ico" class="facebook_icon" alt="">
-                                    </button>
+                                    </a>
                                 </div>
 
 
