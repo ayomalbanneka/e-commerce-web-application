@@ -6,7 +6,7 @@ require_once "vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Facebook Login
+// =================== Facebook Login ===================
 
 use Facebook\Facebook;
 
@@ -27,9 +27,9 @@ $loginUrl = $helper->getLoginUrl($callbackUrl, $permissions);
 
 // echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
 
-// Facebook Login
+// =================== Facebook Login ===================
 
-// Google Login
+// =================== Google Login ===================
 
 // init configuration
 $clientID = $_ENV['GOOGLE_CLIENT_ID'];
@@ -57,7 +57,7 @@ if (isset($_GET['code'])) {
 
     // now you can use this profile info to create account in your website and make user logged in.
 } else {
-// Google Login
+    // =================== Google Login ===================
 
 ?>
 
