@@ -6,6 +6,31 @@ require_once "vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+// Facebook Login
+
+use Facebook\Facebook;
+
+// Initialize Facebook SDK
+$facebook = new Facebook([
+    'app_id' => $_ENV['FACEBOOK_APP_ID'], // Replace with your App ID
+    'app_secret' => $_ENV['FACEBOOK_APP_SECRET'], // Replace with your App Secret
+    'default_graph_version' => 'v16.0',
+]);
+
+// Redirect URL after login
+$callbackUrl = 'http://localhost/shop/index.php';
+
+// Generate login URL
+$helper = $facebook->getRedirectLoginHelper();
+$permissions = ['email']; // Optional permissions
+$loginUrl = $helper->getLoginUrl($callbackUrl, $permissions);
+
+// echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+
+// Facebook Login
+
+// Google Login
+
 // init configuration
 $clientID = $_ENV['GOOGLE_CLIENT_ID'];
 $clientSecret = $_ENV['GOOGLE_CLIENT_SECRET'];
@@ -32,7 +57,7 @@ if (isset($_GET['code'])) {
 
     // now you can use this profile info to create account in your website and make user logged in.
 } else {
-    //   echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
+// Google Login
 
 ?>
 
@@ -141,10 +166,10 @@ if (isset($_GET['code'])) {
                                 </div>
 
                                 <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
-                                    <button class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn">
+                                    <a href="<?php echo $loginUrl ?>" class="fw-bold btn btn-outline-dark py-2 d-none d-md-block" id="sweetBtn">
                                         <img src="img/facebook_icon.ico" class="facebook_icon" alt="">
                                         Sign in with facebook
-                                    </button>
+                                    </a>
                                 </div>
 
                                 <div class="col-12 col-lg-1 col-md-12 d-flex justify-content-center d-lg-none d-md-none align-items-center">
