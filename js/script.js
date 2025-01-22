@@ -101,7 +101,7 @@ function signUp() {
 
 }
 
-function signInWithEmail(){
+function signInWithEmail() {
     window.location.href = "sign-up.php";
 }
 
@@ -157,6 +157,9 @@ document.getElementById("sweetBtn").addEventListener('click', function (event) {
 
 function emailSend() {
     var email = document.getElementById("email2");
+    var emaildiv = document.getElementById("emaildiv");
+    var vcodeDiv = document.getElementById("vcodeDiv");
+
 
     var request = new XMLHttpRequest();
 
@@ -170,6 +173,9 @@ function emailSend() {
                     text: "Verification send to your email address"
                 }).then(() => {
                     // window.location = "#";
+                    emaildiv.classList.toggle("d-none");
+                    vcodeDiv.classList.toggle("d-none");
+
                 });
             } else {
                 Swal.fire({
@@ -257,17 +263,42 @@ function showPassword2() {
 
 }
 
-function showPassword3() {
-    var pw = document.getElementById("pw");
-    var pwicon = document.getElementById("pwi");
+function verifyCode() {
+    const email = document.getElementById("email2");
+    var newPasswordDiv = document.getElementById("newPasswordDiv");
+    // var vcodeDiv = document.getElementById("vcodeDiv");
 
-    if (pw.type == "password") {
-        pw.type = "text";
-        pwicon.className = "bi bi-eye-fill text-white";
-    } else {
-        pw.type = "password";
-        pwicon.className = "bi bi-eye-slash-fill text-white";
+    var form = new FormData();
+
+    form.append("vcode", vcode.value);
+    form.append("email", email.value);
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            if (response == "success") {
+                Swal.fire({
+                    title: "Verification code verified successfully",
+                    icon: "success"
+                }).then(() => {
+                    vcodeDiv.classList.toggle("d-none");
+                    newPasswordDiv.classList.toggle("d-none");
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops :(",
+                    text: response
+                });
+            }
+        }
     }
+
+    request.open("POST", "code-verification-process.php", true);
+    request.send(form);
+
 }
 
 function resetPassword() {
@@ -275,6 +306,9 @@ function resetPassword() {
     var newPassword = document.getElementById("np");
     var retypedPassword = document.getElementById("rp");
     var vcode = document.getElementById("vcode");
+
+    var newPasswordDiv = document.getElementById("newPasswordDiv");
+    var vcodeDiv = document.getElementById("vcodeDiv");
 
     var form = new FormData();
 
@@ -293,6 +327,8 @@ function resetPassword() {
                     title: "Password changed successfully",
                     icon: "success"
                 }).then(() => {
+                    newPasswordDiv.classList.toggle("d-none");
+                    vcodeDiv.classList.toggle("d-none");
                     window.location = "sign-in.php";
                 });
             } else {
