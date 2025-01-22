@@ -172,7 +172,6 @@ function emailSend() {
                     icon: "success",
                     text: "Verification send to your email address"
                 }).then(() => {
-                    // window.location = "#";
                     emaildiv.classList.toggle("d-none");
                     vcodeDiv.classList.toggle("d-none");
 
@@ -200,6 +199,8 @@ document.getElementById("sweetBtn").addEventListener('click', function (event) {
 
 function adminEmailSend() {
     var email = document.getElementById("email2");
+    var emaildiv = document.getElementById("emaildiv");
+    var vcodeDiv = document.getElementById("vcodeDiv");
 
     var request = new XMLHttpRequest();
 
@@ -212,7 +213,8 @@ function adminEmailSend() {
                     icon: "success",
                     text: "Verification send to your email address"
                 }).then(() => {
-                    // window.location = "#";
+                    emaildiv.classList.toggle("d-none");
+                    vcodeDiv.classList.toggle("d-none");
                 });
             } else {
                 Swal.fire({
@@ -226,6 +228,87 @@ function adminEmailSend() {
 
     request.open("GET", "admin-forgot-password-process.php?email=" + email.value, true);
     request.send();
+}
+
+function adminVerifyCode(){
+    const email = document.getElementById("email2");
+    var newPasswordDiv = document.getElementById("newPasswordDiv");
+    // var vcodeDiv = document.getElementById("vcodeDiv");
+
+    var form = new FormData();
+
+    form.append("vcode", vcode.value);
+    form.append("email", email.value);
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            if (response == "success") {
+                Swal.fire({
+                    title: "Verification code verified successfully",
+                    icon: "success"
+                }).then(() => {
+                    vcodeDiv.classList.toggle("d-none");
+                    newPasswordDiv.classList.toggle("d-none");
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops :(",
+                    text: response
+                });
+            }
+        }
+    }
+
+    request.open("POST", "admin-code-verification-process.php", true);
+    request.send(form);
+}
+
+function AdminResetPassword(){
+    var email = document.getElementById("email2");
+    var newPassword = document.getElementById("np");
+    var retypedPassword = document.getElementById("rp");
+    var vcode = document.getElementById("vcode");
+
+    var newPasswordDiv = document.getElementById("newPasswordDiv");
+    var vcodeDiv = document.getElementById("vcodeDiv");
+
+    var form = new FormData();
+
+    form.append("email", email.value);
+    form.append("np", newPassword.value);
+    form.append("rp", retypedPassword.value);
+    form.append("vcode", vcode.value);
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            if (response == "success") {
+                Swal.fire({
+                    title: "Password changed successfully",
+                    icon: "success"
+                }).then(() => {
+                    newPasswordDiv.classList.toggle("d-none");
+                    vcodeDiv.classList.toggle("d-none");
+                    window.location = "admin-sign-in.php";
+                });
+            } else {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Oops :(",
+                    text: response
+                });
+            }
+        }
+    }
+
+    request.open("POST", "admin-reset-password-process.php", true);
+    request.send(form);
 }
 
 //This will stop multiple alert repeting when click the button
