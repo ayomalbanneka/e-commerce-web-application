@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include "connection.php";
 
@@ -17,5 +17,3 @@ if (empty($vcode)) {
         echo "Invalid Verification Code!";
     }
 }
-
-?>
