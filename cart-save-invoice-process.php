@@ -37,9 +37,9 @@ for ($x = 0; $x < $cart_num; $x++) {
     // echo ("Quantity Updated");
     Database::iud("DELETE FROM `cart` WHERE `cart_users_email` = '" . $email . "'");
 
-    echo(1);
-
 }
+
+echo("success");
 
 // Database::iud("DELETE * FROM `cart`");
 // echo("Cart cleared");
