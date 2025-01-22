@@ -21,14 +21,14 @@ if (empty($newPw)) {
     echo "Please enter your verification code!";
 } else {
 
-    $user_rs = Database::search("SELECT * FROM `users` WHERE `email` = '" . $email . "' AND `vcode` = '" . $vcode . "'");
+    $user_rs = Database::search("SELECT * FROM `users` WHERE `email` = '" . $email . "'");
     $user_num = $user_rs->num_rows;
 
     if ($user_num == 1) {
         // Hash the new password before updating it
         $hashedPassword = password_hash($retypedPw, PASSWORD_DEFAULT);
 
-        Database::iud("UPDATE `users` SET `password` = '" . $hashedPassword . "' WHERE `vcode` = '" . $vcode . "'");
+        Database::iud("UPDATE `users` SET `password` = '" . $hashedPassword . "' WHERE `email` = '" . $email . "'");
         echo "success";
     } else {
         echo "Invalid Verification Code!";

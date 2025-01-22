@@ -169,16 +169,6 @@
                                                 <input type="text" class="form-control" id="mobile" value="<?php echo $details_data["mobile"]; ?>" />
                                             </div>
 
-                                            <!-- <div class="col-12">
-                                                <label class="form-label">Password</label>
-                                                <div class="input-group">
-                                                    <input type="password" class="form-control" id="pw" value="<?php echo $details_data["password"]; ?>" readonly />
-                                                    <span class="input-group-text bg-dark" id="basic-addon2" onclick="showPassword3();">
-                                                        <i id="pwi" class="bi bi-eye-slash-fill text-white"></i>
-                                                    </span>
-                                                </div>
-                                            </div> -->
-
                                             <div class="col-12">
                                                 <label class="form-label">Email</label>
                                                 <div class="input-group">
