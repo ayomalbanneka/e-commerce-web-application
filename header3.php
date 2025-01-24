@@ -105,7 +105,7 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="../user-profile.php">My Profile</a></li>
-                                <li><a class="dropdown-item" href="../whishlist.php">Watchlist</a></li>
+                                <li><a class="dropdown-item" href="../watchlist.php">Watchlist</a></li>
                                 <li><a class="dropdown-item" href="../purchase-history.php">Purchase History</a></li>
                                 <!-- <li><a class="dropdown-item" href="#">Messages</a></li> -->
                                 <li><a class="dropdown-item" href="../contact-us.php">Contact Us</a></li>
