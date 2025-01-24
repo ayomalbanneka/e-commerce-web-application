@@ -128,7 +128,7 @@ if (isset($_GET["id"])) {
                                     </button>
                                     <ul class="dropdown-menu ">
                                         <li><a class="dropdown-item" href="user-profile.php">My Profile</a></li>
-                                        <li><a class="dropdown-item" href="whishlist.php">Watchlist</a></li>
+                                        <li><a class="dropdown-item" href="watchlist.php">Watchlist</a></li>
                                         <li><a class="dropdown-item" href="#">Purchase History</a></li>
                                         <li><a class="dropdown-item" href="#">Messages</a></li>
                                         <li><a class="dropdown-item" href="#">Contact Admin</a></li>
