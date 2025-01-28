@@ -82,7 +82,7 @@ include "connection.php";
                                         <div class="col-lg-8">
                                             <div class="p-5">
                                                 <div class="d-flex justify-content-between align-items-center mb-5">
-                                                    <h1 class="fw-bold mb-0">Shopping Cart</h1>
+                                                    <h2 class="fw-bold mb-0">Shopping Cart</h2>
                                                     <h6 class="mb-0 text-muted">items <?php echo $cart_num; ?></h6>
                                                 </div>
                                                 <hr class="my-4">
@@ -125,7 +125,7 @@ include "connection.php";
                                                             <h6 class="mb-0"><?php echo $cart_data["title"]; ?></h6>
                                                             <h6 class="mt-2 text-secondary">Shipping: Rs.<?php echo $ship; ?>.00</h6>
                                                         </div>
-                                                        <div class="col-md-3 col-lg-2 d-flex custom-qty-selector">
+                                                        <div class="col-md-3 col-lg-2 d-flex custom-qty-selector mt-3 mb-3">
                                                             <button class="btn btn-link px-2" onclick="cartQtyMinus(<?php echo $cart_data['id']; ?>);">
                                                                 <i class="bi bi-dash"></i>
                                                             </button>
@@ -140,6 +140,9 @@ include "connection.php";
                                                         <div class="col-2 col-md-1 text-end">
                                                             <i class="bi bi-trash custom-bin text-danger btn btn-outline-dark trash-icon ms-2" onclick="removeFromCart(<?php echo $cart_data['cart_id'];?>);"></i>
                                                         </div>
+
+                                                        <hr class="mt-3 border border-1 border-dark d-lg-none d-md-block">
+
                                                     </div>
 
                                                 <?php
