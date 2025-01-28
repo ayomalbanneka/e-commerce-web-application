@@ -42,18 +42,18 @@ include "connection.php";
                 <div class="container py-5 h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col-12">
-                            <div class="card card-cart card-cart-2" style="border-radius: 15px;">
+                            <div class="card card-cart card-cart-2 anime2" style="border-radius: 15px;">
                                 <div class="card-body p-0">
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-12 emptyCart"></div>
                                             <div class="col-12 text-center mb-2">
-                                                <label class="form-label fs-1 fw-bold">
+                                                <label class="form-label fs-4 fw-bold">
                                                     You have no items in your Cart yet.
                                                 </label>
                                             </div>
                                             <div class="offset-lg-4 col-12 col-lg-4 mb-4 d-grid">
-                                                <a href="home.php" class="btn btn-outline-dark fs-3 fw-bold">
+                                                <a href="home.php" class="btn btn-outline-dark fs-4 fw-bold">
                                                     Start Shopping
                                                 </a>
                                             </div>
@@ -138,7 +138,7 @@ include "connection.php";
                                                             <h6 class="mb-0">Rs.<?php echo $cart_data["price"]; ?>.00</h6>
                                                         </div>
                                                         <div class="col-2 col-md-1 text-end">
-                                                            <i class="bi bi-trash custom-bin text-danger btn btn-outline-dark trash-icon ms-2" onclick="removeFromCart(<?php echo $cart_data['cart_id'];?>);"></i>
+                                                            <i class="bi bi-trash custom-bin text-danger btn btn-outline-dark trash-icon ms-2" onclick="removeFromCart(<?php echo $cart_data['cart_id']; ?>);"></i>
                                                         </div>
 
                                                         <hr class="mt-3 border border-1 border-dark d-lg-none d-md-block">
