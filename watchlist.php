@@ -77,7 +77,7 @@ include "connection.php";
                                     <label class="form-label fs-1 fw-bold">You have no items in your Wishlist yet.</label>
                                 </div>
                                 <div class="offset-lg-4 col-12 col-lg-4 d-grid mb-3">
-                                    <a href="index.php" class="btn btn-outline-dark fs-3 fw-bold">Start Shopping</a>
+                                    <a href="home.php" class="btn btn-outline-dark fs-3 fw-bold">Start Shopping</a>
                                 </div>
                             </div>
                         </div>

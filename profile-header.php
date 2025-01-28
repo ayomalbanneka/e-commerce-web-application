@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-expand-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="home.php">
                 <img src="img/Slight 555 (1).png" alt="Logo" width="230" height="40" class="d-inline-block align-text-top">
 
             </a>

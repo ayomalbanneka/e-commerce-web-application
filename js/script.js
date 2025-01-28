@@ -132,7 +132,7 @@ function signIn() {
                     title: "User Sign In Success",
                     icon: "success"
                 }).then(() => {
-                    window.location = "index.php";
+                    window.location = "home.php";
                 });
             } else {
                 Swal.fire({
@@ -2184,7 +2184,7 @@ function deleteUserAccount(email) {
                     text: "Your account deleted successfully",
                     icon: "success"
                 }).then(() => {
-                    window.location = "index.php";
+                    window.location = "home.php";
                 });
 
             } else {

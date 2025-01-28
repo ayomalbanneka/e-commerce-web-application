@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-expand-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="home.php">
                 <img src="img/Slight 555 (1).png" alt="Logo" width="230" height="40" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -165,7 +165,7 @@
 
     <ul class="nav d-flex justify-content-center bg-dark">
         <li class="nav-item">
-            <a class="nav-link text-light custom-nav active" aria-current="page" href="index.php">HOME</a>
+            <a class="nav-link text-light custom-nav active" aria-current="page" href="home.php">HOME</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light custom-nav" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
