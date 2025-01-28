@@ -879,6 +879,9 @@ function payNow(id) {
             } else if (response == 2) {
                 alert('Please update your address');
                 window.location = 'user-profile.php';
+            }else if(response == 3){
+                alert('Please verify your email address');
+                window.location = 'user-profile.php';
             } else {
 
 

@@ -84,7 +84,7 @@ if (isset($_SESSION["u"])) {
             echo ("2");
         }
     } else {
-        echo ("Please verify your email address");
+        echo ("3");
     }
 } else {
     echo ("1");
