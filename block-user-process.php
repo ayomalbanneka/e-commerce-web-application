@@ -14,11 +14,11 @@ if (isset($_GET["email"])) {
         $user_data = $user_rs->fetch_assoc();
         $status = $user_data["status_status_id"];
 
-        if ($status == 1) {
+        if ($status == 4) {
             Database::iud("UPDATE `users` SET `status_status_id`='2' WHERE `email` = '" . $mail . "' ");
             echo ("user has been blocked.");
         } elseif ($status == 2) {
-            Database::iud("UPDATE `users` SET `status_status_id`='1' WHERE `email` = '" . $mail . "' ");
+            Database::iud("UPDATE `users` SET `status_status_id`='4' WHERE `email` = '" . $mail . "' ");
             echo ("user has been unblocked.");
         }
     } else {

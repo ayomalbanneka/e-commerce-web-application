@@ -119,7 +119,7 @@ if (isset($_SESSION["au"])) {
 
                                         <?php
 
-                                        if ($selected_data["status_status_id"] == 1) {
+                                        if ($selected_data["status_status_id"] == 4) {
 
                                         ?>
 
@@ -150,7 +150,7 @@ if (isset($_SESSION["au"])) {
                                     <td>
                                         <?php
 
-                                        if ($selected_data["status_status_id"] == 1) {
+                                        if ($selected_data["status_status_id"] == 4) {
                                         ?>
 
                                             <button class="btn btn-danger btn-sm btn-rounded" onclick="blockUser('<?php echo $selected_data['email'] ?>');">
