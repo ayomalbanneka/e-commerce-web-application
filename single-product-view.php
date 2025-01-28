@@ -38,7 +38,7 @@ if (isset($_GET["id"])) {
             <!-- header -->
             <nav class="navbar navbar-expand-sm">
                 <div class="container">
-                    <a class="navbar-brand" href="index.php">
+                    <a class="navbar-brand" href="home.php">
                         <img src="img/Slight 555 (1).png" alt="Logo" width="230" height="40" class="d-inline-block align-text-top">
 
                     </a>
@@ -182,7 +182,7 @@ if (isset($_GET["id"])) {
 
             <ul class="nav d-flex justify-content-center bg-dark">
                 <li class="nav-item">
-                    <a class="nav-link text-light custom-nav active" aria-current="page" href="index.php">HOME</a>
+                    <a class="nav-link text-light custom-nav active" aria-current="page" href="home.php">HOME</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light custom-nav" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -247,7 +247,7 @@ if (isset($_GET["id"])) {
             </ul>
             <!-- header  -->
 
-            <p class="f6 text-secondary mx-3 mt-3"><a class="link-primary text-decoration-none" href="index.php">Home</a> / <?php echo $product_data["cat_name"] . "/ " . $product_data["sub_cat_name"]; ?></p>
+            <p class="f6 text-secondary mx-3 mt-3"><a class="link-primary text-decoration-none" href="home.php">Home</a> / <?php echo $product_data["cat_name"] . "/ " . $product_data["sub_cat_name"]; ?></p>
 
 
 
@@ -307,7 +307,7 @@ if (isset($_GET["id"])) {
 
                                 <div class="col-12 col-md-12 col-lg-6">
 
-                                    <p class="f6 text-secondary"><a class="text-secondary text-decoration-none" href="index.php">categories:</a> <?php echo $product_data["cat_name"] . ", " . $product_data["sub_cat_name"]; ?></p>
+                                    <p class="f6 text-secondary"><a class="text-secondary text-decoration-none" href="home.php">categories:</a> <?php echo $product_data["cat_name"] . ", " . $product_data["sub_cat_name"]; ?></p>
 
 
                                     <h3 class="d-flex justify-content-start"><?php echo $product_data["title"]; ?></h3>

@@ -18,7 +18,7 @@ $facebook = new Facebook([
 ]);
 
 // Redirect URL after login
-$callbackUrl = 'http://localhost/shop/index.php';
+$callbackUrl = 'http://localhost/shop/home.php';
 
 // Generate login URL
 $helper = $facebook->getRedirectLoginHelper();
@@ -34,7 +34,7 @@ $loginUrl = $helper->getLoginUrl($callbackUrl, $permissions);
 // init configuration
 $clientID = $_ENV['GOOGLE_CLIENT_ID'];
 $clientSecret = $_ENV['GOOGLE_CLIENT_SECRET'];
-$redirectUri = 'http://localhost/shop/index.php';
+$redirectUri = 'http://localhost/shop/home.php';
 
 // create Client Request to access Google API
 $client = new Google_Client();
