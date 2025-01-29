@@ -230,7 +230,7 @@ function adminEmailSend() {
     request.send();
 }
 
-function adminVerifyCode(){
+function adminVerifyCode() {
     const email = document.getElementById("email2");
     var newPasswordDiv = document.getElementById("newPasswordDiv");
     // var vcodeDiv = document.getElementById("vcodeDiv");
@@ -267,7 +267,7 @@ function adminVerifyCode(){
     request.send(form);
 }
 
-function AdminResetPassword(){
+function AdminResetPassword() {
     var email = document.getElementById("email2");
     var newPassword = document.getElementById("np");
     var retypedPassword = document.getElementById("rp");
@@ -879,7 +879,7 @@ function payNow(id) {
             } else if (response == 2) {
                 alert('Please update your address');
                 window.location = 'user-profile.php';
-            }else if(response == 3){
+            } else if (response == 3) {
                 alert('Please verify your email address');
                 window.location = 'user-profile.php';
             } else {
@@ -992,32 +992,25 @@ function printInvoice() {
 }
 
 function downloadInvoice() {
-    var restorePage = document.body.innerHTML;
-    var page = document.getElementById("page").innerHTML;  // Get the invoice content
+    const invoice = document.getElementById('page');
 
-    // Temporarily replace the body content with the invoice content
-    document.body.innerHTML = page;
+    html2canvas(invoice).then(canvas => {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
 
-    // Create a Blob with the page content
-    var blob = new Blob([document.body.innerHTML], { type: 'text/html' });
+        // Convert canvas to image
+        const imgData = canvas.toDataURL('image/png');
 
-    // Create a link element
-    var link = document.createElement('a');
+        // Calculate dimensions
+        const imgWidth = pdf.internal.pageSize.getWidth();
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    // Set the download attribute to suggest the filename
-    link.download = 'invoice.html';
+        // Add image to PDF
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
 
-    // Create an object URL for the Blob
-    link.href = URL.createObjectURL(blob);
-
-    // Programmatically click the link to start the download
-    link.click();
-
-    // Restore the original page content
-    document.body.innerHTML = restorePage;
-
-    // Clean up the object URL
-    URL.revokeObjectURL(link.href);
+        // Save the PDF
+        pdf.save('invoice.pdf');
+    });
 }
 
 

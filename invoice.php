@@ -128,7 +128,6 @@ if (empty($_GET['id'])) {
 
     <body>
 
-
         <div class="mt-2 col-12 btn-toolbar justify-content-end">
             <button class="btn btn-outline-danger me-2" onclick="printInvoice();">
                 <i class="bi bi-printer-fill"></i> Print
@@ -212,7 +211,7 @@ if (empty($_GET['id'])) {
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Order ID & Product</th>
+                                <th>Product</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
@@ -263,7 +262,7 @@ if (empty($_GET['id'])) {
                     <p><strong>Subtotal:</strong> Rs.<?php echo $subTotal; ?>.00</p>
                     <p><strong>Delivery Fee:</strong> Rs.<?php echo $delivery; ?>.00</p>
                     <hr class="d-flex justify-content-end col-12" />
-                    <h4><strong>Grand Total:</strong> Rs.<?php echo $subTotal + $delivery; ?>.00</h4>
+                    <h5>Grand Total: Rs.<?php echo $subTotal + $delivery; ?>.00</h5>
                 </div>
 
 
@@ -298,11 +297,18 @@ if (empty($_GET['id'])) {
         </div>
 
 
+        <div class="mb-5">
+            <a class="link icon-link icon-link-hover link-dark text-decoration-none" href="home.php">
+                <i class="bi bi-arrow-left"></i> Go Back
+            </a>
+        </div>
 
 
 
         <script src="js/script.js"></script>
         <script src="js/bootstrap.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     </body>
 
     </html>
