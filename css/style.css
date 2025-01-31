@@ -481,7 +481,33 @@
     background-repeat: no-repeat;
 }
 
+
+
 /* watchlist */
+
+/* my-orders */
+
+.myordersEmptyview{
+    height: 400px;
+    background-image: url("../img/myorders_empty.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* my-orders */
+
+/* my-orders */
+
+.productHistoryEmptyview{
+    height: 400px;
+    background-image: url("../img/purchase_history_empty.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* my-orders */
 
 /* Product Viewing area */
 

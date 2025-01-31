@@ -41,7 +41,7 @@ include "connection.php";
                 INNER JOIN `category` ON products.category_cat_id = category.cat_id 
                 INNER JOIN `category_has_sub_category` ON products.category_has_sub_category_category_has_sub_category_id = category_has_sub_category.category_has_sub_category_id 
                 INNER JOIN `sub_category` ON category_has_sub_category.sub_category_sub_cat_id = sub_category.sub_cat_id 
-                WHERE `users_email` = '" . $email . "'";
+                WHERE `users_email` = '" . $email . "' ORDER BY `date` DESC";
 
                 $invoice_rs = Database::search($query);
                 $invoice_num = $invoice_rs->num_rows;
@@ -59,12 +59,19 @@ include "connection.php";
                 </div>
 
                 <?php
-                if ($selected_num == 0) {
+                if ($selected_num !== 0) {
                 ?>
                     <!-- Empty view -->
-                    <div class="col-12 text-center mt-5 mb-5">
-                        <p class="fs-4 fw-bold">You have not purchased any items yet...</p>
-                        <a href="home.php" class="btn btn-outline-dark fs-5 fw-bold">Start Shopping</a>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 text-center productHistoryEmptyview mb-2"></div>
+                            <div class="col-12 text-center">
+                                <label class="form-label fs-4 fw-bold">You have not purchased any items yet</label>
+                            </div>
+                            <div class="col-12 col-lg-4 mx-auto d-grid">
+                                <a href="home.php" class="btn btn-outline-dark fs-5 fw-bold mb-5">Start Shopping</a>
+                            </div>
+                        </div>
                     </div>
                     <!-- End Empty view -->
                     <?php
@@ -99,7 +106,7 @@ include "connection.php";
                                     <h6 class="fw-bold"><?php echo $selected_data["title"]; ?></h6>
                                     <p class="text-muted small">Categories: <?php echo $selected_data["sub_cat_name"]; ?>, <?php echo $selected_data["cat_name"]; ?></p>
                                     <p>Quantity: <?php echo $selected_data["invoice_qty"]; ?></p>
-                                    <p class="text-secondary small">Invoice ID: <?php echo $selected_data['invoice_id']; ?></p>
+                                    <p class="text-secondary small">Order No: <?php echo $selected_data['order_id']; ?></p>
                                 </div>
 
                                 <!-- Price -->

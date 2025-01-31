@@ -20,7 +20,16 @@ if (isset($_SESSION["u"])) {
     $address = $address_data["line1"] . ", " . $address_data["line2"];
     $city = $address_data["city_name"];
 
-    $order_id = uniqid();
+    function generateRandomDigits($length = 10)
+        {
+            $digits = '';
+            for ($i = 0; $i < $length; $i++) {
+                $digits .= mt_rand(0, 9); // Append a random digit from 0 to 9
+            }
+            return $digits;
+        }
+
+    $order_id = generateRandomDigits(10);
 
     $items = "";
     $product_total = 0;
