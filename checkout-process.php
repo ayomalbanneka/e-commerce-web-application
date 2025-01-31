@@ -20,7 +20,7 @@ if (isset($_SESSION["u"])) {
     $address = $address_data["line1"] . ", " . $address_data["line2"];
     $city = $address_data["city_name"];
 
-    $order_id = uniqid();
+    $order_id = generateRandomDigits(10);
 
     $items = "";
     $product_total = 0;

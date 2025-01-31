@@ -16,7 +16,7 @@ if (isset($_SESSION["u"])) {
     if ($user_data['status_status_id'] == 4) {
         $array;
 
-        $order_id = uniqid();
+        $order_id = generateRandomDigits(10);
 
         $product_rs = Database::search("SELECT * FROM `products` WHERE `id` = '" . $id . "'");
 
