@@ -66,7 +66,7 @@ include "connection.php";
                                     <label class="form-label fs-4 fw-bold">You have no items in your Wishlist yet.</label>
                                 </div>
                                 <div class="col-12 col-lg-4 mx-auto d-grid">
-                                    <a href="home.php" class="btn btn-outline-dark fs-5 fw-bold">Start Shopping</a>
+                                    <a href="home.php" class="btn btn-outline-dark fs-5 fw-bold mb-5">Start Shopping</a>
                                 </div>
                             </div>
                         </div>
@@ -112,63 +112,77 @@ include "connection.php";
 
         </div>
 
-        <div class="offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3 anime2">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination pagination-lg justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="<?php
+        <?php
 
-                                                    if ($pageno <= 1) {
-                                                        echo "#";
-                                                    } else {
-                                                        echo "?page=" . ($pageno - 1);
-                                                    }
+        if ($selected_num !== 0) {
 
-                                                    ?>" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
+        ?>
 
-                    <?php
+            <div class="offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3 anime2">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pagination-lg justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="<?php
 
-                    for ($x = 1; $x <= $number_of_pages; $x++) {
-                        if ($pageno == $x) {
-                    ?>
+                                                        if ($pageno <= 1) {
+                                                            echo "#";
+                                                        } else {
+                                                            echo "?page=" . ($pageno - 1);
+                                                        }
 
-                            <li class="page-item active">
-                                <a class="page-link" href="<?php echo "?page=" . ($x); ?>"><?php echo $x; ?></a>
-                            </li>
+                                                        ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
 
                         <?php
-                        } else {
+
+                        for ($x = 1; $x <= $number_of_pages; $x++) {
+                            if ($pageno == $x) {
                         ?>
 
-                            <li class="page-item">
-                                <a class="page-link" href="<?php echo "?page=" . ($x); ?>"><?php echo $x; ?></a>
-                            </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="<?php echo "?page=" . ($x); ?>"><?php echo $x; ?></a>
+                                </li>
 
-                    <?php
+                            <?php
+                            } else {
+                            ?>
+
+                                <li class="page-item">
+                                    <a class="page-link" href="<?php echo "?page=" . ($x); ?>"><?php echo $x; ?></a>
+                                </li>
+
+                        <?php
+                            }
                         }
-                    }
 
-                    ?>
+                        ?>
 
-                    <li class="page-item">
-                        <a class="page-link" href="<?php
+                        <li class="page-item">
+                            <a class="page-link" href="<?php
 
-                                                    if ($pageno >= $number_of_pages) {
-                                                        echo "#";
-                                                    } else {
-                                                        echo "?page=" . ($pageno + 1);
-                                                    }
+                                                        if ($pageno >= $number_of_pages) {
+                                                            echo "#";
+                                                        } else {
+                                                            echo "?page=" . ($pageno + 1);
+                                                        }
 
-                                                    ?>" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                                                        ?>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        <?php
+
+        }
+
+        ?>
+
+
 
     </div>
 
