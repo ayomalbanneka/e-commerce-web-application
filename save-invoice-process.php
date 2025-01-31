@@ -28,7 +28,7 @@ if (isset($_SESSION["u"])) {
     $date = $d->format("Y-m-d H:i:s");
 
     Database::iud("INSERT INTO `invoice` (`order_id`,`date`,`total`,`invoice_qty`,`status`,`products_id`,`users_email`) 
-    VALUES('".$order_id."','".$date."','".$amount."','".$qty."','0','".$pid."','".$mail."') ");
+    VALUES('".$order_id."','".$date."','".$amount."','".$qty."','1','".$pid."','".$mail."') ");
 
     echo("success");
 
