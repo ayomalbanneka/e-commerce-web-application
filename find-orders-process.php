@@ -7,7 +7,7 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
     $from = $_GET["f"];
     $to = $_GET["t"];
 
-    $query = "SELECT * FROM `invoice`";
+    $query = "SELECT * FROM `invoice` ORDER BY `date` DESC";
 
     $invocie_rs = Database::search($query);
     $invocie_num = $invocie_rs->num_rows;
@@ -67,8 +67,8 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
                             </div>
                             <!-- Product Info -->
                             <div class="col-9 col-sm-10 col-md-11">
-                                <p class="mb-1 fw-bold text-truncate"><?php echo $product_data["title"]; ?></p>
-                                <p class="text-muted mb-0 text-truncate">Invoide ID: <?php echo $invoice_data["invoice_id"]; ?></p>
+                                <p class="mb-1 col-lg-6 fw-bold text-truncate"><?php echo $product_data["title"]; ?></p>
+                                <p class="text-muted mb-0 text-truncate">Order No: <?php echo $invoice_data["Order_id"]; ?></p>
                             </div>
                         </div>
 
@@ -367,7 +367,7 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
                         <!-- Product Info -->
                         <div class="col-9 col-sm-10 col-md-11">
                             <p class="mb-1 fw-bold text-truncate"><?php echo $product_data["title"]; ?></p>
-                            <p class="text-muted mb-0 text-truncate">Invoide ID: <?php echo $invoice_data["invoice_id"]; ?></p>
+                            <p class="text-muted mb-0 text-truncate">Order No: <?php echo $invoice_data["order_id"]; ?></p>
                         </div>
                     </div>
 

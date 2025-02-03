@@ -38,8 +38,8 @@ if (isset($_SESSION["au"])) {
                         <form class="row col-12 col-lg-12 g-3 col-sm-12 align-items-end">
                             <!-- Invoice ID Input -->
                             <div class="col-md-4">
-                                <label class="form-label">Search by Invoice ID:</label>
-                                <input type="text" class="form-control" id="invoice" onkeyup="searchInvoice();" placeholder="Enter Invoice ID">
+                                <label class="form-label">Search by Order No:</label>
+                                <input type="text" class="form-control" id="order_number" onkeyup="searchInvoice();" placeholder="Enter Order No">
                             </div>
                             <!-- From Date Input -->
                             <div class="col-md-3">
@@ -74,7 +74,7 @@ if (isset($_SESSION["au"])) {
 
                         <?php
 
-                        $query = "SELECT * FROM `invoice`";
+                        $query = "SELECT * FROM `invoice` ORDER BY `date` DESC";
                         $pageno;
 
                         if (isset($_GET["page"])) {
@@ -141,7 +141,7 @@ if (isset($_SESSION["au"])) {
                                             <!-- Product Info -->
                                             <div class="col-9 col-sm-10 col-md-11">
                                                 <p class="mb-1 col-lg-6 fw-bold text-truncate"><?php echo $product_data["title"]; ?></p>
-                                                <p class="text-muted mb-0 text-truncate">Invoice ID: <?php echo $selected_data["invoice_id"]; ?></p>
+                                                <p class="text-muted mb-0 text-truncate">Order Number: <?php echo $selected_data["order_id"]; ?></p>
                                             </div>
                                         </div>
 

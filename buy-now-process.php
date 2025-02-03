@@ -13,10 +13,19 @@ if (isset($_SESSION["u"])) {
     $user_rs = Database::search("SELECT * FROM `users` WHERE `email` = '" . $umail . "' ");
     $user_data = $user_rs->fetch_assoc();
 
+    function generateRandomDigits($length = 10)
+    {
+        $digits = '';
+        for ($i = 0; $i < $length; $i++) {
+            $digits .= mt_rand(0, 9); // Append a random digit from 0 to 9
+        }
+        return $digits;
+    }
+
     if ($user_data['status_status_id'] == 4) {
         $array;
 
-        $order_id = uniqid();
+        $order_id = generateRandomDigits(10);
 
         $product_rs = Database::search("SELECT * FROM `products` WHERE `id` = '" . $id . "'");
 

@@ -1,6 +1,5 @@
 <?php
 include "connection.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -16,18 +15,17 @@ include "connection.php";
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 
-<body class="anime">
+<body>
 
     <?php include "header.php"; ?>
 
-    <div class="container mt-5">
+    <div class="container-fluid mt-5 px-3 px-lg-5 anime2">
 
-        <div class="row">
+        <div class="row justify-content-center">
 
             <?php
 
             if (isset($_SESSION['u'])) {
-
                 $email = $_SESSION['u']['email'];
 
                 $pageno;
@@ -43,220 +41,205 @@ include "connection.php";
                 INNER JOIN `category` ON products.category_cat_id = category.cat_id 
                 INNER JOIN `category_has_sub_category` ON products.category_has_sub_category_category_has_sub_category_id = category_has_sub_category.category_has_sub_category_id 
                 INNER JOIN `sub_category` ON category_has_sub_category.sub_category_sub_cat_id = sub_category.sub_cat_id 
-                WHERE `users_email` = '" . $email . "'";
+                WHERE `users_email` = '" . $email . "' ORDER BY `date` DESC";
 
                 $invoice_rs = Database::search($query);
                 $invoice_num = $invoice_rs->num_rows;
 
-                $result_per_page = 3;
+                $result_per_page = 5;
                 $number_of_pages = ceil($invoice_num / $result_per_page);
-
                 $page_results = ($pageno - 1) * $result_per_page;
                 $selected_rs = Database::search($query . " LIMIT " . $result_per_page . " OFFSET " . $page_results);
                 $selected_num = $selected_rs->num_rows;
-
-
-
             ?>
 
-                <div>
-                    <h3>My Orders</h3>
-
+                <div class="col-12">
+                    <h3 class="text-lg-start">My Orders</h3>
                     <hr class="border border-1 border-dark" />
+                </div>
+
+                <?php
+                if ($selected_num == 0) {
+                ?>
+                    <!-- Empty view -->
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 text-center productHistoryEmptyview mb-2"></div>
+                            <div class="col-12 text-center">
+                                <label class="form-label fs-4 fw-bold">You have not purchased any items yet</label>
+                            </div>
+                            <div class="col-12 col-lg-4 mx-auto d-grid">
+                                <a href="home.php" class="btn btn-outline-dark fs-5 fw-bold mb-5">Start Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Empty view -->
+                    <?php
+                } else {
+                    for ($x = 0; $x < $selected_num; $x++) {
+                        $selected_data = $selected_rs->fetch_assoc();
+                    ?>
+
+                        <div class="col-12 col-md-12 col-lg-12 wishlist rounded p-3">
+                            <div class="row align-items-center">
+
+                                <!-- Product Image -->
+                                <div class="col-4 col-lg-2 col-md-1 col-sm-1">
+                                    <?php
+                                    $img_rs = Database::search("SELECT * FROM `product_img` WHERE `products_id` = '" . $selected_data["id"] . "'");
+                                    $img_data = $img_rs->fetch_assoc();
+
+                                    if ($img_rs->num_rows > 0) {
+                                    ?>
+                                        <img class="rounded img-fluid" src="<?php echo $img_data["img_path"]; ?>" />
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <img src="" class="img-fluid" alt="No Image Available" />
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+
+                                <!-- Product Details -->
+                                <div class="col-8 col-sm-6">
+                                    <h6 class="fw-bold"><?php echo $selected_data["title"]; ?></h6>
+                                    <p class="text-muted small">Categories: <?php echo $selected_data["sub_cat_name"]; ?>, <?php echo $selected_data["cat_name"]; ?></p>
+                                    <p>Quantity: <?php echo $selected_data["invoice_qty"]; ?></p>
+                                    <p class="text-secondary small">Order No: <?php echo $selected_data['invoice_id']; ?></p>
+                                    <p>Status:
+                                        <?php
+
+                                        if ($selected_data["status"] == 0) {
+
+                                        ?>
+
+                                            <span class="confirmOrder">Pending</span>
+
+                                        <?php
+
+                                        } elseif ($selected_data["status"] == 1) {
+                                        ?>
+
+                                            <span class="packing">Packing</span>
+
+                                        <?php
+                                        } elseif ($selected_data["status"] == 2) {
+                                        ?>
+
+                                            <span class="dispatched">Dispatched</span>
+
+                                        <?php
+                                        } elseif ($selected_data["status"] == 3) {
+                                        ?>
+
+                                            <span class="shipping">Shipped</span>
+
+                                        <?php
+                                        } elseif ($selected_data["status"] == 4) {
+                                        ?>
+
+                                            <span class="delivered">Delivered Successfully <i class="bi bi-check-circle-fill text-success"></i></span>
+
+                                        <?php
+                                        }
+
+                                        ?>
+                                    </p>
+                                </div>
+
+                                <!-- Price -->
+                                <div class="col-12 col-sm-3 text-sm-end">
+                                    <p class="price fs-5 fw-bold">Rs.<?php echo $selected_data["total"]; ?>.00</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr />
+            <?php
+                    }
+                }
+            } else {
+                header("Location: sign-in.php");
+            }
+            ?>
+
+        </div>
+    </div>
+
+    <?php
+
+    if ($selected_num > 0) {
+    ?>
+
+        <!-- Pagination -->
+        <div class="offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-lg justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="<?php
+
+                                                    if ($pageno <= 1) {
+                                                        echo "#";
+                                                    } else {
+                                                        echo "?page=" . ($pageno - 1);
+                                                    }
+
+                                                    ?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
 
                     <?php
 
-                    for ($x = 0; $x < $selected_num; $x++) {
-                        $selected_data = $selected_rs->fetch_assoc();
-
-                        if ($invoice_num == 0) {
+                    for ($x = 1; $x <= $number_of_pages; $x++) {
+                        if ($pageno == $x) {
                     ?>
 
-                            <!-- empty view -->
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <label class="form-label fs-1 fw-bold">You have not ordered any item yet...</label>
-                                    </div>
-                                    <div class="offset-lg-4 col-12 col-lg-4 d-grid mb-3">
-                                        <a href="home.php" class="btn btn-outline-dark fs-3 fw-bold">Start Shopping</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- empty view -->
+                            <li class="page-item active">
+                                <a class="page-link" href="<?php echo "?page=" . ($x); ?>"><?php echo $x; ?></a>
+                            </li>
 
                         <?php
                         } else {
                         ?>
 
-                            <div class="wishlist">
-
-                                <div class="row align-items-center mb-3">
-                                    <div class="col-3 col-md-2">
-                                        <?php
-                                        $img_rs = Database::search("SELECT * FROM `product_img` WHERE `products_id` = '" . $selected_data["id"] . "' ");
-                                        $img_num = $img_rs->num_rows;
-                                        $img_data = $img_rs->fetch_assoc();
-
-                                        if ($img_num > 0) {
-                                        ?>
-                                            <img class="rounded img-fluid" src="<?php echo $img_data["img_path"]; ?>" />
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <img src=" " class="img-fluid" />
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-
-                                    <div class="col-6 col-md-7">
-                                        <h6><?php echo $selected_data["title"]; ?></h6>
-                                        <p class="text-muted">Categories: <?php echo $selected_data["sub_cat_name"]; ?>, <?php echo $selected_data["cat_name"]; ?></p>
-                                        <p>Quantity: <?php echo $selected_data["invoice_qty"]; ?></p>
-                                        <p class="text-secondary">Order Id: <?php echo $selected_data["order_id"]; ?></p>
-                                        <p>Status: <?php
-
-                                                    if ($selected_data["status"] == 0) {
-
-                                                    ?>
-
-                                                <span class="confirmOrder">Pending</span>
-
-                                            <?php
-
-                                                    } elseif ($selected_data["status"] == 1) {
-                                            ?>
-
-                                                <span class="packing">Packing</span>
-
-                                            <?php
-                                                    } elseif ($selected_data["status"] == 2) {
-                                            ?>
-
-                                                <span class="dispatched">Dispatched</span>
-
-                                            <?php
-                                                    } elseif ($selected_data["status"] == 3) {
-                                            ?>
-
-                                                <span class="shipping">Shipped</span>
-
-                                            <?php
-                                                    } elseif ($selected_data["status"] == 4) {
-                                            ?>
-
-                                                <span class="delivered">Delivered Successfully <i class="bi bi-check-circle-fill text-success"></i></span>
-
-                                            <?php
-                                                    }
-
-                                            ?>
-                                        </p>
-                                    </div>
-
-                                    <div class="col-2 text-end">
-                                        <p class="price">Rs.<?php echo $selected_data["total"]; ?>.00</p>
-                                    </div>
-
-                                    <!-- <div class="col-1 text-end">
-                                        <button class="btn btn-outline-dark">
-                                            <i class="bi bi-cart-plus-fill"></i>
-                                        </button>
-                                        <i class="bi bi-trash text-danger trash-icon ms-2" onclick="removeFromWatchlist(<?php echo $list_id; ?>);"></i>
-                                    </div> -->
-                                </div>
-
-                                <hr />
-
-                            <?php
-                        }
-                            ?>
-
-                            </div>
-
-
-
-                </div>
-
-        <?php
-
-                    }
-                } else {
-                    header("Locarion: sign-in.php");
-                }
-
-
-
-        ?>
-
-        </div>
-
-
-
-    </div>
-
-
-
-    <div class="offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-lg justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="<?php
-
-                                                if ($pageno <= 1) {
-                                                    echo "#";
-                                                } else {
-                                                    echo "?page=" . ($pageno - 1);
-                                                }
-
-                                                ?>" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-
-                <?php
-
-                for ($x = 1; $x <= $number_of_pages; $x++) {
-                    if ($pageno == $x) {
-                ?>
-
-                        <li class="page-item active">
-                            <a class="page-link" href="<?php echo "?page=" . ($x); ?>"><?php echo $x; ?></a>
-                        </li>
+                            <li class="page-item">
+                                <a class="page-link" href="<?php echo "?page=" . ($x); ?>"><?php echo $x; ?></a>
+                            </li>
 
                     <?php
-                    } else {
+                        }
+                    }
+
                     ?>
 
-                        <li class="page-item">
-                            <a class="page-link" href="<?php echo "?page=" . ($x); ?>"><?php echo $x; ?></a>
-                        </li>
+                    <li class="page-item">
+                        <a class="page-link" href="<?php
 
-                <?php
-                    }
-                }
+                                                    if ($pageno >= $number_of_pages) {
+                                                        echo "#";
+                                                    } else {
+                                                        echo "?page=" . ($pageno + 1);
+                                                    }
 
-                ?>
+                                                    ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- End Pagination -->
 
-                <li class="page-item">
-                    <a class="page-link" href="<?php
+    <?php
+    }
 
-                                                if ($pageno >= $number_of_pages) {
-                                                    echo "#";
-                                                } else {
-                                                    echo "?page=" . ($pageno + 1);
-                                                }
+    ?>
 
-                                                ?>" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
 
-    <?php include "footer.php" ?>
+
+    <?php include "footer.php"; ?>
 
     <script src="js/script.js"></script>
     <script src="js/bootstrap.bundle.js"></script>

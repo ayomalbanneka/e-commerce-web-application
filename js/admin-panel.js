@@ -39,7 +39,7 @@ document.getElementById('productImg').addEventListener('change', function () {
 });
 
 function searchInvoice() {
-  var id = document.getElementById("invoice");
+  var orderNumber = document.getElementById("order_number");
 
   var request = new XMLHttpRequest();
 
@@ -51,11 +51,10 @@ function searchInvoice() {
         window.location.reload();
       }
       document.getElementById("view_area").innerHTML = response;
-      // alert(response);
     }
   }
 
-  request.open("GET", "search-invoice-process.php?id=" + id.value, true);
+  request.open("GET", "search-invoice-process.php?on=" + orderNumber.value, true);
   request.send();
 }
 

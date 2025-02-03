@@ -176,7 +176,7 @@ if (empty($_GET['id'])) {
                         <h2>UrbanEleganceba</h2>
                     </div>
                     <div class="invoice-info">
-                        <p><strong>Invoice Number:</strong> <?php echo $invoice_data["invoice_id"]; ?></p>
+                        <p><strong>Order No:</strong> <?php echo $invoice_data["order_id"]; ?></p>
                         <p><strong>Invoice Date:</strong> <?php echo $invoice_data["date"]; ?></p>
                     </div>
                 </div>
