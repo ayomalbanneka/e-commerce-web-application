@@ -59,7 +59,7 @@ include "connection.php";
                 </div>
 
                 <?php
-                if ($selected_num !== 0) {
+                if ($selected_num == 0) {
                 ?>
                     <!-- Empty view -->
                     <div class="col-12">

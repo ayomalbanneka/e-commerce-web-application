@@ -24,6 +24,19 @@
         
 
     </div>
+
+    <script>
+
+        const searchResults = sessionStorage.getItem('searchResults');
+
+        if(searchResults){
+            document.getElementById('basicSearchResult').innerHTML = searchResults;
+        }else{
+            document.getElementById('basicSearchResult').innerHTML = 'No Results Found';
+        }
+
+    </script>
+
     <!-- footer  -->
 
     <?php include "footer.php"; ?>

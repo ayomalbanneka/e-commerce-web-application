@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up | UrbanElagance</title>
+    <title>Contact Us | UrbanElagance</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="css/bootstrap.css" />
@@ -29,7 +29,7 @@
 
                         <div class="col-12 col-lg-7">
 
-                            <h2 class="mb-4 fw-bolder">Sign Up</h2>
+                            <h2 class="mb-4 fw-bolder">Contact Us</h2>
 
                             <div class="row">
 
