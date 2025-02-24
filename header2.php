@@ -86,7 +86,7 @@
                         </div>
 
                         <!-- <span class=" text-dark user-name-nav"><b>Hi, </b><?php echo $data["fname"] . " " . $data["lname"]; ?></span> | -->
-                        <a class="btn btn-outline-dark custom-nav-btn" id="searchBtn" href="#"><i class="bi bi-search"></i></a>
+                        <a class="btn btn-outline-dark custom-nav-btn" id="openSearchModal" href="#"><i class="bi bi-search"></i></a>
                         <a class="btn btn-outline-dark custom-nav-btn position-relative" href="../../cart.php"><i class="bi bi-bag"></i>
 
                             <?php
