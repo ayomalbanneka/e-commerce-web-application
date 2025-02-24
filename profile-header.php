@@ -58,19 +58,52 @@
 
                     ?>
 
-                        <div id="searchModal" class="modal anime">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <form action="" method="">
-                                    <input type="text" placeholder="Search..." name="query" required>
-                                    <button type="submit">Search</button>
-                                </form>
+                        <div id="searchModal" class="modal fade" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <!-- Modal Body -->
+                                    <div class="modal-body">
+                                        <div class="row g-3 align-items-center">
+                                            <!-- Search Input -->
+                                            <div class="col-9">
+                                                <input type="text" class="form-control" placeholder="Search..." id="basic_search_txt">
+                                            </div>
+                                            <!-- Search Button -->
+                                            <div class="col-3">
+                                                <button type="submit" class="btn btn-outline-dark w-100" onclick="basicSearch(0);">Search</button>
+                                            </div>
+                                            <!-- Advanced Search Link -->
+                                            <div class="col-12 text-center">
+                                                <a href="advanced-search.php" class="text-decoration-none text-black">Advanced Search</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- <span class="text-lg-start text-dark"><b>Hi, </b><?php echo $data["fname"] . " " . $data["lname"]; ?></span> | -->
-                        <!-- <a class="btn btn-outline-dark custom-nav-btn" href="#"><i class="bi bi-search"></i></a>
-                        <a class="btn btn-outline-dark custom-nav-btn" href="#"><i class="bi bi-bag"></i></a> -->
+                        <a class="btn btn-outline-dark custom-nav-btn" id="openSearchModal" href="#"><i class="bi bi-search"></i></a>
+                        <a class="btn btn-outline-dark custom-nav-btn position-relative" href="cart.php"><i class="bi bi-bag"></i>
+
+                            <?php
+
+                            $cart_rs = Database::search("SELECT * FROM `cart` WHERE `cart_users_email` = '" . $email . "'");
+                            $cart_num = $cart_rs->num_rows;
+
+                            ?>
+
+                            <span class="position-absolute top-0 h6 mt-1 mx-2 translate-middle badge rounded-pill bg-danger">
+                                <?php echo $cart_num; ?>
+                            </span>
+
+
+                        </a>
                         <div class="dropdown">
                             <button class="btn border border-0 dropdown-toggle custom-nav-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <?php
@@ -88,10 +121,11 @@
                                 ?>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="user-profile.php">My Profile</a></li>
+                            <li><a class="dropdown-item" href="user-profile.php">My Profile</a></li>
                                 <li><a class="dropdown-item" href="watchlist.php">Watchlist</a></li>
+                                <li><a class="dropdown-item" href="my-orders.php">My Orders</a></li>
                                 <li><a class="dropdown-item" href="purchase-history.php">Purchase History</a></li>
-                                <li><a class="dropdown-item" href="contact-us.php">Contact US</a></li>
+                                <li><a class="dropdown-item" href="contact-us.php">Contact Us</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="signOut();">Sign Out</a></li>
                             </ul>
                         </div>
@@ -99,7 +133,7 @@
 
                     } else {
                     ?>
-                        <a class="btn btn-outline-dark" href="#"><i class="bi bi-search"></i></a>
+                        <a class="btn btn-outline-dark" id="openSearchModal" href="#"><i class="bi bi-search"></i></a>
                         <div class="dropdown">
                             <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person"></i>
