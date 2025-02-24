@@ -1,30 +1,18 @@
-// var btn = document.getElementById("sweetBtn");
-// Get the modal
-var modal = document.getElementById("searchModal");
+// Search Bar
 
-// Get the button that opens the modal
-var btn = document.getElementById("searchBtn");
+// Open modal
+document.getElementById('openSearchModal').addEventListener('click', function () {
+    const searchModal = new bootstrap.Modal(document.getElementById('searchModal'));
+    searchModal.show();
+});
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+// Close modal
+document.querySelector('.modal .btn-close').addEventListener('click', function () {
+    const searchModal = new bootstrap.Modal(document.getElementById('searchModal'));
+    searchModal.hide();
+});
 
-// When the user clicks the button, open the modal 
-btn.onclick = function () {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
+// Search Bar
 
 var myCarousel = document.querySelector('#hero-carousel');
 var carousel = new bootstrap.Carousel(myCarousel, {
@@ -848,7 +836,9 @@ function basicSearch(x) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-            document.getElementById("basicSearchResult").innerHTML = response;
+            // document.getElementById("basicSearchResult").innerHTML = response;
+            sessionStorage.setItem("searchResults", response);
+            window.location = "search-result.php";
         }
     }
 
@@ -856,7 +846,49 @@ function basicSearch(x) {
     request.send(form);
 }
 
+function basicSearch2(x) {
+    var txt = document.getElementById("basic_search_txt");
 
+    var form = new FormData();
+    form.append("t", txt.value); // Search query
+    form.append("page", x); // Page number
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            // document.getElementById("basicSearchResult").innerHTML = response;
+            sessionStorage.setItem("searchResults", response);
+            window.location.href = "../../search-result.php";
+        }
+    }
+
+    request.open("POST", "../../basic-search-process.php", true);
+    request.send(form);
+}
+
+function basicSearch3(x) {
+    var txt = document.getElementById("basic_search_txt");
+
+    var form = new FormData();
+    form.append("t", txt.value); // Search query
+    form.append("page", x); // Page number
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            // document.getElementById("basicSearchResult").innerHTML = response;
+            sessionStorage.setItem("searchResults", response);
+            window.location = "../search-result.php";
+        }
+    }
+
+    request.open("POST", "../basic-search-process.php", true);
+    request.send(form);
+}
 
 function payNow(id) {
 
