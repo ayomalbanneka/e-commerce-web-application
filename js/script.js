@@ -14,6 +14,7 @@ document.querySelector('.modal .btn-close').addEventListener('click', function (
 
 // Search Bar
 
+
 var myCarousel = document.querySelector('#hero-carousel');
 var carousel = new bootstrap.Carousel(myCarousel, {
     interval: 3000, // Set your desired interval in milliseconds
@@ -889,6 +890,8 @@ function basicSearch3(x) {
     request.open("POST", "../basic-search-process.php", true);
     request.send(form);
 }
+
+
 
 function payNow(id) {
 
