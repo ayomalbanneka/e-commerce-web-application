@@ -145,19 +145,13 @@ $selected_num = $selected_rs->num_rows;
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Sort</h5>
+                                                    <h5 class="modal-title">Sort Products</h5>
                                                     <span data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></span>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="container-fluid">
                                                         <div class="row">
                                                             <div class="col-12">
-                                                                <div class="row">
-                                                                    <div class="col-12 mt-3">
-                                                                        <h5>Sort Products</h5>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="srt"></div>
                                                                 <div class="row pt-4">
                                                                     <div class="col-12">
                                                                         <span style="font-size: 15px;">Sort By : Date</span>
@@ -204,8 +198,8 @@ $selected_num = $selected_rs->num_rows;
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearSort();">Clear</button>
-                                                    <button type="button" class="btn btn-primary" onclick="sortMini2(0);">Sort</button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clearSort();">Clear</button>
+                                                    <button type="button" class="btn btn-outline-dark" onclick="sortMini2(0);">Sort</button>
                                                 </div>
                                             </div>
                                         </div>
