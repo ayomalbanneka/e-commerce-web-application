@@ -19,9 +19,9 @@
 
     <?php include "header.php"; ?>
 
-    <div id="basicSearchResult">
+    <div id="basicSearchResult" class="anime2">
 
-        
+    <div id="sortResult"></div>
 
     </div>
 
