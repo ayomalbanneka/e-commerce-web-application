@@ -133,6 +133,36 @@
 
                     } else {
                     ?>
+
+<div id="searchModal" class="modal fade" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <!-- Modal Body -->
+                                    <div class="modal-body">
+                                        <div class="row g-3 align-items-center">
+                                            <!-- Search Input -->
+                                            <div class="col-9">
+                                                <input type="text" class="form-control" placeholder="Search..." id="basic_search_txt">
+                                            </div>
+                                            <!-- Search Button -->
+                                            <div class="col-3">
+                                                <button type="submit" class="btn btn-outline-dark w-100" onclick="basicSearch(0);">Search</button>
+                                            </div>
+                                            <!-- Advanced Search Link -->
+                                            <div class="col-12 text-center">
+                                                <a href="advanced-search.php" class="text-decoration-none text-black">Advanced Search</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <a class="btn btn-outline-dark" id="openSearchModal" href="#"><i class="bi bi-search"></i></a>
                         <div class="dropdown">
                             <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
