@@ -1,11 +1,19 @@
 <?php
 
-class Database{
+class Database
+{
     public static $connection;
 
-    public static function setUpConnection(){
+    public static function setUpConnection()
+    {
         if (!isset(Database::$connection)) {
-            Database::$connection = new mysqli("localhost", "root", "Ayomalkaus#2k23", "shop", 3306);
+
+            require_once "vendor/autoload.php";
+
+            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+            $dotenv->load();
+
+            Database::$connection = new mysqli("localhost", "root", $_ENV['MYSQL_PWD'], "shop", 3306);
         }
     }
 
@@ -21,7 +29,4 @@ class Database{
         $resultset = Database::$connection->query($q);
         return $resultset;
     }
-    
 }
-
-?>
