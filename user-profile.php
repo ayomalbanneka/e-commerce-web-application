@@ -49,15 +49,15 @@
                 <div class="modal fade" tabindex="-1" id="spanModel3">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
-                            <div class="otp-body">
+                            <div class="otp-body w-100 vh-100 d-flex align-items-center justify-content-center">
                                 <div class="otp-card">
                                     <h1 class="otp-h1">OTP Verification</h1>
-                                    <p>Code has been send to <?php echo $email; ?></p>
+                                    <p>Code has been send to <strong> <?php echo $email; ?></strong></p>
                                     <div class="otp-card-inputs">
                                         <input type="text" maxlength="6" id="i" autofocus>
                                     </div>
                                     <p>Didn't get the otp <a href="#" onclick="verifyEmail();">Resend</a></p>
-                                    <button class="btn btn-outline-dark text-center" onclick="verifyOtp();">Verify</button>
+                                    <button class="btn btn-outline-dark text-center " onclick="verifyOtp();">Verify</button>
                                 </div>
                             </div>
                         </div>
@@ -359,9 +359,9 @@
                                                 <button class="btn btn-outline-dark" onclick="updateProfile();">Update My Profile</button>
                                             </div>
 
-                                            <!-- <div class="col-12 d-grid mt-2">
+                                            <div class="col-12 d-grid mt-2">
                                                 <button class="btn btn-outline-danger" onclick="deleteUserAccount('<?php echo $details_data['email']; ?>');">Delete My Account</button>
-                                            </div> -->
+                                            </div>
 
                                         </div>
 
