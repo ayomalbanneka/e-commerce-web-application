@@ -31,9 +31,10 @@ if (empty($email)) {
                 $_SESSION["u"] = $user_data;
 
                 if ($rememberMe == "true") {
-                    setcookie("email", $email, time() + (60 * 60 * 24 * 365));
-                    setcookie("password", $password, time() + (60 * 60 * 24 * 365));
+                    setcookie("email", $email, time() + (60 * 60 * 24 * 365), "/");
+                    setcookie("password", $user_data['password'], time() + (60 * 60 * 24 * 365), "/");
                 }
+                
             } else {
                 echo "Account is inactive or restricted";
             }
