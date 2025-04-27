@@ -14,6 +14,7 @@ document.querySelector('.modal .btn-close').addEventListener('click', function (
 
 // Search Bar
 
+
 var myCarousel = document.querySelector('#hero-carousel');
 var carousel = new bootstrap.Carousel(myCarousel, {
     interval: 3000, // Set your desired interval in milliseconds
@@ -838,6 +839,7 @@ function basicSearch(x) {
             var response = request.responseText;
             // document.getElementById("basicSearchResult").innerHTML = response;
             sessionStorage.setItem("searchResults", response);
+            sessionStorage.setItem("searchQuery", txt.value);
             window.location = "search-result.php";
         }
     }
@@ -860,6 +862,7 @@ function basicSearch2(x) {
             var response = request.responseText;
             // document.getElementById("basicSearchResult").innerHTML = response;
             sessionStorage.setItem("searchResults", response);
+            sessionStorage.setItem("searchQuery", txt.value);
             window.location.href = "../../search-result.php";
         }
     }
@@ -882,6 +885,7 @@ function basicSearch3(x) {
             var response = request.responseText;
             // document.getElementById("basicSearchResult").innerHTML = response;
             sessionStorage.setItem("searchResults", response);
+            sessionStorage.setItem("searchQuery", txt.value);
             window.location = "../search-result.php";
         }
     }
@@ -889,6 +893,8 @@ function basicSearch3(x) {
     request.open("POST", "../basic-search-process.php", true);
     request.send(form);
 }
+
+
 
 function payNow(id) {
 
@@ -1210,8 +1216,8 @@ function onlyThree(checkbox) {
 
 function sort(x) {
 
-    var txt = document.getElementById("basic_search_txt");
-
+    // var txt = document.getElementById("basic_search_txt");
+    var txt = sessionStorage.getItem("searchQuery"); // Retrieve stored query
 
     var time = "0";
 
@@ -1233,7 +1239,7 @@ function sort(x) {
 
     var form = new FormData();
 
-    form.append("t", txt.value);
+    form.append("t", txt);
     form.append("from", from.value);
     form.append("to", to.value);
     form.append("stock", stock);
@@ -1245,13 +1251,22 @@ function sort(x) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-            document.getElementById("sortResult").innerHTML = response;
+            // document.getElementById("sortResult").innerHTML = response;
+            sessionStorage.setItem("searchResults", response); // Store sorted results
+            displayResults(); // Update results
         }
     }
 
     request.open("POST", "sort-process.php", true);
     request.send(form);
 
+}
+
+function displayResults() {
+    var results = sessionStorage.getItem("searchResults");
+    if (results) {
+        document.getElementById("sortResult").innerHTML = results;
+    }
 }
 
 function sort2(x) {
@@ -1304,7 +1319,20 @@ function sort2(x) {
 }
 
 function clearSort() {
-    window.location.reload();
+    // window.location.reload();
+
+    document.getElementById("newest").checked = false;
+    document.getElementById("oldest").checked = false;
+    document.getElementById("qty").checked = false;
+    document.getElementById("pf").value = "";
+    document.getElementById("pt").value = "";
+
+    document.getElementById("newest1").checked = false;
+    document.getElementById("oldest1").checked = false;
+    document.getElementById("qty1").checked = false;
+    document.getElementById("pf1").value = "";
+    document.getElementById("pt1").value = "";
+
 }
 
 function clearSearch() {
@@ -1611,7 +1639,7 @@ function showSort() {
 
 function sortMini(x) {
 
-    var txt = document.getElementById("basic_search_txt");
+    var txt = sessionStorage.getItem("searchQuery"); // Retrieve stored query
 
 
     var time = "0";
@@ -1633,7 +1661,7 @@ function sortMini(x) {
 
     var form = new FormData();
 
-    form.append("t", txt.value);
+    form.append("t", txt);
     form.append("from", from.value);
     form.append("to", to.value);
     form.append("stock", stock);
@@ -1645,7 +1673,9 @@ function sortMini(x) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-            document.getElementById("sortResult").innerHTML = response;
+            // document.getElementById("sortResult").innerHTML = response;
+            sessionStorage.setItem("searchResults", response); // Store sorted results
+            displayResults(); // Update results
             model.hide();
         }
     }

@@ -59,7 +59,7 @@ if ($stock == "0" && $time == "0" && !empty($from)) {
 <div class="col-lg-12">
 
     <div class="row" id="basicSearchResult">
-        <div class="container anime2">
+        <div class="container anime">
             <div class="row">
                 <div class="col-12 mt-3 px-5 py-5">
                     <div class="row">

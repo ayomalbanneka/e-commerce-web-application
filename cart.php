@@ -151,7 +151,7 @@ include "connection.php";
 
                                             </div>
                                         </div>
-                                        <div class="col-lg-4" style="background-color: #D1E9F6;">
+                                        <div class="col-lg-4 text-white" style="background-color:rgb(45, 47, 48);">
                                             <div class="p-5">
                                                 <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                                                 <hr class="my-4">
@@ -174,7 +174,7 @@ include "connection.php";
                                                 </div>
 
                                                 <div class="col-6 col-lg-12 col-md-12 mb-3">
-                                                    <button class="add-to-cart btn btn-dark btn-block text-uppercase" type="submit" id="payhere-payment" onclick="checkout();"><i style="color: greenyellow;" class="bi bi-cash"></i> checkout</button>
+                                                    <button class="add-to-cart btn btn-dark btn-block text-uppercase border border-white" type="submit" id="payhere-payment" onclick="checkout();"><i style="color: greenyellow;" class="bi bi-cash"></i> checkout</button>
                                                 </div>
 
                                             </div>
