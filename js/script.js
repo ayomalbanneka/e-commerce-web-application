@@ -2143,8 +2143,8 @@ function deleteUserAccount(email) {
             var response = request.responseText;
             if (response == "success") {
                 Swal.fire({
-                    title: "Success",
-                    text: "Your account deleted successfully",
+                    title: "Your account deleted successfully",
+                    text: "Your account deleted successfully. We are sad to see you go. ",
                     icon: "success"
                 }).then(() => {
                     window.location = "home.php";
