@@ -69,12 +69,26 @@ function signUp() {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             if (response == "success") {
-                Swal.fire({
-                    title: "User Registration Successful",
-                    icon: "success"
-                }).then(() => {
-                    window.location = "sign-in.php";
-                });
+                document.getElementById("signUpSpinner").classList.remove("d-none");
+                // Optional: Disable the button while processing
+                document.getElementById("sweetBtn").disabled = true;
+                setTimeout(() => {
+
+                    document.getElementById("signUpSpinner").classList.add("d-none");
+                    document.getElementById("sweetBtn").disabled = false;
+
+                }, 5000)
+
+                setInterval(() => {
+
+                    Swal.fire({
+                        title: "User Registration Successful",
+                        icon: "success"
+                    }).then(() => {
+                        window.location = "sign-in.php";
+                    });
+
+                }, 5000);
             } else {
                 Swal.fire({
                     icon: "warning",
@@ -106,6 +120,8 @@ function signIn() {
     var password = document.getElementById("password");
     var rememberMe = document.getElementById("rememberMe");
 
+
+
     var form = new FormData();
     form.append("email", email.value);
     form.append("password", password.value);
@@ -117,12 +133,28 @@ function signIn() {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             if (response == "success") {
-                Swal.fire({
-                    title: "User Sign In Success",
-                    icon: "success"
-                }).then(() => {
-                    window.location = "home.php";
-                });
+
+                document.getElementById("signInSpinner").classList.remove("d-none");
+                //Disable the button while processing
+                document.getElementById("sweetBtn").disabled = true;
+
+
+                setTimeout(() => {
+
+                    document.getElementById("signInSpinner").classList.add("d-none");
+                    document.getElementById("sweertBtn").disabled = false;
+                }, 5000)
+
+                setInterval(() => {
+
+                    Swal.fire({
+                        title: "User Sign In Success",
+                        icon: "success"
+                    }).then(() => {
+                        window.location = "home.php";
+                    });
+                }, 5000)
+
             } else {
                 Swal.fire({
                     icon: "error",
