@@ -135,7 +135,10 @@ if (isset($_GET['code'])) {
                                 </div>
 
                                 <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
-                                    <button class="fw-bold btn btn-dark py-2" onclick="signIn();" id="sweetBtn">Sign In</button>
+                                    <button class="fw-bold btn btn-dark py-2" onclick="signIn();" id="sweetBtn">
+                                        <span class="spinner-border spinner-border-sm d-none" id="signInSpinner" aria-hidden="true"></span>
+                                        Sign In
+                                    </button>
                                 </div>
 
                                 <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">

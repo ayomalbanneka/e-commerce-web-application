@@ -102,7 +102,9 @@ include "connection.php";
                             </div>
 
                             <div class="col-12 col-lg-10 col-md-6 mt-3 d-grid">
-                                <button class="fw-bold btn btn-dark py-2 text-uppercase" onclick="signUp();" id="sweetBtn">create account</button>
+                                <button class="fw-bold btn btn-dark py-2 text-uppercase" onclick="signUp();" id="sweetBtn">
+                                <span class="spinner-border spinner-border-sm d-none" id="signUpSpinner" aria-hidden="true"></span>
+                                create account</button>
                             </div>
 
                             <div class="col-12 col-lg-10 col-md-6 mt-3">
