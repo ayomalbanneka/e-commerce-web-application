@@ -60,7 +60,7 @@ $selected_num = $selected_rs->num_rows;
                                 <div class="d-flex gap-2 align-items-center">
                                     <span>Sort By</span>
                                     <div class="srt-select">
-                                        <select class="form-select" id="srtByPrice" onchange="srtByPrice2(0);">
+                                        <select class="form-select" id="srtByPrice" onchange="srtByPrice4(0);">
                                             <option value="0">Best match</option>
                                             <option value="1">Price: high to low</option>
                                             <option value="2">Price: low to high</option>
