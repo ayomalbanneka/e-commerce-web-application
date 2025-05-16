@@ -48,7 +48,7 @@
 
                 <div class="modal fade" tabindex="-1" id="spanModel3">
                     <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
+                        <div class="modal-content modal-content1">
                             <div class="otp-body w-100 vh-100 d-flex align-items-center justify-content-center">
                                 <div class="otp-card">
                                     <h1 class="otp-h1">OTP Verification</h1>

@@ -1373,14 +1373,13 @@ function clearSearch() {
 
 function srtByPrice(x) {
 
-    var txt = document.getElementById("basic_search_txt");
-
-
     var price = 0;
 
     if (document.getElementById('srtByPrice').value != "0") {
         price = document.getElementById('srtByPrice').value;
     }
+
+    var keyword = sessionStorage.getItem("searchQuery"); // Retrieve stored query
 
     // alert(price);
 
@@ -1391,10 +1390,8 @@ function srtByPrice(x) {
             document.getElementById('sortResult').innerHTML = response;
         }
     }
-    request.open("GET", "sort-price-process.php?price=" + price + "&t=" + txt.value + "&page=" + x, true);
+    request.open("GET", "sort-price-process.php?price=" + price + "&t=" + keyword + "&page=" + x, true);
     request.send();
-
-
 }
 
 function srtByPrice2(x) {
@@ -1420,15 +1417,11 @@ function srtByPrice2(x) {
     }
     request.open("GET", "../../sort-price-process2.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
     request.send();
-
-
 }
 
 function srtByPrice3(x) {
 
     var txt = document.getElementById("basic_search_txt");
-
-
     var price = 0;
 
     if (document.getElementById('srtByPrice').value != "0") {
@@ -1446,8 +1439,31 @@ function srtByPrice3(x) {
     }
     request.open("GET", "advanced-search-sort-price-process.php?price=" + price + "&t=" + txt.value + "&page=" + x, true);
     request.send();
+}
 
+function srtByPrice4(x){
 
+    var sub_cat = document.getElementById("sub_cat").innerText;
+    var cat_name = document.getElementById("cat_name").innerText;
+    // alert(cat_name)
+
+    var price = 0;
+
+    if (document.getElementById('srtByPrice').value != "0") {
+        price = document.getElementById('srtByPrice').value;
+    }
+
+    // alert(price);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            document.getElementById('sortResult').innerHTML = response;
+        }
+    }
+    request.open("GET", "../sort-price-process3.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
+    request.send();
 }
 
 function adminSignOut() {
