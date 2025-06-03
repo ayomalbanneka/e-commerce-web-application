@@ -195,8 +195,6 @@ if (!empty($txt)) {
 
                                 </div>
 
-
-                                          
                             </div>
 
 
@@ -220,7 +218,7 @@ if (!empty($txt)) {
                                                     $product_rs = Database::search($query);
                                                     $product_num = $product_rs->num_rows;
 
-                                                    $products_per_page = 6;
+                                                    $products_per_page = 12;
                                                     $number_of_pages = ceil($product_num / $products_per_page);
 
                                                     $page_results = ($pageno - 1) * $products_per_page;
@@ -275,59 +273,22 @@ if (!empty($txt)) {
                                                     <div class="offset-2 offset-lg-3 col-8 col-lg-6 text-center mb-3">
                                                         <nav aria-label="Page navigation example">
                                                             <ul class="pagination pagination-lg justify-content-center">
-                                                                <li class="page-item non-active">
-                                                                    <a class="page-link" <?php
-
-                                                                                            if ($pageno <= 1) {
-                                                                                                echo ("#");
-                                                                                            } else {
-                                                                                            ?> onclick="basicSearch(<?php echo ($pageno - 1); ?>);" <?php
-                                                                                                                                                }
-
-                                                                                                                                                    ?> aria-label="Previous">
+                                                                <li class="page-item <?php echo ($pageno <= 1) ? 'disabled' : ''; ?>">
+                                                                    <a class="page-link" href="#" onclick="basicSearch(<?php echo ($pageno - 1); ?>, event)" aria-label="Previous">
                                                                         <span aria-hidden="true">&laquo;</span>
                                                                     </a>
                                                                 </li>
 
-                                                                <?php
+                                                                <?php for ($x = 1; $x <= $number_of_pages; $x++): ?>
+                                                                    <li class="page-item <?php echo ($pageno == $x) ? 'active' : ''; ?>">
+                                                                        <a class="page-link" href="#" onclick="basicSearch(<?php echo $x; ?>, event)">
+                                                                            <?php echo $x; ?>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php endfor; ?>
 
-                                                                for ($x = 1; $x <= $number_of_pages; $x++) {
-                                                                    if ($pageno == $x) {
-                                                                ?>
-
-                                                                        <li class="page-item active">
-                                                                            <a class="page-link" onclick="basicSearch(<?php echo ($x); ?>);">
-                                                                                <?php echo $x; ?>
-                                                                            </a>
-                                                                        </li>
-
-                                                                    <?php
-                                                                    } else {
-                                                                    ?>
-
-                                                                        <li class="page-item">
-                                                                            <a class="page-link" onclick="basicSearch(<?php echo ($x); ?>);">
-                                                                                <?php echo $x; ?>
-                                                                            </a>
-                                                                        </li>
-
-                                                                <?php
-                                                                    }
-                                                                }
-
-                                                                ?>
-
-
-                                                                <li class="page-item">
-                                                                    <a class="page-link" <?php
-
-                                                                                            if ($pageno >= $number_of_pages) {
-                                                                                                echo ("#");
-                                                                                            } else {
-                                                                                            ?> onclick="basicSearch(<?php echo ($pageno + 1); ?>);" <?php
-                                                                                                                                                }
-
-                                                                                                                                                    ?> aria-label=" Next">
+                                                                <li class="page-item <?php echo ($pageno >= $number_of_pages) ? 'disabled' : ''; ?>">
+                                                                    <a class="page-link" href="#" onclick="basicSearch(<?php echo ($pageno + 1); ?>, event)" aria-label="Next">
                                                                         <span aria-hidden="true">&raquo;</span>
                                                                     </a>
                                                                 </li>

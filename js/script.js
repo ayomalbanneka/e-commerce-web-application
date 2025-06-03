@@ -857,71 +857,74 @@ function checkQty(qty) {
 }
 
 
-function basicSearch(x) {
-    var txt = document.getElementById("basic_search_txt");
+function basicSearch(pageNum, event = null) {
+    if (event) event.preventDefault();
+    
+    const txt = document.getElementById("basic_search_txt");
+    const form = new FormData();
+    form.append("t", txt.value);
+    form.append("page", pageNum);
 
-    var form = new FormData();
-    form.append("t", txt.value); // Search query
-    form.append("page", x); // Page number
+    // Store search parameters in sessionStorage
+    sessionStorage.setItem("searchQuery", txt.value);
+    sessionStorage.setItem("currentPage", pageNum);
 
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
+    const request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            // document.getElementById("basicSearchResult").innerHTML = response;
+            const response = request.responseText;
             sessionStorage.setItem("searchResults", response);
-            sessionStorage.setItem("searchQuery", txt.value);
-            window.location = "search-result.php";
+            window.location.href = "search-result.php";
         }
-    }
-
+    };
     request.open("POST", "basic-search-process.php", true);
     request.send(form);
 }
 
-function basicSearch2(x) {
-    var txt = document.getElementById("basic_search_txt");
+function basicSearch2(pageNum, event = null) {
+    if (event) event.preventDefault();
+    
+    const txt = document.getElementById("basic_search_txt");
+    const form = new FormData();
+    form.append("t", txt.value);
+    form.append("page", pageNum);
 
-    var form = new FormData();
-    form.append("t", txt.value); // Search query
-    form.append("page", x); // Page number
+    // Store search parameters in sessionStorage
+    sessionStorage.setItem("searchQuery", txt.value);
+    sessionStorage.setItem("currentPage", pageNum);
 
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
+    const request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            // document.getElementById("basicSearchResult").innerHTML = response;
+            const response = request.responseText;
             sessionStorage.setItem("searchResults", response);
-            sessionStorage.setItem("searchQuery", txt.value);
             window.location.href = "../../search-result.php";
         }
-    }
-
+    };
     request.open("POST", "../../basic-search-process.php", true);
     request.send(form);
 }
 
-function basicSearch3(x) {
-    var txt = document.getElementById("basic_search_txt");
+function basicSearch3(pageNum, event = null) {
+    if (event) event.preventDefault();
+    
+    const txt = document.getElementById("basic_search_txt");
+    const form = new FormData();
+    form.append("t", txt.value);
+    form.append("page", pageNum);
 
-    var form = new FormData();
-    form.append("t", txt.value); // Search query
-    form.append("page", x); // Page number
+    // Store search parameters in sessionStorage
+    sessionStorage.setItem("searchQuery", txt.value);
+    sessionStorage.setItem("currentPage", pageNum);
 
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
+    const request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            // document.getElementById("basicSearchResult").innerHTML = response;
+            const response = request.responseText;
             sessionStorage.setItem("searchResults", response);
-            sessionStorage.setItem("searchQuery", txt.value);
-            window.location = "../search-result.php";
+            window.location.href = "../search-result.php";
         }
-    }
-
+    };
     request.open("POST", "../basic-search-process.php", true);
     request.send(form);
 }
