@@ -21,20 +21,45 @@
 
     <div id="basicSearchResult" class="anime2">
 
-    <div id="sortResult"></div>
+        <div id="sortResult"></div>
 
     </div>
 
     <script>
-
-        const searchResults = sessionStorage.getItem('searchResults');
-
-        if(searchResults){
-            document.getElementById('basicSearchResult').innerHTML = searchResults;
-        }else{
-            document.getElementById('basicSearchResult').innerHTML = 'No Results Found';
-        }
-
+        // 1. This waits until the page is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 2. Get saved information from browser memory
+    const searchResults = sessionStorage.getItem('searchResults'); // The search results
+    const searchQuery = sessionStorage.getItem('searchQuery'); // What you searched for
+    const currentPage = sessionStorage.getItem('currentPage') || 1; // Which page you're on
+    
+    // 3. Show the results if they exist
+    if (searchResults) {
+        // Put the results in the results area
+        document.getElementById('basicSearchResult').innerHTML = searchResults;
+        
+        // 4. Make all the page number links work properly
+        document.querySelectorAll('.pagination a').forEach(link => {
+            const href = link.getAttribute('href') || '';
+            if (href.includes('page=')) {
+                // Update the page number in the link
+                const newHref = href.replace(/(page=)\d+/, `$1${currentPage}`);
+                link.setAttribute('href', newHref);
+                // Make sure clicking the link calls the search function
+                link.setAttribute('onclick', `basicSearch(${currentPage}, event)`);
+            }
+        });
+    } else {
+        // 5. If no results found, show a message
+        document.getElementById('basicSearchResult').innerHTML = 'No Results Found';
+    }
+    
+    // 6. Put the search term back in the search box
+    if (searchQuery) {
+        document.getElementById('basic_search_txt').value = searchQuery;
+    }
+});
     </script>
 
     <!-- footer  -->
