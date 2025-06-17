@@ -13,6 +13,18 @@ UrbanElegance is a full-featured e-commerce web application designed for a moder
 - **Contact & Support:** Contact form with email notifications using PHPMailer.
 - **Responsive Design:** Optimized for desktop and mobile devices using Bootstrap.
 
+## Recent Changes
+
+- Updated authentication flow for improved security and user experience.
+- Enhanced product search with advanced filtering options.
+- Improved shopping cart and watchlist UI/UX.
+- Added PDF invoice download and print functionality using jsPDF and html2canvas.
+- Refactored admin panel for easier product and user management.
+- Integrated SweetAlert2 for better alert and confirmation dialogs.
+- Improved email sending reliability with updated PHPMailer configuration.
+- Fixed bugs in checkout and order history modules.
+- Enhanced mobile responsiveness and accessibility.
+
 ## Technologies Used
 
 - **Frontend:** HTML5, CSS3, Bootstrap, JavaScript (Vanilla JS), SweetAlert2
@@ -51,4 +63,4 @@ UrbanElegance is a full-featured e-commerce web application designed for a moder
 
 ---
 
-&copy; 2024 UrbanElegance. All
+&copy; 2024 UrbanElegance. All Rights

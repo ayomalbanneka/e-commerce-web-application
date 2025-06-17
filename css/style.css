@@ -424,6 +424,15 @@
     background-repeat: no-repeat;
 }
 
+._404gif {
+    height: 400px;
+    background-image: url("../img/404.gif");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
 @media (max-width:769px) {
     .custom-qty-selector {
         width: 200px;
