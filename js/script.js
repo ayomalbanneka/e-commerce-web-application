@@ -72,12 +72,12 @@ function signUp() {
                 document.getElementById("signUpSpinner").classList.remove("d-none");
                 // Optional: Disable the button while processing
                 document.getElementById("sweetBtn").disabled = true;
-                setTimeout(() => {
+                setInterval(() => {
 
                     document.getElementById("signUpSpinner").classList.add("d-none");
                     document.getElementById("sweetBtn").disabled = false;
 
-                }, 5000)
+                }, 3000)
 
                 setInterval(() => {
 
@@ -88,7 +88,7 @@ function signUp() {
                         window.location = "sign-in.php";
                     });
 
-                }, 5000);
+                }, 3000);
             } else {
                 Swal.fire({
                     icon: "warning",
@@ -139,11 +139,11 @@ function signIn() {
                 document.getElementById("sweetBtn").disabled = true;
 
 
-                setTimeout(() => {
+                setInterval(() => {
 
                     document.getElementById("signInSpinner").classList.add("d-none");
                     document.getElementById("sweertBtn").disabled = false;
-                }, 5000)
+                }, 3000)
 
                 setInterval(() => {
 
@@ -153,7 +153,7 @@ function signIn() {
                     }).then(() => {
                         window.location = "home.php";
                     });
-                }, 5000)
+                }, 3000)
 
             } else {
                 Swal.fire({

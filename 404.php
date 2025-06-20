@@ -18,8 +18,6 @@ include "connection.php"
 
 <body>
 
-    <?php include "header.php"?>
-
     <section class="h-100 h-custom" style="background-color:rgb(255, 255, 255);">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
