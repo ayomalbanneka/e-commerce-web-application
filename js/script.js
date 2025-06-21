@@ -139,13 +139,13 @@ function signIn() {
                 document.getElementById("sweetBtn").disabled = true;
 
 
-                setInterval(() => {
+                setTimeout(() => {
 
                     document.getElementById("signInSpinner").classList.add("d-none");
-                    document.getElementById("sweertBtn").disabled = false;
-                }, 3000)
+                    document.getElementById("sweetBtn").disabled = false;
+                }, response == "success" ? 3000 : 0)
 
-                setInterval(() => {
+                setTimeout(() => {
 
                     Swal.fire({
                         title: "User Sign In Success",
@@ -153,14 +153,25 @@ function signIn() {
                     }).then(() => {
                         window.location = "home.php";
                     });
-                }, 3000)
+                }, response == "success" ? 3000 : 0);
 
             } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "User Not Found",
-                    text: response
-                });
+
+                document.getElementById("signInSpinner").classList.remove("d-none");
+                //Disable the button while processing
+                document.getElementById("sweetBtn").disabled = true;
+
+                setTimeout(() => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "User Not Found",
+                        text: response
+                    });
+                    setTimeout(() => {
+                        document.getElementById("signInSpinner").classList.add("d-none");
+                        document.getElementById("sweetBtn").disabled = false;
+                    })
+                }, response ? 3000 : 0);
             }
         }
     };
@@ -476,21 +487,45 @@ function adminSignIn() {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
 
-            if (response = "success") {
-                var btn = document.getElementById("sweetBtn");
+            if (response == "success") {
 
-                Swal.fire({
-                    title: "User Sign In Success",
-                    icon: "success"
-                }).then(() => {
-                    window.location = "admin-panel.php";
-                });
+                document.getElementById("adminSignInSpinner").classList.remove("d-none");
+                //Disable the button while processing
+                document.getElementById("sweetBtn").disabled = true;
+
+
+                setTimeout(() => {
+
+                    document.getElementById("adminSignInSpinner").classList.add("d-none");
+                    document.getElementById("sweertBtn").disabled = false;
+                }, response == "success" ? 3000 : 0)
+
+                setTimeout(() => {
+
+                    Swal.fire({
+                        title: "User Sign In Success",
+                        icon: "success"
+                    }).then(() => {
+                        window.location = "admin-panel.php";
+                    });
+                }, response == "success" ? 3000 : 0);
             } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "User Not Found",
-                    text: response
-                });
+
+                document.getElementById("adminSignInSpinner").classList.remove("d-none");
+                //Disable the button while processing
+                document.getElementById("sweetBtn").disabled = true;
+
+                setTimeout(() => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "User Not Found",
+                        text: response
+                    });
+                    setTimeout(() => {
+                        document.getElementById("adminSignInSpinner").classList.add("d-none");
+                        document.getElementById("sweetBtn").disabled = false;
+                    })
+                }, response ? 3000 : 0);
             }
         }
     }
@@ -859,7 +894,7 @@ function checkQty(qty) {
 
 function basicSearch(pageNum, event = null) {
     if (event) event.preventDefault();
-    
+
     const txt = document.getElementById("basic_search_txt");
     const form = new FormData();
     form.append("t", txt.value);
@@ -870,7 +905,7 @@ function basicSearch(pageNum, event = null) {
     sessionStorage.setItem("currentPage", pageNum);
 
     const request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
+    request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             const response = request.responseText;
             sessionStorage.setItem("searchResults", response);
@@ -883,7 +918,7 @@ function basicSearch(pageNum, event = null) {
 
 function basicSearch2(pageNum, event = null) {
     if (event) event.preventDefault();
-    
+
     const txt = document.getElementById("basic_search_txt");
     const form = new FormData();
     form.append("t", txt.value);
@@ -894,7 +929,7 @@ function basicSearch2(pageNum, event = null) {
     sessionStorage.setItem("currentPage", pageNum);
 
     const request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
+    request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             const response = request.responseText;
             sessionStorage.setItem("searchResults", response);
@@ -907,7 +942,7 @@ function basicSearch2(pageNum, event = null) {
 
 function basicSearch3(pageNum, event = null) {
     if (event) event.preventDefault();
-    
+
     const txt = document.getElementById("basic_search_txt");
     const form = new FormData();
     form.append("t", txt.value);
@@ -918,7 +953,7 @@ function basicSearch3(pageNum, event = null) {
     sessionStorage.setItem("currentPage", pageNum);
 
     const request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
+    request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             const response = request.responseText;
             sessionStorage.setItem("searchResults", response);
@@ -1444,7 +1479,7 @@ function srtByPrice3(x) {
     request.send();
 }
 
-function srtByPrice4(x){
+function srtByPrice4(x) {
 
     var sub_cat = document.getElementById("sub_cat").innerText;
     var cat_name = document.getElementById("cat_name").innerText;
@@ -2076,25 +2111,54 @@ function contactUs() {
     form.append("msg", msg.value);
     form.append("subject", subject.value);
 
+    addEventListener('click', (e) => {
+
+        setTimeout(() => {
+            document.getElementById("contactUsSpinner").classList.remove("d-none");
+            //Disable the button while processing
+            document.getElementById("sweetBtn").disabled = true;
+
+        }, e ? 1000 : 0);
+
+    })
+
     var request = new XMLHttpRequest();
 
     request.onreadystatechange = () => {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             if (response == "success") {
-                Swal.fire({
-                    title: "Email send successfully",
-                    icon: "success",
-                    text: "We will contact you in two business days"
-                }).then(() => {
-                    window.location.reload();
-                });
+
+                setTimeout(() => {
+
+                    document.getElementById("contactUsSpinner").classList.add("d-none");
+                    document.getElementById("sweetBtn").disabled = false;
+                }, response == "success" ? 3000 : 0)
+
+                setTimeout(() => {
+                    Swal.fire({
+                        title: "Email send successfully",
+                        icon: "success",
+                        text: "We will contact you in two business days"
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }, response == "success" ? 3000 : 0)
+
+
             } else {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Oops :(",
-                    text: response
-                });
+
+                setTimeout(() => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops :(",
+                        text: response
+                    });
+                    setTimeout(() => {
+                        document.getElementById("contactUsSpinner").classList.add("d-none");
+                        document.getElementById("sweetBtn").disabled = false;
+                    })
+                }, response ? 3000 : 0);
             }
         }
     }

@@ -17,10 +17,10 @@
     <!-- upper nav bar  -->
 
     <?php include "profile-header.php"; ?>
-    
+
     <!-- upper nav bar  -->
 
-    <div class="container anime">
+    <div class="container anime2">
         <div class="row d-flex justify-content-center">
             <div class="card custom-card col-12 col-md-10 col-lg-10 mt-5 mb-5 px-5 py-5">
                 <div class="card-body">
@@ -57,7 +57,10 @@
                             </div>
 
                             <div class="col-12 col-lg-10 col-md-6 mt-3 d-grid">
-                                <button class="fw-bold btn btn-dark py-2" onclick="adminSignIn();" id="sweetBtn">Sign In</button>
+                                <button class="fw-bold btn btn-dark py-2" onclick="adminSignIn();" id="sweetBtn">
+                                    <span class="spinner-border spinner-border-sm d-none" id="adminSignInSpinner" aria-hidden="true"></span>
+                                    Sign In
+                                </button>
                             </div>
 
                             <div class="mt-4">
@@ -92,14 +95,14 @@
     <div>
 
         <?php include "footer.php"; ?>
-        
+
     </div>
 
     <!-- footer  -->
 
-        <script src="js/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

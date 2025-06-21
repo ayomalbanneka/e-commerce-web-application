@@ -132,6 +132,7 @@ if (isset($_GET["email"])) {
         </div>
         <div class="email-footer">
             <p>If you did not sign up for this account, you can safely ignore this email.</p>
+            <a href="http://localhost/shop/contact-us.php" style="color: blue;">Contact us</a>
         </div>
         
     </div>

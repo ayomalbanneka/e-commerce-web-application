@@ -131,7 +131,8 @@ if (isset($_GET["email"])) {
             <h1 href="#">' . $code . '</h1>
         </div>
         <div class="email-footer">
-            <p>If you did not sign up for this account, you can safely ignore this email.</p>
+            <p>If you did not sign up for this account, you can safely ignore this email or contact us.</p>
+            <a href="contact-us.php" style="color: blue;">Contact us</a>
         </div>
         
     </div>
