@@ -17,8 +17,8 @@
 
     <!-- upper nav bar  -->
 
-    <?php  include "profile-header.php"  ?>
-    
+    <?php include "profile-header.php"  ?>
+
     <!-- upper nav bar  -->
 
     <div class="container anime">
@@ -62,7 +62,10 @@
                             </div>
 
                             <div class="col-12 col-lg-10 col-md-6 mt-3 d-grid">
-                                <button class="fw-bold btn btn-dark py-2 text-uppercase" onclick="contactUs();" id="sweetBtn">Send <i class="bi bi-send"></i></button>
+                                <button class="fw-bold btn btn-dark py-2 text-uppercase" onclick="contactUs();" id="sweetBtn">
+                                    <span class="spinner-border spinner-border-sm d-none" id="contactUsSpinner" role="status"></span>
+                                    Send
+                                    <i class="bi bi-send"></i></button>
                             </div>
 
                         </div>
