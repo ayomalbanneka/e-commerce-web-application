@@ -1,66 +1,66 @@
 # UrbanElegance E-Commerce Web Application
 
-UrbanElegance is a full-featured e-commerce web application designed for a modern fashion store. It supports user and admin roles, product management, shopping cart, order processing, and customer engagement features.
+UrbanElegance is a modern, full-featured e-commerce web application tailored for fashion retail. It supports both user and admin roles, robust product management, a seamless shopping experience, and comprehensive order processing.
 
-## Features
+## Key Features
 
-- **User Authentication:** Sign up, sign in (with email, Google, Facebook), password reset, and email verification.
-- **Product Catalog:** Browse products by categories, subcategories, and brands. Advanced and basic search supported.
-- **Shopping Cart & Watchlist:** Add products to cart or watchlist, update quantities, and move items between lists.
-- **Order Management:** Checkout process, order history, and invoice generation with PDF download and print options.
-- **Admin Panel:** Manage products, categories, brands, materials, users, and orders. Admin authentication and password reset.
-- **Profile Management:** Update user profile, change profile image, and manage addresses.
-- **Contact & Support:** Contact form with email notifications using PHPMailer.
-- **Responsive Design:** Optimized for desktop and mobile devices using Bootstrap.
+- **User Authentication:** Email/password sign up & sign in, Google & Facebook OAuth, password reset, and email verification.
+- **Product Catalog:** Browse and search products by category, subcategory, and brand with advanced filtering.
+- **Shopping Cart & Watchlist:** Add, update, and move items between cart and watchlist.
+- **Order Management:** Streamlined checkout, order history, and PDF invoice generation (download/print).
+- **Admin Panel:** Manage products, categories, brands, materials, users, and orders with secure admin authentication.
+- **Profile Management:** Edit profile, upload profile images, and manage addresses.
+- **Contact & Support:** Contact form with email notifications via PHPMailer.
+- **Responsive Design:** Mobile-first UI using Bootstrap.
+- **Enhanced Alerts:** Integrated SweetAlert2 for modern dialogs and confirmations.
 
-## Recent Changes
+## Recent Updates
 
-- Updated authentication flow for improved security and user experience.
-- Enhanced product search with advanced filtering options.
-- Improved shopping cart and watchlist UI/UX.
-- Added PDF invoice download and print functionality using jsPDF and html2canvas.
-- Refactored admin panel for easier product and user management.
-- Integrated SweetAlert2 for better alert and confirmation dialogs.
-- Improved email sending reliability with updated PHPMailer configuration.
-- Fixed bugs in checkout and order history modules.
-- Enhanced mobile responsiveness and accessibility.
+- Improved authentication flow and security.
+- Advanced product search and filtering.
+- Enhanced cart and watchlist UI/UX.
+- PDF invoice download/print with jsPDF & html2canvas.
+- Refactored admin panel for better usability.
+- Updated PHPMailer configuration for reliable email delivery.
+- Bug fixes in checkout and order modules.
+- Improved mobile responsiveness and accessibility.
 
-## Technologies Used
+## Tech Stack
 
-- **Frontend:** HTML5, CSS3, Bootstrap, JavaScript (Vanilla JS), SweetAlert2
-- **Backend:** PHP (Procedural and OOP), MySQL (via custom `Database` class)
-- **Email:** PHPMailer for SMTP email sending
-- **PDF Generation:** jsPDF and html2canvas for invoice downloads
-- **Authentication:** Google and Facebook OAuth integration
+- **Frontend:** HTML5, CSS3, Bootstrap, Vanilla JavaScript, SweetAlert2
+- **Backend:** PHP (Procedural & OOP), MySQL (custom `Database` class)
+- **Email:** PHPMailer (SMTP)
+- **PDF:** jsPDF, html2canvas
+- **OAuth:** Google & Facebook
 
 ## Project Structure
 
-- `index.php`, `home.php` - Main landing and home pages
-- `sign-in.php`, `sign-up.php`, `forgot-password.php` - User authentication pages
-- `admin-sign-in.php`, `admin-panel.php` - Admin authentication and dashboard
-- `add-product.php`, `add-product-process.php` - Product management
-- `user-profile.php`, `user-management.php` - User profile and admin user management
-- `cart.php`, `watchlist.php` - Shopping cart and watchlist
-- `checkout-process.php`, `invoice.php` - Order processing and invoicing
-- `contact-us.php`, `contact-us-process.php` - Contact form and email handler
-- `js/script.js` - Main JavaScript logic for UI interactions and AJAX
-- `css/style.css`, `css/admin-panel.css` - Styling for user and admin interfaces
-- `mail/PHPMailer.php`, `mail/SMTP.php`, `mail/OAuth.php` - Email sending libraries
+- `index.php`, `home.php` — Landing & home pages
+- `sign-in.php`, `sign-up.php`, `forgot-password.php` — User authentication
+- `admin-sign-in.php`, `admin-panel.php` — Admin authentication & dashboard
+- `add-product.php`, `add-product-process.php` — Product management
+- `user-profile.php`, `user-management.php` — User profile & admin management
+- `cart.php`, `watchlist.php` — Cart & watchlist
+- `checkout-process.php`, `invoice.php` — Orders & invoicing
+- `contact-us.php`, `contact-us-process.php` — Contact form & email handler
+- `js/script.js` — Main JavaScript logic
+- `css/style.css`, `css/admin-panel.css` — Styling
+- `mail/PHPMailer.php`, `mail/SMTP.php`, `mail/OAuth.php` — Email libraries
 
-## Setup Instructions
+## Setup Guide
 
-1. **Clone the repository** and place it in your web server directory (e.g., `htdocs` for XAMPP).
-2. **Create a MySQL database** and import the required tables (not included here).
+1. **Clone the repository** into your web server directory (e.g., `htdocs` for XAMPP).
+2. **Create a MySQL database** and import the required tables (SQL not included).
 3. **Configure database connection** in `connection.php`.
-4. **Set up SMTP credentials** in `contact-us-process.php` and other mail-related scripts.
-5. **Install dependencies** (Bootstrap, SweetAlert2, jsPDF, html2canvas) via CDN or locally as needed.
-6. **Start your web server** and access the application via your browser.
+4. **Set SMTP credentials** in `contact-us-process.php` and related scripts.
+5. **Install dependencies** (Bootstrap, SweetAlert2, jsPDF, html2canvas) via CDN or locally.
+6. **Start your web server** and access the app in your browser.
 
 ## Credits
 
-- Designed and developed by Ayomal Banneka
-- Uses [PHPMailer](https://github.com/PHPMailer/PHPMailer), [Bootstrap](https://getbootstrap.com/), [SweetAlert2](https://sweetalert2.github.io/), [jsPDF](https://github.com/parallax/jsPDF), [html2canvas](https://html2canvas.hertzen.com/)
+- Developed by Ayomal Banneka
+- Built with [PHPMailer](https://github.com/PHPMailer/PHPMailer), [Bootstrap](https://getbootstrap.com/), [SweetAlert2](https://sweetalert2.github.io/), [jsPDF](https://github.com/parallax/jsPDF), [html2canvas](https://html2canvas.hertzen.com/)
 
 ---
 
-&copy; 2024 UrbanElegance. All Rights
+&copy; 2024–2025 UrbanElegance. All Rights Reserved.
