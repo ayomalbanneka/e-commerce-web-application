@@ -54,7 +54,7 @@ function searchInvoice() {
     }
   }
 
-  request.open("GET", "search-invoice-process.php?on=" + orderNumber.value, true);
+  request.open("GET", "backend/search-invoice-process.php?on=" + orderNumber.value, true);
   request.send();
 }
 
@@ -73,7 +73,7 @@ function orderStatus(status, id) {
     }
   }
 
-  request.open("GET", "order-status-change-process.php?status=" + status + "&invoice=" + id, true);
+  request.open("GET", "backend/order-status-change-process.php?status=" + status + "&invoice=" + id, true);
   request.send();
 
 }
@@ -87,4 +87,116 @@ function userDetails(email) {
   var userModal = document.getElementById("spanModal1" + email);
   modal = new bootstrap.Modal(userModal);
   modal.show();
+}
+
+var modal2;
+
+function adminSignIn() {
+
+  var email = document.getElementById("email");
+  var password = document.getElementById("password");
+  var rememberMe = document.getElementById("adminRememberMe");
+
+  var form = new FormData();
+
+  var adminVerificationModel = document.getElementById("adminVerificationModal");
+
+  form.append("email", email.value);
+  form.append("password", password.value);
+  form.append("adminRememberMe", rememberMe.checked);
+
+  var request = new XMLHttpRequest();
+
+  addEventListener('click', (e) => {
+
+    setTimeout(() => {
+      document.getElementById("adminSignInSpinner").classList.remove("d-none");
+      //Disable the button while processing
+      document.getElementById("sweetBtn").disabled = true;
+
+    }, e ? 1000 : 0);
+
+  })
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      var response = request.responseText;
+
+      if (response == "success") {
+
+        setTimeout(() => {
+
+          document.getElementById("adminSignInSpinner").classList.add("d-none");
+          document.getElementById("sweertBtn").disabled = false;
+        }, response == "success" ? 3000 : 0)
+
+        modal2 = new bootstrap.Modal(adminVerificationModel);
+        modal2.show();
+      } else {
+
+        document.getElementById("adminSignInSpinner").classList.remove("d-none");
+        //Disable the button while processing
+        document.getElementById("sweetBtn").disabled = true;
+
+        setTimeout(() => {
+          Swal.fire({
+            icon: "error",
+            title: "User Not Found",
+            text: response
+          });
+          setTimeout(() => {
+            document.getElementById("adminSignInSpinner").classList.add("d-none");
+            document.getElementById("sweetBtn").disabled = false;
+          })
+        }, response ? 3000 : 0);
+      }
+    }
+  }
+
+  request.open("POST", "backend/admin-sign-in-process.php", true);
+  request.send(form);
+
+}
+
+function verifyAdminCode() {
+  const otp = document.getElementById('otp').value;
+  const email = document.getElementById('email').value;
+
+  if (otp.length !== 6 || isNaN(otp)) {
+    alert("Please enter a valid 6-digit code.");
+    return;
+  }
+
+  const form = new FormData();
+  form.append('otp', otp);
+  form.append('email', email);
+
+  const request = new XMLHttpRequest();
+  request.onreadystatechange = () => {
+
+    if (request.readyState === 4 && request.status === 200) {
+      const response = request.responseText;
+      if (response === "success") {
+        Swal.fire({
+          title: "Login Successful",
+          icon: "success",
+          text: "You are now logged in as an admin."
+        }).then(() => {
+          window.location.href = "admin-panel.php";
+        });
+      } else {
+        Swal.fire({
+          title: "Login Failed",
+          icon: "error",
+          text: "Login failed. Please check your code and try again."
+        });
+      }
+
+    }
+
+  }
+
+  request.open("POST", "backend/verify-admin-code.php", true);
+  request.send(form)
+
 }

@@ -83,7 +83,7 @@
 
         <!-- Copyright -->
         <div class="text-center text-light p-3" style="background-color: black">
-            &copy; 2024. All Right Reserved
+            &copy; <?php echo date('Y'); ?>. All Right Reserved
             <a class="text-light text-decoration-none">UrbanElegance</a>
         </div>
 

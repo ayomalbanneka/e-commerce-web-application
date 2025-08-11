@@ -99,7 +99,7 @@ function signUp() {
         }
     }
 
-    request.open("POST", "sign-up-process.php", true);
+    request.open("POST", "backend/sign-up-process.php", true);
     request.send(form);
 
 }
@@ -176,7 +176,7 @@ function signIn() {
         }
     };
 
-    request.open("POST", "sign-in-process.php", true);
+    request.open("POST", "backend/sign-in-process.php", true);
     request.send(form);
 }
 
@@ -218,7 +218,7 @@ function emailSend() {
         }
     };
 
-    request.open("GET", "forgot-password-process.php?email=" + email.value, true);
+    request.open("GET", "backend/forgot-password-process.php?email=" + email.value, true);
     request.send();
 }
 
@@ -258,7 +258,7 @@ function adminEmailSend() {
         }
     };
 
-    request.open("GET", "admin-forgot-password-process.php?email=" + email.value, true);
+    request.open("GET", "backend/admin-forgot-password-process.php?email=" + email.value, true);
     request.send();
 }
 
@@ -295,7 +295,7 @@ function adminVerifyCode() {
         }
     }
 
-    request.open("POST", "admin-code-verification-process.php", true);
+    request.open("POST", "backend/admin-code-verification-process.php", true);
     request.send(form);
 }
 
@@ -339,7 +339,7 @@ function AdminResetPassword() {
         }
     }
 
-    request.open("POST", "admin-reset-password-process.php", true);
+    request.open("POST", "backend/admin-reset-password-process.php", true);
     request.send(form);
 }
 
@@ -411,7 +411,7 @@ function verifyCode() {
         }
     }
 
-    request.open("POST", "code-verification-process.php", true);
+    request.open("POST", "backend/code-verification-process.php", true);
     request.send(form);
 
 }
@@ -456,7 +456,7 @@ function resetPassword() {
         }
     }
 
-    request.open("POST", "reset-password-process.php", true);
+    request.open("POST", "backend/reset-password-process.php", true);
     request.send(form);
 
 }
@@ -468,72 +468,6 @@ document.getElementById("sweetBtn").addEventListener('click', function (event) {
     resetPassword();
 });
 
-
-function adminSignIn() {
-
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
-    var rememberMe = document.getElementById("adminRememberMe");
-
-    var form = new FormData();
-
-    form.append("email", email.value);
-    form.append("password", password.value);
-    form.append("adminRememberMe", rememberMe.checked);
-
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-
-            if (response == "success") {
-
-                document.getElementById("adminSignInSpinner").classList.remove("d-none");
-                //Disable the button while processing
-                document.getElementById("sweetBtn").disabled = true;
-
-
-                setTimeout(() => {
-
-                    document.getElementById("adminSignInSpinner").classList.add("d-none");
-                    document.getElementById("sweertBtn").disabled = false;
-                }, response == "success" ? 3000 : 0)
-
-                setTimeout(() => {
-
-                    Swal.fire({
-                        title: "User Sign In Success",
-                        icon: "success"
-                    }).then(() => {
-                        window.location = "admin-panel.php";
-                    });
-                }, response == "success" ? 3000 : 0);
-            } else {
-
-                document.getElementById("adminSignInSpinner").classList.remove("d-none");
-                //Disable the button while processing
-                document.getElementById("sweetBtn").disabled = true;
-
-                setTimeout(() => {
-                    Swal.fire({
-                        icon: "error",
-                        title: "User Not Found",
-                        text: response
-                    });
-                    setTimeout(() => {
-                        document.getElementById("adminSignInSpinner").classList.add("d-none");
-                        document.getElementById("sweetBtn").disabled = false;
-                    })
-                }, response ? 3000 : 0);
-            }
-        }
-    }
-
-    request.open("POST", "admin-sign-in-process.php", true);
-    request.send(form);
-
-}
 
 //This will stop multiple alert repeting when click the button
 document.getElementById("sweetBtn").removeEventListener('click', adminSignIn);
@@ -574,7 +508,7 @@ function signOut() {
         }
     }
 
-    request.open("POST", "sign-out-process.php", true);
+    request.open("POST", "backend/sign-out-process.php", true);
     request.send();
 
 }
@@ -602,7 +536,7 @@ function signOut2() {
         }
     }
 
-    request.open("POST", "../../sign-out-process.php", true);
+    request.open("POST", "backend/sign-out-process.php", true);
     request.send();
 
 }
@@ -626,7 +560,7 @@ function selectDistrict() {
         }
     }
 
-    request.open("GET", "select-district-process.php?id=" + province_id, true);
+    request.open("GET", "backend/select-district-process.php?id=" + province_id, true);
     request.send();
 }
 
@@ -640,7 +574,7 @@ function selectCity() {
             document.getElementById("city").innerHTML = response;
         }
     }
-    request.open("GET", "select-city-process.php?id=" + district_id, true);
+    request.open("GET", "backend/select-city-process.php?id=" + district_id, true);
     request.send();
 
 }
@@ -707,7 +641,7 @@ function updateProfile() {
         }
     }
 
-    request.open("POST", "update-profile-process.php", true);
+    request.open("POST", "backend/update-profile-process.php", true);
     request.send(form);
 
 }
@@ -780,7 +714,7 @@ function addColor(x) {
     // Convert the sizes array to a query string format
     var colorsParam = colors.join(",");
 
-    request.open("GET", "add-product-process.php?color=" + encodeURIComponent(colorsParam), true);
+    request.open("GET", "backend/add-product-process.php?color=" + encodeURIComponent(colorsParam), true);
     request.send();
 }
 
@@ -858,7 +792,7 @@ function addProducts() {
         }
     }
 
-    request.open("POST", "add-product-process.php", true);
+    request.open("POST", "backend/add-product-process.php", true);
     request.send(form);
 
 }
@@ -912,7 +846,7 @@ function basicSearch(pageNum, event = null) {
             window.location.href = "search-result.php";
         }
     };
-    request.open("POST", "basic-search-process.php", true);
+    request.open("POST", "backend/basic-search-process.php", true);
     request.send(form);
 }
 
@@ -936,7 +870,7 @@ function basicSearch2(pageNum, event = null) {
             window.location.href = "../../search-result.php";
         }
     };
-    request.open("POST", "../../basic-search-process.php", true);
+    request.open("POST", "backend/basic-search-process.php", true);
     request.send(form);
 }
 
@@ -960,7 +894,7 @@ function basicSearch3(pageNum, event = null) {
             window.location.href = "../search-result.php";
         }
     };
-    request.open("POST", "../basic-search-process.php", true);
+    request.open("POST", "backend/basic-search-process.php", true);
     request.send(form);
 }
 
@@ -1043,7 +977,7 @@ function payNow(id) {
 
         }
     }
-    request.open("GET", "buy-now-process.php?id=" + id + "&qty=" + qty, true);
+    request.open("GET", "backend/buy-now-process.php?id=" + id + "&qty=" + qty, true);
     request.send();
 
 }
@@ -1071,7 +1005,7 @@ function saveInvoice(orderId, id, mail, amount, qty) {
 
         }
     }
-    request.open("POST", "save-invoice-process.php", true);
+    request.open("POST", "backend/save-invoice-process.php", true);
     request.send(form);
 }
 
@@ -1087,7 +1021,7 @@ function addToCart(id, qty) {
         }
     }
 
-    request.open("GET", "addToCartProcess.php?id=" + id + "&qty=" + qty, true);
+    request.open("GET", "backend/addToCartProcess.php?id=" + id + "&qty=" + qty, true);
     request.send();
 }
 
@@ -1137,7 +1071,7 @@ function addToWatchlist(id) {
         }
     }
 
-    request.open("GET", "add-to-watchlist-process.php?id=" + id, true);
+    request.open("GET", "backend/add-to-watchlist-process.php?id=" + id, true);
     request.send();
 
 }
@@ -1157,7 +1091,7 @@ function removeFromWatchlist(id) {
     }
 
 
-    request.open("GET", "remove-watchlist-process.php?id=" + id, true);
+    request.open("GET", "backend/remove-watchlist-process.php?id=" + id, true);
     request.send();
 }
 
@@ -1179,7 +1113,7 @@ function cartQtyPlus(id, qty) {
             }
         }
     }
-    request.open("GET", "qty-inc.php?id=" + id + "&qty=" + qty, true);
+    request.open("GET", "backend/qty-inc.php?id=" + id + "&qty=" + qty, true);
     request.send();
 
 }
@@ -1206,7 +1140,7 @@ function cartQtyMinus(id) {
             }
         }
     }
-    request.open("GET", "qty-dec.php?id=" + id, true);
+    request.open("GET", "backend/qty-dec.php?id=" + id, true);
     request.send();
 
 }
@@ -1255,7 +1189,7 @@ function removeFromCart(id) {
         }
     }
 
-    request.open("GET", "remove-from-cart-process.php?id=" + id, true);
+    request.open("GET", "backend/remove-from-cart-process.php?id=" + id, true);
     request.send();
 }
 
@@ -1327,7 +1261,7 @@ function sort(x) {
         }
     }
 
-    request.open("POST", "sort-process.php", true);
+    request.open("POST", "backend/sort-process.php", true);
     request.send(form);
 
 }
@@ -1383,7 +1317,7 @@ function sort2(x) {
         }
     }
 
-    request.open("POST", "../../sort-process2.php", true);
+    request.open("POST", "backend/sort-process2.php", true);
     request.send(form);
 
 }
@@ -1428,7 +1362,7 @@ function srtByPrice(x) {
             document.getElementById('sortResult').innerHTML = response;
         }
     }
-    request.open("GET", "sort-price-process.php?price=" + price + "&t=" + keyword + "&page=" + x, true);
+    request.open("GET", "backend/sort-price-process.php?price=" + price + "&t=" + keyword + "&page=" + x, true);
     request.send();
 }
 
@@ -1453,7 +1387,7 @@ function srtByPrice2(x) {
             document.getElementById('sortResult').innerHTML = response;
         }
     }
-    request.open("GET", "../../sort-price-process2.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
+    request.open("GET", "backend/sort-price-process2.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
     request.send();
 }
 
@@ -1475,7 +1409,7 @@ function srtByPrice3(x) {
             document.getElementById('view_area').innerHTML = response;
         }
     }
-    request.open("GET", "advanced-search-sort-price-process.php?price=" + price + "&t=" + txt.value + "&page=" + x, true);
+    request.open("GET", "backend/advanced-search-sort-price-process.php?price=" + price + "&t=" + txt.value + "&page=" + x, true);
     request.send();
 }
 
@@ -1500,7 +1434,7 @@ function srtByPrice4(x) {
             document.getElementById('sortResult').innerHTML = response;
         }
     }
-    request.open("GET", "../sort-price-process3.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
+    request.open("GET", "backend/sort-price-process3.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
     request.send();
 }
 
@@ -1521,7 +1455,7 @@ function adminSignOut() {
         }
     }
 
-    request.open("GET", "admin-sign-out-process.php", true);
+    request.open("GET", "backend/admin-sign-out-process.php", true);
     request.send();
 }
 
@@ -1565,7 +1499,7 @@ function updateProduct(id) {
         }
     }
 
-    request.open("POST", "update-product-process.php", true);
+    request.open("POST", "backend/update-product-process.php", true);
     request.send(form);
 
 
@@ -1595,7 +1529,7 @@ function addColor() {
         }
     }
 
-    request.open("GET", "save-color-process.php?clr=" + clr.value, true);
+    request.open("GET", "backend/save-color-process.php?clr=" + clr.value, true);
     request.send();
 }
 
@@ -1623,7 +1557,7 @@ function addMaterial() {
         }
     }
 
-    request.open("GET", "save-material-process.php?mtl=" + mtl.value, true);
+    request.open("GET", "backend/save-material-process.php?mtl=" + mtl.value, true);
     request.send();
 }
 
@@ -1651,7 +1585,7 @@ function addBrand() {
         }
     }
 
-    request.open("GET", "save-brand-process.php?brd=" + brd.value, true);
+    request.open("GET", "backend/save-brand-process.php?brd=" + brd.value, true);
     request.send();
 }
 
@@ -1679,7 +1613,7 @@ function addCategory() {
         }
     }
 
-    request.open("GET", "save-category-process.php?cat=" + category.value, true);
+    request.open("GET", "backend/save-category-process.php?cat=" + category.value, true);
     request.send();
 }
 
@@ -1708,7 +1642,7 @@ function addSubCategory() {
         }
     }
 
-    request.open("GET", "save-sub_category-process.php?sub_cat=" + sub_category.value, true);
+    request.open("GET", "backend/save-sub_category-process.php?sub_cat=" + sub_category.value, true);
     request.send();
 
 }
@@ -1766,7 +1700,7 @@ function sortMini(x) {
         }
     }
 
-    request.open("POST", "sort-process.php", true);
+    request.open("POST", "backend/sort-process.php", true);
     request.send(form);
 }
 
@@ -1824,7 +1758,7 @@ function sortMini2(x) {
         }
     }
 
-    request.open("POST", "../../sort-process2.php", true);
+    request.open("POST", "backend/sort-process2.php", true);
     request.send(form);
 }
 
@@ -1841,7 +1775,7 @@ function blockUser(email) {
         }
     }
 
-    request.open("GET", "block-user-process.php?email=" + email, true);
+    request.open("GET", "backend/block-user-process.php?email=" + email, true);
     request.send();
 
 }
@@ -1862,7 +1796,7 @@ function productStatus(id) {
         }
     }
 
-    request.open("GET", "change-product-status-process.php?id=" + id, true);
+    request.open("GET", "backend/change-product-status-process.php?id=" + id, true);
     request.send();
 
 }
@@ -1908,7 +1842,7 @@ function advancedSearch(x) {
         }
     }
 
-    request.open("POST", "advaced-search-process.php", true)
+    request.open("POST", "backend/advaced-search-process.php", true)
     request.send(form);
 
 }
@@ -1964,7 +1898,7 @@ function advancedSearch2(x) {
         }
     }
 
-    request.open("POST", "advaced-search-process2.php", true)
+    request.open("POST", "backend/advaced-search-process2.php", true)
     request.send(form);
 
     // alert("OK")
@@ -1987,7 +1921,7 @@ function findOrders() {
 
     }
 
-    request.open("GET", "find-orders-process.php?f=" + from.value + "&t=" + to.value, true);
+    request.open("GET", "backend/find-orders-process.php?f=" + from.value + "&t=" + to.value, true);
     request.send();
 
 }
@@ -2069,7 +2003,7 @@ function checkout() {
 
         }
     }
-    request.open("GET", "checkout-process.php", true);
+    request.open("GET", "backend/checkout-process.php", true);
     request.send();
 }
 
@@ -2091,7 +2025,7 @@ function checkoutSaveInvoice(orderId, amount) {
 
         }
     }
-    request.open("POST", "cart-save-invoice-process.php", true);
+    request.open("POST", "backend/cart-save-invoice-process.php", true);
     request.send(form);
 }
 
@@ -2163,7 +2097,7 @@ function contactUs() {
         }
     }
 
-    request.open("POST", "contact-us-process.php", true);
+    request.open("POST", "backend/contact-us-process.php", true);
     request.send(form);
 
 }
@@ -2204,7 +2138,7 @@ function verifyEmail() {
         }
     }
 
-    request.open("GET", "email-verification-process.php?email=" + vemail, true);
+    request.open("GET", "backend/email-verification-process.php?email=" + vemail, true);
     request.send()
 
 }
@@ -2242,7 +2176,7 @@ function verifyOtp() {
         }
     }
 
-    request.open("POST", "account-verify-process.php", true);
+    request.open("POST", "backend/account-verify-process.php", true);
     request.send(form);
 
 }
@@ -2275,7 +2209,7 @@ function deleteUserAccount(email) {
         }
     }
 
-    request.open("GET", "delete-user-account-process.php?email=" + email, true);
+    request.open("GET", "backend/delete-user-account-process.php?email=" + email, true);
     request.send();
 
 }
@@ -2294,7 +2228,7 @@ function addToCartFromWatchlist(id) {
         }
     }
 
-    request.open("GET", "add-to-cart-from-watchlist.php?id=" + id, true);
+    request.open("GET", "backend/add-to-cart-from-watchlist.php?id=" + id, true);
     request.send()
 
 }

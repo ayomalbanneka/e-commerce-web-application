@@ -20,6 +20,58 @@
 
     <!-- upper nav bar  -->
 
+    <div class="modal fade" id="adminVerificationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Header -->
+                <div class="modal-header bg-light">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-shield-lock fs-5 me-2 text-primary"></i>
+                        <h5 class="modal-title mb-0">Admin Verification</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Security Alert -->
+                    <div class="alert alert-warning d-flex align-items-center mb-4">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <div>Security verification required for admin access</div>
+                    </div>
+
+                    <!-- OTP Input -->
+                    <div class="mb-3">
+                        <label class="form-label">Enter 6-digit verification code</label>
+                        <div class="d-flex justify-content-between">
+                            <input type="text" class="form-control text-center mx-1" style="height: 50px; font-size: 1.2rem;" id="otp" autofocus>
+                        </div>
+                        <!-- <div class="form-text">Sent to admin@<?php echo explode('@', $email)[1]; ?></div> -->
+                        <div class="form-text">Sent to your email</div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle me-1"></i> Cancel
+                        </button>
+                        <button type="button" class="btn btn-dark" onclick="verifyAdminCode();">
+                            <i class="bi bi-shield-check me-1"></i> Verify
+                        </button>
+                    </div>
+
+                    <!-- Footer Links -->
+                    <div class="text-center mt-3 pt-2 border-top">
+                        <small class="text-muted">
+                            Didn't receive code?
+                            <a href="#" class="text-decoration-none" onclick="adminSignIn()">Resend</a> |
+                            <a href="contact-us.php" class="text-decoration-none">Need help?</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container anime2">
         <div class="row d-flex justify-content-center">
             <div class="card custom-card col-12 col-md-10 col-lg-10 mt-5 mb-5 px-5 py-5">
@@ -100,7 +152,7 @@
 
     <!-- footer  -->
 
-    <script src="js/script.js"></script>
+    <script src="js/admin-panel.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/bootstrap.bundle.js"></script>
 </body>

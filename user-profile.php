@@ -35,7 +35,10 @@
 
                 $details_rs = Database::search("SELECT * FROM `user_details` WHERE `email` = '" . $email . "'");
 
-                $address_rs = Database::search("SELECT * FROM `users_address_details` WHERE `users_email` = '" . $email . "'");
+                $address_rs = Database::search("SELECT * FROM users_has_address INNER JOIN city ON
+                users_has_address.city_city_id=city.city_id INNER JOIN district ON
+                city.district_district_id=district.district_id INNER JOIN province ON
+                district.province_province_id=province.province_id WHERE `users_email` = '" . $email . "'");
 
                 $image_rs = Database::search("SELECT * FROM `profile_img` WHERE `users_email` = '" . $email . "'");
 
@@ -86,8 +89,6 @@
                                         }
 
                                         ?>
-
-
 
                                         <span class="fw-bold"><?php echo $details_data["fname"] . " " . $details_data["lname"]; ?>
 
@@ -192,7 +193,7 @@
                                                     ?>
 
                                                         <input type="text" class="form-control" readonly id="email" value="<?php echo $details_data["email"]; ?>" />
-                                                        
+
 
                                                     <?php
                                                     }
