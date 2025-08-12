@@ -8,5 +8,4 @@ if ($_SESSION["u"]) {
     session_destroy();
     
     echo ("success");
-    header("Location: ../index.php");
 }
