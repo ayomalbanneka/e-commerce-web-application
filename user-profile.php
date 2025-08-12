@@ -49,19 +49,39 @@
 
             ?>
 
-                <div class="modal fade" tabindex="-1" id="spanModel3">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content modal-content1">
-                            <div class="otp-body w-100 vh-100 d-flex align-items-center justify-content-center">
-                                <div class="otp-card">
-                                    <h1 class="otp-h1">OTP Verification</h1>
-                                    <p>Code has been send to <strong> <?php echo $email; ?></strong></p>
-                                    <div class="otp-card-inputs">
-                                        <input type="text" maxlength="6" id="i" autofocus>
-                                    </div>
-                                    <p>Didn't get the otp <a href="#" onclick="verifyEmail();">Resend</a></p>
-                                    <button class="btn btn-outline-dark text-center " onclick="verifyOtp();">Verify</button>
+                <div class="modal fade" id="emailVerificationModal" tabindex="-1" aria-labelledby="emailVerificationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body p-4 p-md-5 text-center">
+
+                                <!-- Header -->
+                                <div class="mb-4">
+                                    <i class="bi bi-envelope-check fs-1 text-primary mb-3"></i>
+                                    <h2 class="h4 mb-2">Email Verification</h2>
+                                    <p class="text-muted mb-0">Verification code sent to <span class="fw-bold text-dark"><?php echo $email; ?></span></p>
                                 </div>
+
+                                <!-- OTP Input -->
+                                <form class="mb-4">
+                                    <label for="otpInput" class="form-label visually-hidden">Enter 6-digit code</label>
+                                    <input type="text"
+                                        class="form-control form-control-lg text-center"
+                                        id="otpInput"
+                                        maxlength="6"
+                                        placeholder="••••••"
+                                        aria-describedby="otpHelp"
+                                        autofocus>
+                                    <div id="otpHelp" class="form-text mt-2">Enter the 6-digit code from your email</div>
+                                </form>
+
+                                <!-- Action Buttons -->
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-primary">Verify Email</button>
+                                    <button type="button" class="btn btn-link text-muted text-decoration-none">
+                                        Didn't receive code? <span class="fw-bold">Resend</span>
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -184,8 +204,8 @@
                                                     ?>
 
                                                         <input type="text" class="form-control" readonly id="email" value="<?php echo $details_data["email"]; ?>" />
-                                                        <span class="input-group-text bg-dark text-light" style="cursor: pointer;" onclick="verifyEmail();">
-                                                            Verify
+                                                        <span class="input-group-text bg-dark text-light" id="sweetBtn" style="cursor: pointer;" onclick="verifyEmail();">
+                                                            Verify <span class=" spinner-border spinner-border-sm d-none" id="userEmailVerifySpinner"></span>
                                                         </span>
 
                                                     <?php

@@ -192,6 +192,16 @@ function emailSend() {
     var emaildiv = document.getElementById("emaildiv");
     var vcodeDiv = document.getElementById("vcodeDiv");
 
+    addEventListener('click', (e) => {
+
+        setTimeout(() => {
+            document.getElementById("userForgotPasswordSpinner").classList.remove("d-none");
+            //Disable the button while processing
+            document.getElementById("sendBtn").disabled = true;
+
+        }, e ? 1000 : 0);
+
+    })
 
     var request = new XMLHttpRequest();
 
@@ -199,15 +209,26 @@ function emailSend() {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             if (response == "success") {
-                Swal.fire({
-                    title: "Verification code send successfully",
-                    icon: "success",
-                    text: "Verification send to your email address"
-                }).then(() => {
-                    emaildiv.classList.toggle("d-none");
-                    vcodeDiv.classList.toggle("d-none");
 
-                });
+                setTimeout(() => {
+
+                    document.getElementById("userForgotPasswordSpinner").classList.add("d-none");
+                    document.getElementById("sendBtn").disabled = false;
+                }, response == "success" ? 3000 : 0)
+
+                setTimeout(() => {
+                    Swal.fire({
+                        title: "Verification code send successfully",
+                        icon: "success",
+                        text: "Verification send to your email address"
+                    }).then(() => {
+                        emaildiv.classList.toggle("d-none");
+                        vcodeDiv.classList.toggle("d-none");
+
+                    });
+
+                }, response == "success" ? 3000 : 0)
+
             } else {
                 Swal.fire({
                     icon: "error",
@@ -236,18 +257,41 @@ function adminEmailSend() {
 
     var request = new XMLHttpRequest();
 
+    addEventListener('click', (e) => {
+
+        setTimeout(() => {
+            document.getElementById("adminForgotPasswordSpinner").classList.remove("d-none");
+            //Disable the button while processing
+            document.getElementById("sendBtn").disabled = true;
+
+        }, e ? 1000 : 0);
+
+    })
+
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             if (response == "success") {
-                Swal.fire({
-                    title: "Verification code send successfully",
-                    icon: "success",
-                    text: "Verification send to your email address"
-                }).then(() => {
-                    emaildiv.classList.toggle("d-none");
-                    vcodeDiv.classList.toggle("d-none");
-                });
+
+                setTimeout(() => {
+                    document.getElementById("adminForgotPasswordSpinner").classList.add("d-none");
+                    //Disable the button while processing
+                    document.getElementById("sendBtn").disabled = false;
+
+                }, response == "success" ? 3000 : 0);
+
+                setTimeout(() => {
+                    Swal.fire({
+                        title: "Verification code send successfully",
+                        icon: "success",
+                        text: "Verification send to your email address"
+                    }).then(() => {
+                        emaildiv.classList.toggle("d-none");
+                        vcodeDiv.classList.toggle("d-none");
+                    });
+                }, response == "success" ? 3000 : 0)
+
+
             } else {
                 Swal.fire({
                     icon: "error",
@@ -502,7 +546,7 @@ function signOut() {
                     title: "Sign Out successfully",
                     icon: "success"
                 }).then(() => {
-                    window.location.reload();
+                    window.location = "home.php";
                 });
             }
         }
@@ -530,7 +574,7 @@ function signOut2() {
                     title: "Sign Out successfully",
                     icon: "success"
                 }).then(() => {
-                    window.location.reload();
+                    window.location = "home.php"
                 });
             }
         }
@@ -870,7 +914,7 @@ function basicSearch2(pageNum, event = null) {
             window.location.href = "../../search-result.php";
         }
     };
-    request.open("POST", "backend/basic-search-process.php", true);
+    request.open("POST", "../../backend/basic-search-process.php", true);
     request.send(form);
 }
 
@@ -1387,7 +1431,7 @@ function srtByPrice2(x) {
             document.getElementById('sortResult').innerHTML = response;
         }
     }
-    request.open("GET", "backend/sort-price-process2.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
+    request.open("GET", "../../backend/sort-price-process2.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
     request.send();
 }
 
@@ -1434,7 +1478,7 @@ function srtByPrice4(x) {
             document.getElementById('sortResult').innerHTML = response;
         }
     }
-    request.open("GET", "backend/sort-price-process3.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
+    request.open("GET", "../backend/sort-price-process3.php?price=" + price + "&page=" + x + "&sub_cat=" + sub_cat + "&cat_name=" + cat_name, true);
     request.send();
 }
 
@@ -2113,18 +2157,43 @@ function verifyEmail() {
 
     var request = new XMLHttpRequest();
 
+    addEventListener('click', (e) => {
+
+        setTimeout(() => {
+            document.getElementById("userEmailVerifySpinner").classList.remove("d-none");
+            //Disable the button while processing
+            document.getElementById("sweetBtn").disabled = true;
+
+        }, e ? 1000 : 0);
+
+    })
+
     request.onreadystatechange = () => {
         if (request.status == 200 && request.readyState == 4) {
             var response = request.responseText
             if (response == "success") {
-                Swal.fire({
-                    title: "Success",
-                    text: "Verification Code sended successfully",
-                    icon: "success"
-                }).then(() => {
-                    model3 = new bootstrap.Modal(emodel);
-                    model3.show();
-                });
+
+                // document.getElementById("userEmailVerifySpinner").classList.remove("d-none");
+                // //Disable the button while processing
+                // document.getElementById("sweetBtn").disabled = true;
+
+                setTimeout(() => {
+                    document.getElementById("userEmailVerifySpinner").classList.add("d-none");
+                    document.getElementById("sweetBtn").disabled = false;
+                }, response == "success" ? 3000 : 0)
+
+                setTimeout(() => {
+                    Swal.fire({
+                        title: "Success",
+                        text: "Verification Code sended successfully",
+                        icon: "success"
+                    }).then(() => {
+                        model3 = new bootstrap.Modal(emodel);
+                        model3.show();
+                    });
+                }, response == "success" ? 3000 : 0)
+
+
 
 
 

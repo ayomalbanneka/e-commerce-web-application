@@ -49,7 +49,7 @@ if (isset($_GET["email"])) {
         $mail->setFrom('ayomalkaushalya@gmail.com', 'Reset Password'); // Sender's Email, Sender's Email
         $mail->addReplyTo('ayomalkaushalya@gmail.com', 'Reset Password'); // Sender's Email, Sender's Email
         $mail->addAddress($email); //Receiver's Email 
-        $mail->addEmbeddedImage('img/email_img.png', 'logo_img');
+        $mail->addEmbeddedImage('../img/email_img.png', 'logo_img');
         // $mail->addEmbeddedImage('img/social_icons/facebook.ico', 'fb_img');
         // $mail->addEmbeddedImage('img/social_icons/instagram.ico', 'insta_img');
         // $mail->addEmbeddedImage('img/social_icons/linkedin.ico', 'link_img');
@@ -57,39 +57,42 @@ if (isset($_GET["email"])) {
         $mail->isHTML(true);
         // $mail->AddEmbeddedImage('logo.jpg', 'logoimg', 'img/Slight 555 (1).png'); // attach file logo.jpg, and later link to it using identfier logoimg
         $mail->Subject = 'UrbanElagance Email Verification code'; // Subject of the email
+        $bodyContent = 'UrbanElagance Email Verification Code'; // Subject of the email
         $bodyContent = '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Reset</title>
     <style>
         body {
             font-family: Helvetica Neue, Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #121212;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #e0e0e0;
             line-height: 1.6;
         }
         
         .email-container {
             max-width: 600px;
             margin: 20px auto;
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
+            background: #1e1e1e;
+            border: 1px solid #333;
             border-radius: 4px;
             overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         
         .email-header {
-            padding: 20px;
+            padding: 25px;
             text-align: center;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #333;
+            background: #000;
         }
         
         .email-header img {
-            max-height: 40px;
+            max-height: 45px;
+            filter: brightness(0) invert(1);
         }
         
         .email-content {
@@ -99,46 +102,61 @@ if (isset($_GET["email"])) {
         h1 {
             font-size: 24px;
             margin-top: 0;
-            color: #000;
+            color: #fff;
             text-align: center;
+            font-weight: 500;
         }
         
         .verification-code {
-            background: #f8f8f8;
-            border: 1px dashed #d1d1d1;
-            padding: 15px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            padding: 18px;
             text-align: center;
             font-size: 28px;
             font-weight: bold;
-            letter-spacing: 2px;
-            margin: 25px 0;
-            color: #d32f2f; /* Red color for the code */
+            letter-spacing: 3px;
+            margin: 30px 0;
+            color: #ff4444;
+            border-radius: 6px;
+            font-family: monospace;
         }
         
         .instructions {
             margin-bottom: 25px;
-            color: #555;
+            color: #bbb;
+            font-size: 15px;
+            text-align: center;
         }
         
-        .note {
+        .security-note {
+            background: #2a1e1e;
+            border-left: 3px solid #ff4444;
+            padding: 15px;
+            margin: 30px 0;
+            color: #ddd;
             font-size: 14px;
-            color: #777;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-            margin-top: 25px;
         }
         
         .footer {
-            background: #f9f9f9;
-            padding: 15px;
+            background: #000;
+            padding: 20px;
             text-align: center;
             font-size: 12px;
-            color: #999;
+            color: #888;
+            border-top: 1px solid #333;
         }
         
         .footer a {
-            color: #d32f2f; /* Red color for links */
+            color: #ff4444;
             text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .expiry-notice {
+            color: #ff4444;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -151,16 +169,23 @@ if (isset($_GET["email"])) {
         <div class="email-content">
             <h1>Email Verification</h1>
             
-            <p class="instructions">We received a request to reset your password. Please use the following verification code to proceed:</p>
+            <p class="instructions">We received a request to verify your email. Please use the following verification code:</p>
             
             <div class="verification-code">' . $code . '</div>
             
-            <p class="note">For security reasons, do not share this code with anyone. Our team will never ask for your verification code.</p>
+            <p class="expiry-notice">Expires in 30 minutes</p>
+            
+            <div class="security-note">
+                <strong>Security Alert:</strong> Never share this code with anyone. UrbanElagance will never ask you for your verification code.
+            </div>
         </div>
         
         <div class="footer">
             <p>&copy; ' . date('Y') . ' UrbanElagance. All rights reserved.</p>
-            <p><a href="http://localhost/shop/contact-us.php">Contact Support</a> | <a href="#">Privacy Policy</a></p>
+            <p>
+                <a href="http://localhost/shop/contact-us.php">Contact Support</a>
+                <a href="#">Privacy Policy</a>
+            </p>
         </div>
     </div>
 </body>

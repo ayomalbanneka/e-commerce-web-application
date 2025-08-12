@@ -42,7 +42,10 @@
                                 </div>
 
                                 <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
-                                    <button class="fw-bold btn btn-outline-dark py-2" id="sendbtn" onclick="adminEmailSend();">SEND</button>
+                                    <button class="fw-bold btn btn-outline-dark py-2" id="sendbtn" onclick="adminEmailSend();">
+                                        <span class="spinner-border spinner-border-sm d-none" id="adminForgotPasswordSpinner" aria-hidden="true"></span>
+                                        SEND
+                                    </button>
                                 </div>
 
                             </div>

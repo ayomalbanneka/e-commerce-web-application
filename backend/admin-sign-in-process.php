@@ -92,10 +92,10 @@ if (empty($email)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Verification Code</title>
+    <title>Admin Login Verification</title>
     <style>
         body {
-            font-family: Segoe UI, Arial, sans-serif;
+            font-family: Segoe UI, Roboto, Helvetica, Arial, sans-serif;
             background-color: #121212;
             margin: 0;
             padding: 0;
@@ -110,17 +110,19 @@ if (empty($email)) {
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
         }
         
         .email-header {
-            padding: 25px;
+            padding: 30px;
             text-align: center;
-            background: #000000;
-            border-bottom: 2px solid #d32f2f;
+            background: #000;
+            border-bottom: 1px solid #333;
         }
         
         .email-header img {
             max-height: 50px;
+            filter: brightness(0) invert(1);
         }
         
         .email-content {
@@ -128,88 +130,127 @@ if (empty($email)) {
         }
         
         h1 {
-            font-size: 24px;
+            font-size: 22px;
             margin-top: 0;
-            color: #ffffff;
+            color: #fff;
             text-align: center;
             font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .admin-badge {
+            display: inline-block;
+            background: #d32f2f;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
         
         .verification-code {
             background: #2a2a2a;
-            border: 1px solid #333;
+            border: 1px solid #444;
             padding: 20px;
             text-align: center;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             letter-spacing: 3px;
             margin: 30px 0;
-            color: #d32f2f;
+            color: #ff4444;
             border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            font-family: monospace;
         }
         
         .instructions {
-            margin-bottom: 25px;
-            color: #b0b0b0;
+            margin-bottom: 20px;
+            color: #bbb;
             font-size: 15px;
         }
         
-        .note {
+        .security-note {
+            background: #2a1e1e;
+            border-left: 4px solid #ff4444;
+            padding: 15px;
+            margin: 25px 0;
             font-size: 14px;
-            color: #999;
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            margin-top: 25px;
+            color: #ddd;
         }
         
-        .footer {
-            background: #000000;
-            padding: 20px;
+        .admin-alert {
+            background: #2a1e1e;
+            border: 1px solid #ff4444;
+            padding: 15px;
+            margin: 25px 0;
+            font-size: 14px;
+            color: #ff4444;
             text-align: center;
-            font-size: 12px;
-            color: #777;
-        }
-        
-        .footer a {
-            color: #d32f2f;
-            text-decoration: none;
+            border-radius: 4px;
             font-weight: 500;
         }
         
         .button {
-            display: inline-block;
-            background: #d32f2f;
+            display: block;
+            width: 200px;
+            background: #ff4444;
             color: white !important;
-            padding: 12px 25px;
+            padding: 12px 0;
+            text-align: center;
             text-decoration: none;
             border-radius: 4px;
-            font-weight: 600;
-            margin: 15px 0;
+            font-weight: 500;
+            margin: 25px auto;
+        }
+        
+        .footer {
+            background: #000;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #333;
+        }
+        
+        .footer a {
+            color: #ff4444;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="email-container">
         <div class="email-header">
-            <img src="cid:logo_img" alt="Admin Portal Logo">
+            <img src="cid:logo_img" alt="UrbanElagance Admin Logo">
         </div>
         
         <div class="email-content">
-            <h1>Admin Verification Required</h1>
+            <div style="text-align: center;">
+                <span class="admin-badge">ADMIN PORTAL</span>
+            </div>
             
-            <p class="instructions">A login attempt was made to the <strong>Admin Dashboard</strong>. Use the following code to verify your identity:</p>
+            <h1>Admin Login Verification</h1>
+            
+            <div class="admin-alert">
+                ADMINISTRATOR ACCESS REQUEST DETECTED
+            </div>
+            
+            <p class="instructions">A login attempt was made to the UrbanElagance Admin Portal. Please use the following verification code to complete authentication:</p>
             
             <div class="verification-code">' . $code . '</div>
             
-            <p class="instructions">This code expires in <strong>15 minutes</strong>. Do not share it with anyone.</p>
+            <p class="instructions">This security code will expire in <strong>15 minutes</strong>. If you didnt request this access, please secure your account immediately.</p>
             
-            <p class="note">If you did not request this, <a href="#" style="color: #d32f2f;">secure your account immediately</a>.</p>
+            <div class="security-note">
+                <strong>Critical Security Notice:</strong> This code provides access to sensitive administrative controls. Never share it with anyone, including colleagues.
+            </div>
+            
+            <a href="http://localhost/shop/admin-login.php" class="button">Continue to Admin Portal</a>
         </div>
         
         <div class="footer">
+            <p>If you believe this login attempt is unauthorized, please <a href="#">contact security</a> immediately.</p>
             <p>&copy; ' . date('Y') . ' UrbanElagance Admin. All rights reserved.</p>
-            <p><a href="#">Security Policy</a> | <a href="#">Contact IT Support</a></p>
         </div>
     </div>
 </body>

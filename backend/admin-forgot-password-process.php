@@ -61,34 +61,37 @@ if (isset($_GET["email"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Password Reset</title>
     <style>
         body {
             font-family: Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f7f7f7;
+            background-color: #121212;
             margin: 0;
             padding: 0;
-            color: #333333;
-            line-height: 1.5;
+            color: #e0e0e0;
+            line-height: 1.6;
         }
         
         .email-container {
             max-width: 600px;
             margin: 20px auto;
-            background: #ffffff;
+            background: #1e1e1e;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
         }
         
         .email-header {
             padding: 30px;
             text-align: center;
-            background: #ffffff;
-            border-bottom: 1px solid #eeeeee;
+            background: #000;
+            border-bottom: 1px solid #333;
         }
         
         .email-header img {
             max-height: 50px;
+            filter: brightness(0) invert(1);
         }
         
         .email-content {
@@ -98,45 +101,56 @@ if (isset($_GET["email"])) {
         h1 {
             font-size: 22px;
             margin-top: 0;
-            color: #222222;
+            color: #fff;
             text-align: center;
             font-weight: 600;
             margin-bottom: 20px;
         }
         
+        .admin-badge {
+            display: inline-block;
+            background: #d32f2f;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
         .verification-code {
-            background: #f9f9f9;
-            border: 1px solid #eaeaea;
+            background: #2a2a2a;
+            border: 1px solid #444;
             padding: 20px;
             text-align: center;
             font-size: 28px;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin: 30px 0;
-            color: #d32f2f;
+            color: #ff4444;
             border-radius: 6px;
             font-family: monospace;
         }
         
         .instructions {
             margin-bottom: 20px;
-            color: #555555;
+            color: #bbb;
             font-size: 15px;
         }
         
         .security-note {
-            background-color: #fff8f8;
-            border-left: 4px solid #d32f2f;
+            background: #2a1e1e;
+            border-left: 4px solid #ff4444;
             padding: 15px;
             margin: 25px 0;
             font-size: 14px;
-            color: #666666;
+            color: #ddd;
         }
         
         .button {
             display: block;
             width: 200px;
-            background: #d32f2f;
+            background: #ff4444;
             color: white !important;
             padding: 12px 0;
             text-align: center;
@@ -147,16 +161,16 @@ if (isset($_GET["email"])) {
         }
         
         .footer {
-            background: #fafafa;
+            background: #000;
             padding: 20px;
             text-align: center;
             font-size: 12px;
-            color: #999999;
-            border-top: 1px solid #eeeeee;
+            color: #888;
+            border-top: 1px solid #333;
         }
         
         .footer a {
-            color: #d32f2f;
+            color: #ff4444;
             text-decoration: none;
         }
     </style>
@@ -164,28 +178,32 @@ if (isset($_GET["email"])) {
 <body>
     <div class="email-container">
         <div class="email-header">
-            <img src="cid:logo_img" alt="UrbanElagance Logo">
+            <img src="cid:logo_img" alt="UrbanElagance Admin Logo">
         </div>
         
         <div class="email-content">
-            <h1>Password Reset Verification</h1>
+            <div style="text-align: center;">
+                <span class="admin-badge">ADMIN PORTAL</span>
+            </div>
             
-            <p class="instructions">You recently requested to reset your password for your UrbanElagance account. Please use the following verification code to proceed:</p>
+            <h1>Admin Password Reset Verification</h1>
+            
+            <p class="instructions">A password reset was requested for your UrbanElagance Admin account. Please use the following verification code to proceed:</p>
             
             <div class="verification-code">' . $code . '</div>
             
-            <p class="instructions">Enter this code on the password reset page to verify your identity. This code will expire in 30 minutes.</p>
+            <p class="instructions">Enter this code on the admin password reset page to verify your identity. This code will expire in <strong>15 minutes</strong>.</p>
             
             <div class="security-note">
-                <strong>Security tip:</strong> Never share this code with anyone. UrbanElagance will never ask you for your verification code.
+                <strong>Critical Security Notice:</strong> This code provides access to administrative controls. Never share it with anyone. Our security team will never request this code via email or phone.
             </div>
             
-            <a href="http://localhost/shop/admin-forgot-password.php" class="button">Reset Password</a>
+            <a href="http://localhost/shop/admin-forgot-password.php" class="button">Reset Admin Password</a>
         </div>
         
         <div class="footer">
-            <p>If you didnt request this password reset, please ignore this email or <a href="#">contact support</a> if you have concerns.</p>
-            <p>&copy; ' . date('Y') . ' UrbanElagance. All rights reserved.</p>
+            <p>If you didnt request this password reset, please <a href="#">contact security immediately</a>.</p>
+            <p>&copy; ' . date('Y') . ' UrbanElagance Admin. All rights reserved.</p>
         </div>
     </div>
 </body>
