@@ -50,7 +50,11 @@ if ($color != 0) {
 // Size
 
 if ($size != 0) {
-    $query .= " AND `sizes_sizes_id` = '".$size."'";
+    $query .= " AND `id` IN (
+        SELECT `products_id` 
+        FROM `products_has_sizes` 
+        WHERE `sizes_sizes_id` = '".$size."'
+    )";
 }
 
 // Brand

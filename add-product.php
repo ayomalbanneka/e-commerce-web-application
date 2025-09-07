@@ -39,7 +39,7 @@ if (isset($_SESSION["au"])) {
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="productName">Name Product</label>
-                                    <input type="text" id="productName" class="form-control" placeholder="Puffer Jacket With Pocket Detail">
+                                    <input type="text" id="productName" class="form-control text-uppercase" placeholder="Puffer Jacket With Pocket Detail">
                                 </div>
                                 <!-- <div class="form-group">
                                 <label for="productDescription">Description Product</label>
@@ -52,9 +52,9 @@ if (isset($_SESSION["au"])) {
                                         <label class="form-label">Size</label>
                                         <div class="size-options">
 
-                                            <select class="form-select" id="size">
+                                            <!-- <select class="form-select" id="size"> -->
 
-                                                <option value="0">Select Size</option>
+                                                <!-- <option value="0">Select Size</option> -->
 
 
 
@@ -66,7 +66,11 @@ if (isset($_SESSION["au"])) {
 
                                                 ?>
 
-                                                    <option value="<?php echo $sizes_data["sizes_id"]; ?>"><?php echo $sizes_data["size"]; ?></option>
+                                                    <input type="checkbox"
+                                                        class="btn-check" id="size_<?php echo $sizes_data['sizes_id']; ?>" data-id="<?php echo $sizes_data['sizes_id']; ?>">
+                                                    <label class="btn btn-outline-dark text-uppercase" for="size_<?php echo $sizes_data['sizes_id']; ?>">
+                                                        <?php echo $sizes_data['size']; ?>
+                                                    </label>
 
                                                 <?php
                                                 }
@@ -75,7 +79,7 @@ if (isset($_SESSION["au"])) {
 
 
 
-                                            </select>
+                                            <!-- </select> -->
 
                                         </div>
                                     </div>

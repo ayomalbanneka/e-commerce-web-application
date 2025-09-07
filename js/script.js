@@ -763,14 +763,12 @@ function addColor(x) {
 }
 
 function addProducts() {
-    // alert(x);
 
     var title = document.getElementById("productName");
     var brand = document.getElementById("brand");
     var category = document.getElementById("category");
     var subCategory = document.getElementById("sub_category");
     var color = document.getElementById("color");
-    var size = document.getElementById("size");
     var gender = document.getElementById("gender");
     var material = document.getElementById("material");
     var price = document.getElementById("price");
@@ -779,18 +777,18 @@ function addProducts() {
     var doc = document.getElementById("doc");
     var imageUploader = document.getElementById("imageUploader");
 
-    // alert(title.value);
-    // alert(brand.value);
-    // alert(category.value);
-    // alert(subCategory.value);
-    // alert(color.value);
-    // alert(material.value);
-    // alert(price.value);
-    // alert(qty.value);
-    // alert(dic.value);
-    // alert(doc.value);
-    // alert(size.value);
-    // alert(gender.value);
+    // Get all checkboxes with an id starting with "size_"
+    const checkboxes = document.querySelectorAll("[id^='size_']");
+    const selectedList = [];
+
+    // Loop through all checkboxes and add the selected ones to the list of selected checkboxes
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedList.push(checkbox.getAttribute("data-id"));
+        }
+    });
+
+    console.log("Selected sizes: " + selectedList.join(", "));
 
     var form = new FormData();
 
@@ -800,12 +798,12 @@ function addProducts() {
     form.append("sub_cat", subCategory.value);
     form.append("material", material.value);
     form.append("gender", gender.value);
-    form.append("size", size.value);
     form.append("color", color.value);
     form.append("price", price.value);
     form.append("qty", qty.value);
     form.append("dic", dic.value);
     form.append("doc", doc.value);
+    form.append("sid", selectedList.join(','));
 
     var file_count = imageUploader.files.length;
 
@@ -947,6 +945,9 @@ function basicSearch3(pageNum, event = null) {
 function payNow(id) {
 
     var qty = document.getElementById("qty_cnt").value;
+    var selectedSize = document.querySelector('input[name="size"]:checked');
+    // let sizeId = selectedSize.value;                     // numeric ID
+    let sizeName = selectedSize.getAttribute("data-size");
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -974,8 +975,7 @@ function payNow(id) {
                 payhere.onCompleted = function onCompleted(orderId) {
                     console.log("Payment completed. OrderID:" + orderId);
 
-                    // alert("Payment completed" + orderId);
-                    saveInvoice(orderId, id, mail, amount, qty);
+                    saveInvoice(orderId, id, mail, amount, qty, sizeName);
                 };
 
                 payhere.onDismissed = function onDismissed() {
@@ -1027,7 +1027,7 @@ function payNow(id) {
 }
 
 
-function saveInvoice(orderId, id, mail, amount, qty) {
+function saveInvoice(orderId, id, mail, amount, qty, sizeName) {
 
     var form = new FormData();
     form.append("o", orderId);
@@ -1035,6 +1035,7 @@ function saveInvoice(orderId, id, mail, amount, qty) {
     form.append("m", mail);
     form.append("a", amount);
     form.append("q", qty);
+    form.append("s", sizeName);
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -1264,7 +1265,6 @@ function onlyThree(checkbox) {
 
 function sort(x) {
 
-    // var txt = document.getElementById("basic_search_txt");
     var txt = sessionStorage.getItem("searchQuery"); // Retrieve stored query
 
     var time = "0";
@@ -1361,7 +1361,7 @@ function sort2(x) {
         }
     }
 
-    request.open("POST", "backend/sort-process2.php", true);
+    request.open("POST", "../../backend/sort-process2.php", true);
     request.send(form);
 
 }
@@ -1970,24 +1970,23 @@ function findOrders() {
 
 }
 
-function checkout() {
+function checkout(productId) {
+    let selectedItems = [];
 
-    // alert(id)
+    // Collect all checked sizes
+    document.querySelectorAll("input[type='radio']:checked").forEach(checkedInput => {
+        const sizeName = checkedInput.dataset.size; // e.g., "M"
+        selectedItems.push(sizeName); // store only the size
+        console.log("Selected size:", sizeName);
+    });
 
-    var qty = document.getElementById("qty_cnt").value;
-
+    // AJAX request to backend
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-
             var obj = JSON.parse(response);
-            // alert(response);
-
-            // var mail = obj['email'];
             var amount = obj['amount'];
-            // var items = obj['items'];
-
 
             if (response == 1) {
                 alert('Please login to your account');
@@ -1997,20 +1996,17 @@ function checkout() {
                 window.location = 'user-profile.php';
             } else {
 
-
-                payhere.onCompleted = function onCompleted(orderId) {
+                // PayHere integration
+                payhere.onCompleted = function (orderId) {
                     console.log("Payment completed. OrderID:" + orderId);
-
-                    // alert("Payment completed" + orderId);
-                    checkoutSaveInvoice(orderId, amount);
+                    checkoutSaveInvoice(orderId, amount, selectedItems); // now sends the sizes
                 };
 
-                payhere.onDismissed = function onDismissed() {
-
+                payhere.onDismissed = function () {
                     console.log("Payment dismissed");
                 };
 
-                payhere.onError = function onError(error) {
+                payhere.onError = function (error) {
                     console.log("Error : " + error);
                 };
 
@@ -2039,23 +2035,20 @@ function checkout() {
                     "custom_2": ""
                 };
 
-                // document.getElementById('payhere-payment').onclick = function (e) {
                 payhere.startPayment(payment);
-                // };
-
             }
-
         }
     }
+
     request.open("GET", "backend/checkout-process.php", true);
     request.send();
 }
 
-function checkoutSaveInvoice(orderId, amount) {
-
+function checkoutSaveInvoice(orderId, amount, items) {
     var form = new FormData();
     form.append("o", orderId);
     form.append("a", amount);
+    form.append("items", JSON.stringify(items)); // now contains only size names
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = () => {
@@ -2066,12 +2059,13 @@ function checkoutSaveInvoice(orderId, amount) {
             } else {
                 alert(response);
             }
-
         }
     }
     request.open("POST", "backend/cart-save-invoice-process.php", true);
     request.send(form);
 }
+
+
 
 
 function contactUs() {

@@ -11,6 +11,7 @@ if (isset($_SESSION["u"])) {
     $mail = $_POST["m"];
     $amount = $_POST["a"];
     $qty = $_POST["q"];
+    $s = $_POST["s"];
 
     // echo($order_id);
 
@@ -27,11 +28,10 @@ if (isset($_SESSION["u"])) {
     $d->setTimezone($tz);
     $date = $d->format("Y-m-d H:i:s");
 
-    Database::iud("INSERT INTO `invoice` (`order_id`,`date`,`total`,`invoice_qty`,`status`,`products_id`,`users_email`) 
-    VALUES('".$order_id."','".$date."','".$amount."','".$qty."','1','".$pid."','".$mail."') ");
+    Database::iud("INSERT INTO `invoice` (`order_id`,`date`,`total`,`invoice_qty`,`status`,`size`,`users_email`,`products_id`) 
+    VALUES('" . $order_id . "','" . $date . "','" . $amount . "','" . $qty . "','1','".$s."','" . $mail . "','" . $pid . "') ");
 
-    echo("success");
-
+    echo ("success");
 } else {
     echo ("Please login to your account");
 }

@@ -61,7 +61,7 @@ if ($length <= 3 && $length > 0) {
                 $server_path = $_SERVER['DOCUMENT_ROOT'] . "/shop/img/product_images/" . $new_file_name;
 
                 // Relative web path (for browser & DB)
-                $web_path = "img/profile_images/" . $new_file_name;
+                $web_path = "img/product_images/" . $new_file_name;
 
                 move_uploaded_file($image_file["tmp_name"], $server_path);
 

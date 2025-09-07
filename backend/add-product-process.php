@@ -12,7 +12,7 @@ $subCategory = $_POST["sub_cat"];
 $material = $_POST["material"];
 $productGender = $_POST["gender"];
 $colors = $_POST["color"];
-$sizes = $_POST["size"];
+$sizes = $_POST["sid"];
 $price = $_POST["price"];
 $qty = $_POST["qty"];
 $dic = $_POST["dic"];
@@ -98,13 +98,19 @@ if (empty($title)) {
 
     Database::iud("INSERT INTO `products` (`title`,`price`,`qty`,`datetime_added`,
     `delivery_fee_colombo`,`delivery_fee_other`,`category_cat_id`,`brand_brand_id`,
-    `material_material_id`,`product_collection_id`,`status_status_id`,`color_color_id`,
-    `sizes_sizes_id`,`category_has_sub_category_category_has_sub_category_id`,`admin_email`) 
+    `material_material_id`,`product_collection_id`,`status_status_id`,`color_color_id`,`category_has_sub_category_category_has_sub_category_id`,`admin_email`) 
     VALUES('" . $title . "','" . $price . "','" . $qty . "','" . $date . "','" . $dic . "',
     '" . $doc . "','" . $category . "','" . $brand . "','" . $material . "','" . $productGender . "','" . $status . "', 
-    '" . $colors . "','" . $sizes . "','" . $chsc_id . "','" . $email . "') ");
+    '" . $colors . "','" . $chsc_id . "','" . $email . "') ");
 
     $products_id = Database::$connection->insert_id;
+
+
+    foreach (explode(',', $sizes) as $size) {
+        Database::iud("INSERT INTO `products_has_sizes`(`products_id`,`sizes_sizes_id`) 
+        VALUES ('" . $products_id . "','" . $size . "')");
+    }
+
     $length = count($_FILES);
 
     if ($length <= 3 && $length > 0) {
@@ -137,7 +143,7 @@ if (empty($title)) {
                     $server_path = $_SERVER['DOCUMENT_ROOT'] . "/shop/img/product_images/" . $new_file_name;
 
                     // Relative web path (for browser & DB)
-                    $web_path = "img/profile_images/" . $new_file_name;
+                    $web_path = "img/product_images/" . $new_file_name;
 
 
                     move_uploaded_file($image_file["tmp_name"], $server_path);
