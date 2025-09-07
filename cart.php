@@ -73,7 +73,7 @@ include "connection.php";
         ?>
 
             <section class="h-100 h-custom">
-                <div class="container py-5 h-100">
+                <div class="container py-5 h-100 anime2">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col-12">
                             <div class="card card-cart card-cart-2">
@@ -120,30 +120,61 @@ include "connection.php";
                                                             ?>
                                                             <img src="<?php echo $image_data["img_path"]; ?>" class="img-fluid rounded-3" alt="Product Image">
                                                         </div>
+
                                                         <div class="col-8 col-md-4">
                                                             <h6 class="text-muted"><?php echo $cart_data["sub_cat_name"]; ?></h6>
                                                             <h6 class="mb-0"><?php echo $cart_data["title"]; ?></h6>
                                                             <h6 class="mt-2 text-secondary">Shipping: Rs.<?php echo $ship; ?>.00</h6>
+
+                                                            <!-- Size Selector - Added above quantity changer -->
+                                                            <div class="col-12 mb-3">
+                                                                <div class="selections color-options">
+                                                                    <h6 class="mt-2 text-dark">Select a size:</h6>
+                                                                    <?php
+                                                                    $size_rs = Database::search("SELECT * FROM `products_has_sizes`
+                                                                    INNER JOIN sizes ON products_has_sizes.sizes_sizes_id = sizes.sizes_id 
+                                                                    WHERE `products_id` = '" . $cart_data["id"] . "' ");
+
+                                                                    while ($size_data = $size_rs->fetch_assoc()) {
+                                                                    ?>
+                                                                        <input class="btn-check" name="size_<?php echo $cart_data['id']; ?>" type="radio"
+                                                                            id="size_<?php echo $cart_data['id']; ?>_<?php echo $size_data['sizes_id']; ?>"
+                                                                            data-size="<?php echo $size_data['size']; ?>"
+                                                                            value="<?php echo $size_data['sizes_id']; ?>">
+                                                                        <label class="btn btn-outline-dark text-uppercase btn-sm"
+                                                                            for="size_<?php echo $cart_data['id']; ?>_<?php echo $size_data['sizes_id']; ?>">
+                                                                            <?php echo $size_data['size']; ?>
+                                                                        </label>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-3 col-lg-2 d-flex custom-qty-selector mt-3 mb-3">
+
+                                                        <div class="col-md-3 col-lg-2 d-flex mt-3 mb-3">
                                                             <button class="btn btn-link px-2" onclick="cartQtyMinus(<?php echo $cart_data['id']; ?>);">
                                                                 <i class="bi bi-dash"></i>
                                                             </button>
-                                                            <input id="qty_cnt" min="0" name="quantity" value="<?php echo $cart_data["cart_qty"]; ?>" type="text" class="form-control text-center form-control-sm" />
+                                                            <input id="qty_cnt" min="0" name="quantity" value="<?php echo $cart_data["cart_qty"]; ?>" type="text"
+                                                                class="form-control text-center form-control-sm" />
                                                             <button class="btn btn-link px-2" onclick="cartQtyPlus(<?php echo $cart_data['id']; ?>,<?php echo $cart_data['qty']; ?>)">
                                                                 <i class="bi bi-plus"></i>
                                                             </button>
                                                         </div>
-                                                        <div class="col-md-3 col-lg-2 offset-lg-1 custom-price-show">
+
+                                                        <div class="col-md-3 col-lg-2 offset-lg-1">
                                                             <h6 class="mb-0">Rs.<?php echo $cart_data["price"]; ?>.00</h6>
                                                         </div>
+
                                                         <div class="col-2 col-md-1 text-end">
-                                                            <i class="bi bi-trash custom-bin text-danger btn btn-outline-dark trash-icon ms-2" onclick="removeFromCart(<?php echo $cart_data['cart_id']; ?>);"></i>
+                                                            <i class="bi bi-trash text-danger btn btn-outline-dark ms-2"
+                                                                onclick="removeFromCart(<?php echo $cart_data['cart_id']; ?>);"></i>
                                                         </div>
 
                                                         <hr class="mt-3 border border-1 border-dark d-lg-none d-md-block">
-
                                                     </div>
+
 
                                                 <?php
                                                 }
@@ -174,7 +205,7 @@ include "connection.php";
                                                 </div>
 
                                                 <div class="col-6 col-lg-12 col-md-12 mb-3">
-                                                    <button class="add-to-cart btn btn-dark btn-block text-uppercase border border-white" type="submit" id="payhere-payment" onclick="checkout();"><i style="color: greenyellow;" class="bi bi-cash"></i> checkout</button>
+                                                    <button class="add-to-cart btn btn-dark btn-block text-uppercase border border-white" type="submit" id="payhere-payment" onclick="checkout(<?php echo $cart_data['id']; ?>);"><i style="color: greenyellow;" class="bi bi-cash"></i> checkout</button>
                                                 </div>
 
                                             </div>

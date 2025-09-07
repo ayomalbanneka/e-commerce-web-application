@@ -100,9 +100,10 @@ if (isset($_SESSION["au"])) {
                             $users_rs = Database::search("SELECT * FROM `users` WHERE `email`='" . $selected_data["users_email"] . "'");
                             $users_data = $users_rs->fetch_assoc();
 
-                            $product_rs = Database::search("SELECT * FROM `products` 
-                            INNER JOIN `sizes` ON products.sizes_sizes_id=sizes.sizes_id 
-                             WHERE `id`='" . $selected_data["products_id"] . "'");
+                            $product_rs = Database::search("SELECT * FROM `products`
+                            INNER JOIN invoice ON products.id=invoice.products_id
+                            WHERE `id`='" . $selected_data["products_id"] . "'");
+                            $product_num = $product_rs->num_rows;
                             $product_data = $product_rs->fetch_assoc();
 
                         ?>
@@ -180,7 +181,7 @@ if (isset($_SESSION["au"])) {
                                     </td>
 
                                     <td>
-                                        <P class="fw-normal mb-1"><?php echo $product_data["size"]; ?></P>
+                                        <P class="fw-normal mb-1"><?php echo $selected_data["size"]; ?></P>
                                     </td>
                                     <td>
                                         <p class="fw-normal mb-1"><?php echo $selected_data["invoice_qty"]; ?></p>

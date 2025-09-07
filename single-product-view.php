@@ -11,7 +11,8 @@ if (isset($_GET["id"])) {
     INNER JOIN `sub_category` ON category_has_sub_category.sub_category_sub_cat_id=sub_category.sub_cat_id  
     INNER JOIN `material` ON products.material_material_id = material.material_id 
     INNER JOIN `color` ON products.color_color_id = color.color_id 
-    INNER JOIN `sizes` ON products.sizes_sizes_id = sizes.sizes_id 
+    -- INNER JOIN `products_has_sizes` ON products.id = products_has_sizes.products_id 
+    -- INNER JOIN `sizes` ON products.sizes_sizes_id = sizes.sizes_id 
     WHERE `id` ='" . $pid . "' ");
 
     if ($product_rs->num_rows == 1) {
@@ -32,6 +33,13 @@ if (isset($_GET["id"])) {
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
             <link rel="shortcut icon" href="favicon.ico" />
         </head>
+
+        <style>
+            .btn-check:checked+.btn {
+                background-color: #212529;
+                color: white;
+            }
+        </style>
 
         <body>
 
@@ -368,9 +376,26 @@ if (isset($_GET["id"])) {
 
                                             <!-- Sizes Section -->
                                             <label class="fw-bold">Sizes</label>
-                                            <div class="selections color-options">
-                                                <input class="form-check-input d-none" name="sizes[]" type="checkbox" id="size_<?php echo $product_data['sizes_sizes_id']; ?>" value="<?php echo $product_data['sizes_sizes_id']; ?>">
-                                                <label class="btn btn-outline-dark" for="size_<?php echo $product_data['sizes_sizes_id']; ?>"><?php echo $product_data['size']; ?></label>
+                                            <div class="selections color-options mb-3">
+                                                <?php
+
+                                                $size_rs = Database::search("SELECT * FROM `products_has_sizes`
+                                                INNER JOIN sizes ON products_has_sizes.sizes_sizes_id = sizes.sizes_id 
+                                                WHERE `products_id` = '" . $pid . "' ");
+
+                                                while ($size_data = $size_rs->fetch_assoc()) {
+                                                ?>
+                                                    <input class="btn-check" name="size" type="radio" id="size_<?php echo $size_data['sizes_id']; ?>" data-size="<?php echo $size_data['size']; ?>" 
+                                                    value="<?php echo $size_data['sizes_id']; ?>">
+                                                    <label class="btn btn-outline-dark text-uppercase"
+                                                        for="size_<?php echo $size_data['sizes_id']; ?>">
+                                                        <?php echo $size_data['size']; ?>
+                                                    </label>
+                                                <?php 
+                                                }
+                                                ?>
+
+
                                             </div>
 
                                             <div class="col-md-12 col-lg-12 d-flex">

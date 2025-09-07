@@ -12,7 +12,7 @@ if (empty($_GET['id'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Invoice | UrbanEleganceba</title>
+        <title>Invoice | UrbanElegance</title>
         <link href="css/bootstrap.css" rel="stylesheet">
         <link rel="shortcut icon" href="favicon.ico">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -173,7 +173,7 @@ if (empty($_GET['id'])) {
 
                 <div class="invoice-header">
                     <div>
-                        <h2>UrbanEleganceba</h2>
+                        <h2>UrbanElegance</h2>
                     </div>
                     <div class="invoice-info">
                         <p><strong>Order No:</strong> <?php echo $invoice_data["order_id"]; ?></p>
@@ -212,6 +212,7 @@ if (empty($_GET['id'])) {
                             <tr>
                                 <th>#</th>
                                 <th>Product</th>
+                                <th>Size</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
@@ -243,6 +244,7 @@ if (empty($_GET['id'])) {
                                         <span class="fw-bold text-dark p-2"><?php echo $checkot_cloths_data["title"]; ?></span><br />
                                         <!-- <span class="fw-bold text-secondary text-decoration-none p-2"><?php echo $oid; ?></span> -->
                                     </td>
+                                    <td><?php echo $checkot_cloths_data["size"]; ?></td>
                                     <td>Rs.<?php echo $checkot_cloths_data["price"]; ?>.00</td>
                                     <td><?php echo $checkot_cloths_data["invoice_qty"]; ?></td>
                                     <td>Rs.<?php echo $checkot_cloths_data["invoice_qty"] * $checkot_cloths_data["price"]; ?>.00</td>
