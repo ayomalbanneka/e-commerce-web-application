@@ -44,7 +44,7 @@ include "connection.php";
                                     <div class="row">
                                         <div class="col-6 mb-3">
                                             <label class="form-label" for="fname">First Name</label>
-                                            <input class="form-control bg-body-secondary" type="text" required id="fname" />
+                                            <input class="form-control bg-body-secondary" type="text" required id="fname" autofocus/>
                                         </div>
 
                                         <div class="col-6 mb-3">

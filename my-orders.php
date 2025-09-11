@@ -106,7 +106,10 @@ include "connection.php";
                                     <h6 class="fw-bold"><?php echo $selected_data["title"]; ?></h6>
                                     <p class="text-muted small">Categories: <?php echo $selected_data["sub_cat_name"]; ?>, <?php echo $selected_data["cat_name"]; ?></p>
                                     <p>Quantity: <?php echo $selected_data["invoice_qty"]; ?></p>
-                                    <p class="text-secondary small">Order No: <?php echo $selected_data['invoice_id']; ?></p>
+                                    <p class="text-secondary small">Order No: <?php echo $selected_data['order_id']; ?>
+                                        <a href="invoice.php?id=<?php echo $selected_data["order_id"]; ?>" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>
+                                    </p>
+
                                     <p>Status:
                                         <?php
 
