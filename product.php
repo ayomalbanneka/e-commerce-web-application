@@ -57,11 +57,11 @@ if (isset($_SESSION["au"])) {
 
 
                         $selected_rs = Database::search("SELECT * FROM `products`
-                            INNER JOIN `color` ON products.color_color_id = color.color_id 
                             INNER JOIN `category` ON products.category_cat_id = category.cat_id 
                             INNER JOIN `category_has_sub_category` ON products.category_has_sub_category_category_has_sub_category_id = category_has_sub_category.category_has_sub_category_id 
-                            INNER JOIN `sub_category` ON category_has_sub_category.sub_category_sub_cat_id = sub_category.sub_cat_id 
-                            WHERE `admin_email` = '" . $email . "' LIMIT " . $results_per_page . " OFFSET " . $page_results . " ");
+                            INNER JOIN `sub_category` ON category_has_sub_category.sub_category_sub_cat_id = sub_category.sub_cat_id
+                            WHERE `admin_email` = '" . $email . "' LIMIT " . $results_per_page . " OFFSET " . $page_results . " 
+                        ");
 
                         // Query with LIMIT and OFFSET for pagination
                         // $products_rs = Database::search("SELECT * FROM `products`
@@ -110,7 +110,6 @@ if (isset($_SESSION["au"])) {
                                         <div class="col-6 col-md-7">
                                             <h6><?php echo $selected_data["title"]; ?></h6>
                                             <p class="text-muted">Categories: <?php echo $selected_data["sub_cat_name"]; ?>, <?php echo $selected_data["cat_name"]; ?></p>
-                                            <p>Color: <?php echo $selected_data["color_name"]; ?></p>
                                             <p>Quantity: <?php echo $selected_data["qty"]; ?></p>
                                         </div>
 
@@ -230,7 +229,7 @@ if (isset($_SESSION["au"])) {
 
 <?php
 
-}else {
+} else {
     header("Location:admin-sign-in.php");
 }
 

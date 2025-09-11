@@ -41,50 +41,33 @@ if (isset($_SESSION["au"])) {
                                     <label for="productName">Name Product</label>
                                     <input type="text" id="productName" class="form-control text-uppercase" placeholder="Puffer Jacket With Pocket Detail">
                                 </div>
-                                <!-- <div class="form-group">
-                                <label for="productDescription">Description Product</label>
-                                <textarea id="productDescription" class="form-control" rows="4" placeholder="Cropped puffer jacket made of technical fabric. High neck and long sleeves. Flap pocket at the chest and in-seam side pockets at the hip. Inside pocket detail. Hem with elastic interior. Zip-up front."></textarea>
-                            </div> -->
-
-                                <form action="add-product-process.php" method="POST">
-
-                                    <div class="form-group">
-                                        <label class="form-label">Size</label>
-                                        <div class="size-options">
-
-                                            <!-- <select class="form-select" id="size"> -->
-
-                                                <!-- <option value="0">Select Size</option> -->
 
 
+                                <div class="form-group">
+                                    <label class="form-label">Size</label>
+                                    <div class="size-options">
+                                        <?php
 
-                                                <?php
+                                        $size_rs = Database::search("SELECT * FROM `sizes`");
+                                        for ($x = 0; $x < $size_rs->num_rows; $x++) {
+                                            $sizes_data = $size_rs->fetch_assoc();
 
-                                                $size_rs = Database::search("SELECT * FROM `sizes`");
-                                                for ($x = 0; $x < $size_rs->num_rows; $x++) {
-                                                    $sizes_data = $size_rs->fetch_assoc();
+                                        ?>
 
-                                                ?>
+                                            <input type="checkbox"
+                                                class="btn-check" id="size_<?php echo $sizes_data['sizes_id']; ?>" data-id="<?php echo $sizes_data['sizes_id']; ?>">
+                                            <label class="btn btn-outline-dark text-uppercase" for="size_<?php echo $sizes_data['sizes_id']; ?>">
+                                                <?php echo $sizes_data['size']; ?>
+                                            </label>
 
-                                                    <input type="checkbox"
-                                                        class="btn-check" id="size_<?php echo $sizes_data['sizes_id']; ?>" data-id="<?php echo $sizes_data['sizes_id']; ?>">
-                                                    <label class="btn btn-outline-dark text-uppercase" for="size_<?php echo $sizes_data['sizes_id']; ?>">
-                                                        <?php echo $sizes_data['size']; ?>
-                                                    </label>
+                                        <?php
+                                        }
 
-                                                <?php
-                                                }
-
-                                                ?>
-
-
-
-                                            <!-- </select> -->
-
-                                        </div>
+                                        ?>
                                     </div>
+                                </div>
 
-                                </form>
+                                <!-- </form> -->
 
 
                                 <div class="form-group">
@@ -322,10 +305,7 @@ if (isset($_SESSION["au"])) {
                                     <div class="row card-body">
                                         <label class="form-label fw-bold">Product Available Colors</label>
 
-                                        <select class="form-select text-center" id="color">
-
-                                            <option value="0">Select Color</option>
-
+                                        <div class="color-options d-flex flex-wrap gap-2">
                                             <?php
 
                                             $color_rs = Database::search("SELECT * FROM `color`");
@@ -333,13 +313,18 @@ if (isset($_SESSION["au"])) {
                                                 $color_data = $color_rs->fetch_assoc();
 
                                             ?>
-                                                <option value="<?php echo $color_data["color_id"]; ?>"><?php echo $color_data["color_name"]; ?></option>
+
+                                                <input type="checkbox"
+                                                    class="btn-check" id="color_<?php echo $color_data['color_id']; ?>" data-id="<?php echo $color_data['color_id']; ?>">
+                                                <label class="btn btn-sm h6 btn-outline-dark text-uppercase border border-dark" for="color_<?php echo $color_data['color_id']; ?>">
+                                                    <?php echo $color_data['color_name']; ?>
+                                                </label>
+
                                             <?php
                                             }
 
                                             ?>
-
-                                        </select>
+                                        </div>
 
                                         <div class="col-12">
                                             <div class="input-group mt-2 mb-2">
