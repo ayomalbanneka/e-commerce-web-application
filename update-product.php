@@ -37,18 +37,49 @@ if (isset($_SESSION["au"])) {
                 $pid = $_GET["id"];
 
                 $product_rs = Database::search("SELECT * FROM `products`
-                INNER JOIN `color` ON products.color_color_id=color.color_id 
                 INNER JOIN `admin` ON products.admin_email=admin.email
                 INNER JOIN `category` ON products.category_cat_id = category.cat_id 
                 INNER JOIN `category_has_sub_category` ON products.category_has_sub_category_category_has_sub_category_id = category_has_sub_category.category_has_sub_category_id 
                 INNER JOIN `sub_category` ON category_has_sub_category.sub_category_sub_cat_id = sub_category.sub_cat_id
-                INNER JOIN `sizes` ON products.status_status_id=sizes.sizes_id
                 INNER JOIN `product_collection` ON product_collection.id=products.product_collection_id
                 INNER JOIN `brand` ON products.brand_brand_id=brand.brand_id
                 INNER JOIN `material` ON products.material_material_id=material.material_id
                 WHERE products.id = '" . $pid . "' ");
 
                 $product_data = $product_rs->fetch_assoc();
+
+                // Fetch all available sizes
+                $all_sizes_rs = Database::search("SELECT * FROM `sizes`");
+                $all_sizes = [];
+
+                while ($row = $all_sizes_rs->fetch_assoc()) {
+                    $all_sizes[] = $row;
+                }
+
+                // Fetch sizes already assigned to this product
+                $assigned_rs = Database::search("SELECT sizes_sizes_id FROM products_has_sizes WHERE products_id = '$pid'");
+                $assigned_sizes = [];
+
+                while ($row = $assigned_rs->fetch_assoc()) {
+                    $assigned_sizes[] = $row['sizes_sizes_id'];
+                }
+                
+                // ===================================================
+
+                // Fetch all available colors
+                $all_colors_rs = Database::search("SELECT * FROM `color`");
+                $all_colors = [];
+
+                while ($row2 = $all_colors_rs->fetch_assoc()) {
+                    $all_colors[] = $row2;
+                }
+
+                $assigned_colors_rs = Database::search("SELECT color_color_id FROM products_has_colors WHERE products_id = '$pid'");
+                $assigned_colors = [];
+
+                while ($row2 = $assigned_colors_rs->fetch_assoc()) {
+                    $assigned_colors[] = $row2['color_color_id'];
+                }
 
                 ?>
 
@@ -66,9 +97,20 @@ if (isset($_SESSION["au"])) {
                                 <div class="form-group">
                                     <label class="form-label">Size</label>
                                     <div class="size-options">
-                                        <select class="form-select" disabled id="size">
-                                            <option><?php echo $product_data["size"]; ?></option>
-                                        </select>
+
+                                        <?php foreach ($all_sizes as $sizes_data): ?>
+                                            <input
+                                                type="checkbox"
+                                                class="btn-check"
+                                                id="size_<?php echo $sizes_data['sizes_id']; ?>"
+                                                name="sizes[]"
+                                                value="<?php echo $sizes_data['sizes_id']; ?>"
+                                                <?php if (in_array($sizes_data['sizes_id'], $assigned_sizes)) echo "checked"; ?>>
+                                            <label class="btn btn-outline-dark text-uppercase" for="size_<?php echo $sizes_data['sizes_id']; ?>">
+                                                <?php echo $sizes_data['size']; ?>
+                                            </label>
+                                        <?php endforeach; ?>
+
                                     </div>
                                 </div>
 
@@ -193,9 +235,20 @@ if (isset($_SESSION["au"])) {
                                     <div class="row card-body">
                                         <label class="form-label fw-bold">Product Available Colors</label>
 
-                                        <select class="form-select text-center" disabled id="color">
-                                            <option><?php echo $product_data["color_name"]; ?></option>
-                                        </select>
+                                        <div class="color-options d-flex flex-wrap gap-2">
+                                            <?php foreach ($all_colors as $colors_data): ?>
+                                                <input
+                                                    type="checkbox"
+                                                    class="btn-check"
+                                                    id="color_<?php echo $colors_data['color_id']; ?>"
+                                                    name="colors[]"
+                                                    value="<?php echo $colors_data['color_id']; ?>"
+                                                    <?php if (in_array($colors_data['color_id'], $assigned_colors)) echo "checked"; ?>>
+                                                <label class="btn btn-outline-dark text-uppercase border border-dark" for="color_<?php echo $colors_data['color_id']; ?>">
+                                                    <?php echo $colors_data['color_name']; ?>
+                                                </label>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

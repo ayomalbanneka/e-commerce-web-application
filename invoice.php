@@ -212,8 +212,9 @@ if (empty($_GET['id'])) {
                             <tr>
                                 <th>#</th>
                                 <th>Product</th>
-                                <th>Size</th>
                                 <th>Price</th>
+                                <th>Size</th>
+                                <th>Color</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                             </tr>
@@ -244,8 +245,9 @@ if (empty($_GET['id'])) {
                                         <span class="fw-bold text-dark p-2"><?php echo $checkot_cloths_data["title"]; ?></span><br />
                                         <!-- <span class="fw-bold text-secondary text-decoration-none p-2"><?php echo $oid; ?></span> -->
                                     </td>
-                                    <td><?php echo $checkot_cloths_data["size"]; ?></td>
                                     <td>Rs.<?php echo $checkot_cloths_data["price"]; ?>.00</td>
+                                    <td><?php echo $checkot_cloths_data["size"]; ?></td>
+                                    <td><?php echo $checkot_cloths_data["color"]; ?></td>
                                     <td><?php echo $checkot_cloths_data["invoice_qty"]; ?></td>
                                     <td>Rs.<?php echo $checkot_cloths_data["invoice_qty"] * $checkot_cloths_data["price"]; ?>.00</td>
                                 </tr>

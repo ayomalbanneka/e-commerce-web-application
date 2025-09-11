@@ -15,12 +15,12 @@
             <i class="bi bi-list"></i>
         </div>
 
-        <div class="search">
+        <!-- <div class="search">
             <label>
                 <input type="text" placeholder="search">
                 <i class="bi bi-search"></i>
             </label>
-        </div>
+        </div> -->
 
         <div class="user">
             <img src="img/new_user.svg" />

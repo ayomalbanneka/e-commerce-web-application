@@ -25,7 +25,6 @@ include "connection.php";
 
         $cart_rs = Database::search("SELECT * FROM `cart` 
             INNER JOIN `products` ON cart.cart_products_id = products.id 
-            INNER JOIN `color` ON products.color_color_id = color.color_id 
             INNER JOIN `admin` ON products.admin_email = admin.email 
             INNER JOIN `category` ON products.category_cat_id = category.cat_id 
             INNER JOIN `category_has_sub_category` ON products.category_has_sub_category_category_has_sub_category_id = category_has_sub_category.category_has_sub_category_id 
@@ -144,6 +143,26 @@ include "connection.php";
                                                                         <label class="btn btn-outline-dark text-uppercase btn-sm"
                                                                             for="size_<?php echo $cart_data['id']; ?>_<?php echo $size_data['sizes_id']; ?>">
                                                                             <?php echo $size_data['size']; ?>
+                                                                        </label>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+
+                                                                    <h6 class="mt-2 text-dark">Select a color:</h6>
+                                                                    <?php
+                                                                    $color_rs = Database::search("SELECT * FROM `products_has_colors`
+                                                                    INNER JOIN color ON products_has_colors.color_color_id=color.color_id
+                                                                    WHERE `products_id` = '" . $cart_data["id"] . "' ");
+
+                                                                    while ($color_data = $color_rs->fetch_assoc()) {
+                                                                    ?>
+                                                                        <input class="btn-check" name="color_<?php echo $cart_data['id']; ?>" type="radio"
+                                                                            id="color_<?php echo $cart_data['id']; ?>_<?php echo $color_data['color_id']; ?>"
+                                                                            data-color="<?php echo $color_data['color_name']; ?>"
+                                                                            value="<?php echo $color_data['color_id']; ?>">
+                                                                        <label class="btn btn-outline-dark text-uppercase btn-sm"
+                                                                            for="color_<?php echo $cart_data['id']; ?>_<?php echo $color_data['color_id']; ?>">
+                                                                            <?php echo $color_data['color_name']; ?>
                                                                         </label>
                                                                     <?php
                                                                     }

@@ -42,16 +42,10 @@ if (empty($title)) {
     echo "Please select a color";
 } else {
 
-    // $product_rs = Database::search("SELECT * FROM `products`");
-    // $product_num = $product_rs->num_rows;
-    // $product_data = $product_rs->fetch_assoc();
-
     $chsc_rs = Database::search("SELECT * FROM `category_has_sub_category` WHERE
     `category_cat_id` = '" . $category . "' AND `sub_category_sub_cat_id` = '" . $subCategory . "' ");
 
     $chsc_id;
-    // $phc_id;
-    // $phs_id;
 
     if ($chsc_rs->num_rows > 0) {
         $chsc_data = $chsc_rs->fetch_assoc();
@@ -63,32 +57,6 @@ if (empty($title)) {
         $chsc_id = Database::$connection->insert_id;
     }
 
-    // $phc_rs = Database::search("SELECT * FROM `products_has_color` WHERE 
-    // `products_has_color_id` = '" . $product_data["id"] . "' AND `color_color_id` = '" . $colors . "' ");
-
-    // if ($phc_rs->num_rows > 0) {
-    //     $phc_data = $phc_rs->fetch_assoc();
-    //     $phc_id = $phc_data["products_has_color_id"];
-    // } else {
-    //     Database::iud("INSERT INTO `products_has_color` (`products_has_color_id`,`color_color_id`) 
-    //     VALUES ('" . $product_data["id"] . "','" . $colors . "') ");
-
-    //     $phc_id = Database::$connection->insert_id;
-    // }
-
-    // $phs_rs = Database::search("SELECT * FROM `products_has_sizes` WHERE 
-    // `products_has_sizes_id` = '" . $product_data["id"] . "' AND `sizes_sizes_id` = '" . $size . "'");
-
-    // if ($phs_rs->num_rows > 0) {
-    //     $phs_data = $phs_rs->fetch_assoc();
-    //     $phs_id = $phs_data["products_has_sizes_id"];
-    // } else {
-    //     Database::iud("INSERT INTO `products_has_sizes`(`products_has_sizes_id`,`sizes_sizes_id`) 
-    //     VALUES ('" . $product_data["id"] . "','" . $size . "')");
-
-    //     $phs_id = Database::$connection->insert_id;
-    // }
-
     $d = new DateTime();
     $tz = new DateTimeZone("Asia/Colombo");
     $d->setTimezone($tz);
@@ -98,10 +66,10 @@ if (empty($title)) {
 
     Database::iud("INSERT INTO `products` (`title`,`price`,`qty`,`datetime_added`,
     `delivery_fee_colombo`,`delivery_fee_other`,`category_cat_id`,`brand_brand_id`,
-    `material_material_id`,`product_collection_id`,`status_status_id`,`color_color_id`,`category_has_sub_category_category_has_sub_category_id`,`admin_email`) 
+    `material_material_id`,`product_collection_id`,`status_status_id`,`category_has_sub_category_category_has_sub_category_id`,`admin_email`) 
     VALUES('" . $title . "','" . $price . "','" . $qty . "','" . $date . "','" . $dic . "',
     '" . $doc . "','" . $category . "','" . $brand . "','" . $material . "','" . $productGender . "','" . $status . "', 
-    '" . $colors . "','" . $chsc_id . "','" . $email . "') ");
+    '" . $chsc_id . "','" . $email . "') ");
 
     $products_id = Database::$connection->insert_id;
 
@@ -109,6 +77,11 @@ if (empty($title)) {
     foreach (explode(',', $sizes) as $size) {
         Database::iud("INSERT INTO `products_has_sizes`(`products_id`,`sizes_sizes_id`) 
         VALUES ('" . $products_id . "','" . $size . "')");
+    }
+
+    foreach (explode(',', $colors) as $color) {
+        Database::iud("INSERT INTO `products_has_colors` (`products_id`,`color_color_id`) 
+        VALUES ('" . $products_id . "','" . $color . "') ");
     }
 
     $length = count($_FILES);

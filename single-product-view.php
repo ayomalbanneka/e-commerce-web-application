@@ -9,10 +9,7 @@ if (isset($_GET["id"])) {
     INNER JOIN `category_has_sub_category` ON products.category_has_sub_category_category_has_sub_category_id=category_has_sub_category.category_has_sub_category_id 
     INNER JOIN `category` ON category_has_sub_category.category_cat_id=category.cat_id 
     INNER JOIN `sub_category` ON category_has_sub_category.sub_category_sub_cat_id=sub_category.sub_cat_id  
-    INNER JOIN `material` ON products.material_material_id = material.material_id 
-    INNER JOIN `color` ON products.color_color_id = color.color_id 
-    -- INNER JOIN `products_has_sizes` ON products.id = products_has_sizes.products_id 
-    -- INNER JOIN `sizes` ON products.sizes_sizes_id = sizes.sizes_id 
+    INNER JOIN `material` ON products.material_material_id = material.material_id
     WHERE `id` ='" . $pid . "' ");
 
     if ($product_rs->num_rows == 1) {
@@ -370,8 +367,23 @@ if (isset($_GET["id"])) {
                                             <!-- Colors Section -->
                                             <label class="fw-bold">Colors</label>
                                             <div class="color-options mb-3">
-                                                <input class="form-check-input d-none" name="colors[]" type="checkbox" id="color_<?php echo $product_data['color_color_id']; ?>" value="<?php echo $product_data['color_color_id']; ?>">
-                                                <label class="btn btn-outline-dark" for="color_<?php echo $product_data['color_color_id']; ?>"><?php echo $product_data['color_name']; ?></label>
+                                                <?php
+
+                                                $color_rs = Database::search("SELECT * FROM `products_has_colors`
+                                                INNER JOIN color ON products_has_colors.color_color_id=color.color_id 
+                                                WHERE `products_id` = '" . $pid . "' ");
+
+                                                while ($color_data = $color_rs->fetch_assoc()) {
+                                                ?>
+                                                    <input class="btn-check" name="color" type="radio" id="color_<?php echo $color_data['color_id']; ?>" data-color="<?php echo $color_data['color_name']; ?>"
+                                                        value="<?php echo $color_data['color_id']; ?>">
+                                                    <label class="btn btn-outline-dark text-uppercase"
+                                                        for="color_<?php echo $color_data['color_id']; ?>">
+                                                        <?php echo $color_data['color_name']; ?>
+                                                    </label>
+                                                <?php
+                                                }
+                                                ?>
                                             </div>
 
                                             <!-- Sizes Section -->
@@ -385,17 +397,15 @@ if (isset($_GET["id"])) {
 
                                                 while ($size_data = $size_rs->fetch_assoc()) {
                                                 ?>
-                                                    <input class="btn-check" name="size" type="radio" id="size_<?php echo $size_data['sizes_id']; ?>" data-size="<?php echo $size_data['size']; ?>" 
-                                                    value="<?php echo $size_data['sizes_id']; ?>">
+                                                    <input class="btn-check" name="size" type="radio" id="size_<?php echo $size_data['sizes_id']; ?>" data-size="<?php echo $size_data['size']; ?>"
+                                                        value="<?php echo $size_data['sizes_id']; ?>">
                                                     <label class="btn btn-outline-dark text-uppercase"
                                                         for="size_<?php echo $size_data['sizes_id']; ?>">
                                                         <?php echo $size_data['size']; ?>
                                                     </label>
-                                                <?php 
+                                                <?php
                                                 }
                                                 ?>
-
-
                                             </div>
 
                                             <div class="col-md-12 col-lg-12 d-flex">

@@ -768,7 +768,6 @@ function addProducts() {
     var brand = document.getElementById("brand");
     var category = document.getElementById("category");
     var subCategory = document.getElementById("sub_category");
-    var color = document.getElementById("color");
     var gender = document.getElementById("gender");
     var material = document.getElementById("material");
     var price = document.getElementById("price");
@@ -778,17 +777,25 @@ function addProducts() {
     var imageUploader = document.getElementById("imageUploader");
 
     // Get all checkboxes with an id starting with "size_"
-    const checkboxes = document.querySelectorAll("[id^='size_']");
-    const selectedList = [];
+    const sizesCheckboxes = document.querySelectorAll("[id^='size_']");
+    const selectedSizes = [];
 
     // Loop through all checkboxes and add the selected ones to the list of selected checkboxes
-    checkboxes.forEach(checkbox => {
+    sizesCheckboxes.forEach(checkbox => {
         if (checkbox.checked) {
-            selectedList.push(checkbox.getAttribute("data-id"));
+            selectedSizes.push(checkbox.getAttribute("data-id"));
         }
     });
 
-    console.log("Selected sizes: " + selectedList.join(", "));
+    const colorsCheckboxes = document.querySelectorAll("[id^='size_']");
+    const selectedColors = [];
+
+    // Loop through all checkboxes and add the selected ones to the list of selected checkboxes
+    colorsCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedColors.push(checkbox.getAttribute("data-id"));
+        }
+    });
 
     var form = new FormData();
 
@@ -798,12 +805,12 @@ function addProducts() {
     form.append("sub_cat", subCategory.value);
     form.append("material", material.value);
     form.append("gender", gender.value);
-    form.append("color", color.value);
+    form.append("color", selectedColors.join(','));
     form.append("price", price.value);
     form.append("qty", qty.value);
     form.append("dic", dic.value);
     form.append("doc", doc.value);
-    form.append("sid", selectedList.join(','));
+    form.append("sid", selectedSizes.join(','));
 
     var file_count = imageUploader.files.length;
 
@@ -946,8 +953,10 @@ function payNow(id) {
 
     var qty = document.getElementById("qty_cnt").value;
     var selectedSize = document.querySelector('input[name="size"]:checked');
-    // let sizeId = selectedSize.value;                     // numeric ID
     let sizeName = selectedSize.getAttribute("data-size");
+
+    var selectedColor = document.querySelector('input[name="color"]:checked');
+    let colorName = selectedColor.getAttribute("data-color");
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -975,7 +984,7 @@ function payNow(id) {
                 payhere.onCompleted = function onCompleted(orderId) {
                     console.log("Payment completed. OrderID:" + orderId);
 
-                    saveInvoice(orderId, id, mail, amount, qty, sizeName);
+                    saveInvoice(orderId, id, mail, amount, qty, sizeName, colorName);
                 };
 
                 payhere.onDismissed = function onDismissed() {
@@ -1027,7 +1036,7 @@ function payNow(id) {
 }
 
 
-function saveInvoice(orderId, id, mail, amount, qty, sizeName) {
+function saveInvoice(orderId, id, mail, amount, qty, sizeName, colorName) {
 
     var form = new FormData();
     form.append("o", orderId);
@@ -1036,6 +1045,7 @@ function saveInvoice(orderId, id, mail, amount, qty, sizeName) {
     form.append("a", amount);
     form.append("q", qty);
     form.append("s", sizeName);
+    form.append("c", colorName);
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -1511,6 +1521,18 @@ function updateProduct(id) {
     var doc = document.getElementById("doc");
     var images = document.getElementById("imageUploader");
 
+    // collect selected sizes
+    var selectedSizes = [];
+    document.querySelectorAll("input[name='sizes[]']:checked").forEach(cb => {
+        selectedSizes.push(cb.value); // push sizes_id
+    });
+
+    // collect selected colors
+    var selectedcolors = [];
+    document.querySelectorAll("input[name='colors[]']:checked").forEach(cb => {
+        selectedcolors.push(cb.value); // push sizes_id
+    });
+
     var form = new FormData();
 
     form.append("title", title.value);
@@ -1518,6 +1540,11 @@ function updateProduct(id) {
     form.append("dic", dic.value);
     form.append("doc", doc.value);
     form.append("pid", id);
+
+
+    form.append("sizes", JSON.stringify(selectedSizes));
+    form.append("colors", JSON.stringify(selectedcolors));
+
 
     var count = images.files.length;
 
@@ -1973,11 +2000,24 @@ function findOrders() {
 function checkout(productId) {
     let selectedItems = [];
 
-    // Collect all checked sizes
-    document.querySelectorAll("input[type='radio']:checked").forEach(checkedInput => {
-        const sizeName = checkedInput.dataset.size; // e.g., "M"
-        selectedItems.push(sizeName); // store only the size
-        console.log("Selected size:", sizeName);
+    // ✅ Collect checked size
+    const sizeInput = document.querySelector(`input[name="size_${productId}"]:checked`);
+    let selectedSize = sizeInput ? sizeInput.dataset.size : null;
+
+    // ✅ Collect checked color
+    const colorInput = document.querySelector(`input[name="color_${productId}"]:checked`);
+    let selectedColor = colorInput ? colorInput.dataset.color : null;
+
+    if (!selectedSize || !selectedColor) {
+        alert("Please select both size and color before checkout.");
+        return;
+    }
+
+    // ✅ Store both size + color for this product
+    selectedItems.push({
+        productId: productId,
+        size: selectedSize,
+        color: selectedColor
     });
 
     // AJAX request to backend
@@ -2064,9 +2104,6 @@ function checkoutSaveInvoice(orderId, amount, items) {
     request.open("POST", "backend/cart-save-invoice-process.php", true);
     request.send(form);
 }
-
-
-
 
 function contactUs() {
     var fname = document.getElementById("fname");
