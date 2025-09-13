@@ -143,7 +143,7 @@
 
 
                                 <div class="card-body">
-                                    <h5 class="card-title text-center fs-6"><?php echo $product_data["title"]; ?></h5>
+                                    <h5 class="card-title text-center fs-6 text-uppercase"><?php echo $product_data["title"]; ?></h5>
                                     <p class="card-text text-center">LKR <?php echo $product_data["price"]; ?>.00</p>
 
                                     <?php
@@ -171,53 +171,7 @@
                     }
 
                     ?>
-
-
-
-                    <!-- <div class="card">
-                    <img src="img/L_Dress2.jpg" class="card-img-top custom-img" alt="SLEEVE LESS HIGH NECK PRINTED DRESS">
-                    <div class="card-body">
-                        <h5 class="card-title text-center fs-6">SLEEVE LESS NECK PRINTED DRESS</h5>
-                        <p class="card-text text-center">Rs.4,500.00</p>
-                        <a class="btn btn-dark d-grid rounded-5" href="#">Buy Now</a>
-                    </div>
                 </div>
-                <div class="card">
-                    <img src="img/G_Shirt1.jpg" class="card-img-top custom-img" alt="DOUBLE POCKET SHIRT">
-                    <div class="card-body">
-                        <h5 class="card-title text-center fs-6">DOUBLE POCKET SHIRT</h5>
-                        <p class="card-text text-center">Rs.5,990.00</p>
-                        <a class="btn btn-dark d-grid rounded-5" href="#">Buy Now</a>
-                    </div>
-                </div> -->
-                </div>
-
-                <!-- <div class="card-group gap-4 ms-auto mx-auto col-12 col-md-12 col-lg-12 mt-3 px-5 py-5">
-                <div class="card">
-                    <img src="img/L_Dress3.jpg" class="card-img-top custom-img" alt="LONG SLEEVE SOLID DRESS">
-                    <div class="card-body">
-                        <h5 class="card-title text-center fs-6">LONG SLEEVE SOLID DRESS</h5>
-                        <p class="card-text text-center">Rs.6,000.00</p>
-                        <a class="btn btn-dark d-grid rounded-5" href="#">Buy Now</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/L_Dress4.jpg" class="card-img-top custom-img" alt="SLEEVE LESS HIGH NECK PRINTED DRESS">
-                    <div class="card-body">
-                        <h5 class="card-title text-center fs-6">PRINTED STRAPPY DRESS</h5>
-                        <p class="card-text text-center">Rs.4,500.00</p>
-                        <a class="btn btn-dark d-grid rounded-5" href="#">Buy Now</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/G_T-Shirt1.jpg" class="card-img-top custom-img" alt="DOUBLE POCKET SHIRT">
-                    <div class="card-body">
-                        <h5 class="card-title text-center fs-6">CHECK SHIRT</h5>
-                        <p class="card-text text-center">Rs.8,990.00</p>
-                        <a class="btn btn-dark custom-btn d-grid rounded-5" href="#">Buy Now</a>
-                    </div>
-                </div> -->
-                <!-- </div> -->
             </div>
         </div>
 
