@@ -42,8 +42,6 @@ function changeImage() {
     }
 }
 
-
-
 function signUp() {
     var fname = document.getElementById("fname");
     var lname = document.getElementById("lname");
@@ -52,6 +50,61 @@ function signUp() {
     var password = document.getElementById("password");
     var gender = document.getElementById("gender");
     var checkbox = document.getElementById("tc");
+
+    let isValid = true;
+
+    let fnameError = document.getElementById("fname_error");
+    let lnameError = document.getElementById("lname_error");
+    let emailError = document.getElementById("email_error");
+    let mobileError = document.getElementById("mobile_error");
+    let pwdError = document.getElementById("pwd_error");
+
+    // Reset errors before validating
+    [fnameError, lnameError, emailError, mobileError, pwdError].forEach(el => {
+        el.classList.add("d-none");
+        document.getElementById("tc_error").classList.remove("text-danger");
+        gender.classList.remove("border-danger");
+    });
+
+    if (fname.value.trim() === "") {
+        fnameError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (lname.value.trim() === "") {
+        lnameError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (email.value.trim() === "") {
+        emailError.classList.remove("d-none");
+        isValid = false;
+    } else {
+
+    }
+
+    if (mobile.value.trim() === "") {
+        mobileError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (password.value.trim() === "") {
+        pwdError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (gender.value === "0") {
+        gender.classList.add("border-danger");
+    }
+
+    if (checkbox.checked === false) {
+        document.getElementById("tc_error").classList.add("text-danger");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
 
     var form = new FormData();
 
@@ -120,7 +173,29 @@ function signIn() {
     var password = document.getElementById("password");
     var rememberMe = document.getElementById("rememberMe");
 
+    let emailError = document.getElementById("email_error");
+    let pwdError = document.getElementById("pwd_error");
 
+    // Reset errors before validating
+    [emailError, pwdError].forEach(el => {
+        el.classList.add("d-none");
+    });
+
+    let isValid = true;
+
+    if(email.value.trim() ===""){
+        emailError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if(password.value.trim() ===""){
+        pwdError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if(!isValid){
+        return;
+    }
 
     var form = new FormData();
     form.append("email", email.value);
@@ -947,9 +1022,39 @@ function basicSearch3(pageNum, event = null) {
     request.send(form);
 }
 
+function sizeColorValidation() {
 
+    let selectedSize = document.querySelector('input[name="size"]:checked');
+    let selectedColor = document.querySelector('input[name="color"]:checked');
+
+    let colorError = document.getElementById("color_error");
+    let sizeError = document.getElementById("size_error");
+
+    let isValid = true;
+
+    if (!selectedSize) {
+        sizeError.classList.remove("d-none"); // show error
+        isValid = false;
+    } else {
+        sizeError.classList.add("d-none"); // hide error
+    }
+
+    if (!selectedColor) {
+        colorError.classList.remove("d-none"); // show error
+        isValid = false;;
+    } else {
+        colorError.classList.add("d-none"); // hide error
+    }
+
+    return isValid;
+
+}
 
 function payNow(id) {
+
+    if (!sizeColorValidation()) {
+        return; // stop execution until user selects a size
+    }
 
     var qty = document.getElementById("qty_cnt").value;
     var selectedSize = document.querySelector('input[name="size"]:checked');

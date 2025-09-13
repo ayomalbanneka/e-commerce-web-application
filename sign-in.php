@@ -116,9 +116,11 @@ if (isset($_GET['code'])) {
 
                                         <label class="form-label" for="email"> Email Address <i class="bi bi-envelope"></i></label>
                                         <input value="<?php echo $email ?>" class="form-control bg-body-secondary" type="email" id="email" required />
+                                        <h6 class="text-danger small mt-1 d-none" id="email_error">Enter the email</h6>
 
                                         <label class="form-label" for="password">Password <i class="bi bi-key"></i> </label>
                                         <input value="<?php echo $password ?>" class="form-control bg-body-secondary" type="password" id="password" required />
+                                        <h6 class="text-danger small mt-1 d-none" id="pwd_error">Enter the password</h6>
 
                                         <div class="mb-3 mt-3 d-flex justify-content-end">
                                             <a class="link-primary text-decoration-none" href="forgot-password.php">Forgot Password?</a>

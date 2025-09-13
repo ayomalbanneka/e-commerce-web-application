@@ -39,32 +39,38 @@ include "connection.php";
 
                             <div class="row">
 
-                                <div class="col-12 col-lg-10 col-md-8 mb-2 sign-up-form">
+                                <div class="col-12 col-lg-10 col-md-8 mb-1 sign-up-form">
 
                                     <div class="row">
                                         <div class="col-6 mb-3">
                                             <label class="form-label" for="fname">First Name</label>
                                             <input class="form-control bg-body-secondary" type="text" required id="fname" autofocus/>
+                                            <h6 class="text-danger mt-1 d-none small" id="fname_error">Enter the first name</h6>
                                         </div>
 
                                         <div class="col-6 mb-3">
                                             <label class="form-label" for="lname">Last Name</label>
                                             <input class="form-control bg-body-secondary" type="text" required id="lname" />
+                                            <h6 class="text-danger mt-1 d-none small" id="lname_error">Enter the last name</h6>
                                         </div>
                                     </div>
 
                                     <label class="form-label" for="email">Email Address</label>
                                     <input class="form-control bg-body-secondary" type="email" required id="email" />
+                                    <h6 class="text-danger mt-1 d-none small" id="email_error">Enter the email address</h6>
 
                                     <label class="form-label" for="password">Password</label>
                                     <input class="form-control bg-body-secondary" type="password" required id="password" />
+                                    <h6 class="text-danger mt-1 d-none small" id="pwd_error">Enter a password</h6>
 
                                     <label class="form-label" for="mobile">Mobile Number</label>
                                     <input class="form-control bg-body-secondary" type="text" required id="mobile" />
+                                    <h6 class="text-danger mt-1 d-none small" id="mobile_error">Enter the mobile number</h6>
 
                                     <div>
                                         <label class="form-label" for="">Gender</label>
                                         <select class="form-select" id="gender">
+                                            <option value="0">Select the Gender</option>
 
                                             <?php
 
@@ -94,7 +100,7 @@ include "connection.php";
 
                             </div>
 
-                            <div class="form-check mt-3">
+                            <div class="form-check mt-3" id="tc_error">
                                 <input class="form-check-input" type="checkbox" value="1" id="tc" required>
                                 <label class="form-check-label" for="tc">
                                     I agreed for all <a class="link link-dark" href="#">Terms & Conditions</a> and <a class="link link-dark" href="#">Privacy Policy</a>

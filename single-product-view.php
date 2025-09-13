@@ -353,7 +353,7 @@ if (isset($_GET["id"])) {
                                     <p class="f6 text-secondary"><a class="text-secondary text-decoration-none" href="home.php">categories:</a> <?php echo $product_data["cat_name"] . ", " . $product_data["sub_cat_name"]; ?></p>
 
 
-                                    <h3 class="d-flex justify-content-start"><?php echo $product_data["title"]; ?></h3>
+                                    <h3 class="d-flex justify-content-start text-uppercase"><?php echo $product_data["title"]; ?></h3>
 
                                     <div class="row ">
                                         <div class="col-md-6 col-lg-12 product-details mb-3">
@@ -384,6 +384,7 @@ if (isset($_GET["id"])) {
                                                 <?php
                                                 }
                                                 ?>
+                                                <h6 class="h6 text-danger mt-1 d-none" id="color_error">Please select a color</h6>
                                             </div>
 
                                             <!-- Sizes Section -->
@@ -403,9 +404,11 @@ if (isset($_GET["id"])) {
                                                         for="size_<?php echo $size_data['sizes_id']; ?>">
                                                         <?php echo $size_data['size']; ?>
                                                     </label>
-                                                <?php
+
+                                                    <?php
                                                 }
                                                 ?>
+                                                <h6 class="h6 text-danger mt-1 d-none" id="size_error">Please select a size</h6>
                                             </div>
 
                                             <div class="col-md-12 col-lg-12 d-flex">
@@ -434,7 +437,7 @@ if (isset($_GET["id"])) {
                                                     <button class="add-to-cart" onclick="addToCart('<?php echo $product_data['id']; ?>','<?php echo $product_data['qty']; ?>');" id="addToCart"><i class="bi bi-cart-plus"></i> ADD TO CART</button>
                                                 </div>
 
-                                                <div class="col-6 col-lg-12 col-md-12 mb-3">
+                                                <div class="col-12 col-lg-12 col-md-12 mb-3">
 
                                                     <?php
 
@@ -537,7 +540,7 @@ if (isset($_GET["id"])) {
 
 
                                     <div class="card-body">
-                                        <h5 class="card-title text-center fs-6"><?php echo $product_data["title"]; ?></h5>
+                                        <h5 class="card-title text-center fs-6 text-uppercase"><?php echo $product_data["title"]; ?></h5>
                                         <p class="card-text text-center">LKR <?php echo $product_data["price"]; ?>.00</p>
 
                                         <?php
