@@ -105,7 +105,7 @@ $selected_num = $selected_rs->num_rows;
                                                             }
                                                             ?>
                                                             <div class="card-body">
-                                                                <h5 class="card-title text-center fs-6"><?php echo $selected_data["title"]; ?></h5>
+                                                                <h5 class="card-title text-center fs-6 text-uppercase"><?php echo $selected_data["title"]; ?></h5>
                                                                 <p class="card-text text-center">Rs.<?php echo $selected_data["price"]; ?>.00</p>
 
                                                                 <?php

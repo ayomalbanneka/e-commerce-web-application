@@ -89,6 +89,13 @@ function userDetails(email) {
   modal.show();
 }
 
+
+function setAdminDetails(email) {
+  var adminModal = document.getElementById("adminUpdateModal" + email);
+  modal = new bootstrap.Modal(adminModal);
+  modal.show();
+}
+
 var modal2;
 
 function adminSignIn() {
@@ -96,6 +103,29 @@ function adminSignIn() {
   var email = document.getElementById("email");
   var password = document.getElementById("password");
   var rememberMe = document.getElementById("adminRememberMe");
+
+  let emailError = document.getElementById('email_err');
+  let pwdError = document.getElementById('pwd_err');
+
+  let valid = true;
+
+  [emailError, pwdError].forEach(el => {
+    el.classList.add("d-none");
+  })
+
+  if (email.value.trim() === '') {
+    emailError.classList.remove('d-none');
+    valid = false;
+  }
+
+  if (password.value.trim() === '') {
+    pwdError.classList.remove('d-none');
+    valid = false;
+  }
+
+  if(!valid){
+    return;
+  }
 
   var form = new FormData();
 
@@ -158,6 +188,13 @@ function adminSignIn() {
 
 }
 
+//This will stop multiple alert repeting when click the button
+document.getElementById("sweetBtn").removeEventListener('click', adminSignIn);
+document.getElementById("sweetBtn").addEventListener('click', function (event) {
+  event.preventDefault();
+  adminSignIn();
+});
+
 function verifyAdminCode() {
   const otp = document.getElementById('otp').value;
   const email = document.getElementById('email').value;
@@ -198,5 +235,198 @@ function verifyAdminCode() {
 
   request.open("POST", "backend/verify-admin-code.php", true);
   request.send(form)
+
+}
+function blockAdmin(email) {
+  const request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      const response = request.responseText;
+      alert(response);
+      window.location.reload();
+    }
+  }
+
+  request.open("GET", "backend/block-admin-process.php?email=" + email, true);
+  request.send();
+}
+
+function adminRegistration() {
+  const fname = document.getElementById('firstName').value;
+  const lname = document.getElementById('lastName').value;
+  const email = document.getElementById('email').value;
+  const role = document.getElementById('role').value;
+  const mobile = document.getElementById('mobile').value;
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  let valid = true;
+
+  let fnameError = document.getElementById('fname_err');
+  let lnameError = document.getElementById('lname_err');;
+  let emailError = document.getElementById('email_err');
+  let pwdError = document.getElementById('pwd_err');
+  let cpwdError = document.getElementById('cpwd_err');
+  let roleError = document.getElementById('role_err');
+  let mobileError = document.getElementById('mobile_err');
+
+  [emailError, pwdError, fnameError, lnameError, cpwdError, roleError, mobileError].forEach(el => {
+    el.classList.add("d-none");
+  });
+
+  // Validate first name
+  if (fname.trim() === '') {
+    document.getElementById('fname_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate last name
+  if (lname.trim() === '') {
+    document.getElementById('lname_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate email
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    document.getElementById('email_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate role
+  if (role === '0') {
+    document.getElementById('role_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate mobile number
+  const mobilePattern = /07[0,1,2,4,5,6,7,8]{1}[0-9]{7}/; // Example pattern for 10-digit numbers
+  if (!mobilePattern.test(mobile)) {
+    document.getElementById('mobile_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate password
+  if (password.length < 8) {
+    document.getElementById('pwd_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate confirm password
+  if (password !== confirmPassword) {
+    document.getElementById('cpwd_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  if (!valid) {
+    return;
+  }
+
+  const form = new FormData();
+  form.append('firstName', fname);
+  form.append('lastName', lname);
+  form.append('email', email);
+  form.append('role', role);
+  form.append('mobile', mobile);
+  form.append('password', password);
+
+  const request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      const response = request.responseText;
+      if (response === 'success') {
+        Swal.fire({
+          title: "Registration Successful",
+          icon: "success",
+          text: "Admin account has been created successfully."
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        alert(response);
+      }
+    }
+  }
+
+  request.open("POST", "backend/admin-registration-process.php", true);
+  request.send(form);
+
+}
+
+function adminDetailsUpdater() {
+  const fname = document.getElementById('UfirstName').value;
+  const lname = document.getElementById('UlastName').value;
+  const email = document.getElementById('Uemail').value;
+  const mobile = document.getElementById('Umobile').value;
+
+  let valid = true;
+
+  let fnameError = document.getElementById('fname_err');
+  let lnameError = document.getElementById('lname_err');;
+  let emailError = document.getElementById('email_err');
+  let mobileError = document.getElementById('mobile_err');
+
+  [emailError, fnameError, lnameError, mobileError].forEach(el => {
+    el.classList.add("d-none");
+  });
+
+  // Validate first name
+  if (fname.trim() === '') {
+    document.getElementById('Ufname_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate last name
+  if (lname.trim() === '') {
+    document.getElementById('Ulname_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate email
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    document.getElementById('Uemail_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  // Validate mobile number
+  const mobilePattern = /07[0,1,2,4,5,6,7,8]{1}[0-9]{7}/;
+  if (!mobilePattern.test(mobile)) {
+    document.getElementById('Umobile_err').classList.remove('d-none');
+    valid = false;
+  }
+
+  if (!valid) {
+    return;
+  } 
+
+  const form = new FormData();
+  form.append('fname', fname);
+  form.append('lname', lname);
+  form.append('email', email);
+  form.append('mobile', mobile);
+
+  const request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (request.readyState == 4 && request.status == 200) {
+      const response = request.responseText;
+      if (response === 'success') {
+        Swal.fire({
+          title: "Update Successful",
+          icon: "success",
+          text: "Admin details have been updated successfully."
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        alert(response);
+      }
+    }
+  }
+
+  request.open("POST", "backend/admin-details-update-process.php", true);
+  request.send(form);
 
 }
