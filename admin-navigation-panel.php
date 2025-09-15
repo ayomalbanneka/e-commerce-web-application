@@ -67,14 +67,13 @@
                 </a>
             </li>
 
-            <!-- <li>
-                <a href="add-product.php">
+            <li>
+                <a href="admin-management.php">
                     <span class="icon">
-                        <i class="bi bi-cart4"></i>
+                        <i class="bi bi-shield-fill"></i>
                     </span>
-                    <span class="title">Update Products</span>
-                </a>
-            </li> -->
+                    <span class="title">Admin Management</span>
+            </li>
             <!-- <li>
                 <a href="#">
                     <span class="icon">

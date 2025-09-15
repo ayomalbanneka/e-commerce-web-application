@@ -508,14 +508,6 @@ document.getElementById("sweetBtn").addEventListener('click', function (event) {
     resetPassword();
 });
 
-
-//This will stop multiple alert repeting when click the button
-document.getElementById("sweetBtn").removeEventListener('click', adminSignIn);
-document.getElementById("sweetBtn").addEventListener('click', function (event) {
-    event.preventDefault();
-    adminSignIn();
-});
-
 function addToCart() {
     var addToCart = document.getElementById("addToCart");
 

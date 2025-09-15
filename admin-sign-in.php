@@ -88,9 +88,11 @@
 
                                     <label class="form-label" for="email"> Email Address <i class="bi bi-envelope"></i></label>
                                     <input class="form-control bg-body-secondary" type="email" id="email" required />
+                                    <h6 class="text-danger small mt-1 d-none" id="email_err">Enter the email address</h6>
 
                                     <label class="form-label" for="password">Password <i class="bi bi-key"></i> </label>
                                     <input class="form-control bg-body-secondary" type="password" id="password" required />
+                                    <h6 class="text-danger small mt-1 d-none" id="pwd_err">Enter the password</h6>
 
                                     <div class="mb-3 mt-3 d-flex justify-content-end">
                                         <a class="link-primary text-decoration-none" href="admin-forgot-password.php">Forgot Password?</a>
