@@ -46,8 +46,8 @@ if (isset($_GET["email"])) {
         $mail->Password = $_ENV['G_APP_PASSWORD'];; //App Password
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
-        $mail->setFrom('ayomalkaushalya@gmail.com', 'Reset Password'); // Sender's Email, Sender's Email
-        $mail->addReplyTo('ayomalkaushalya@gmail.com', 'Reset Password'); // Sender's Email, Sender's Email
+        $mail->setFrom('ayomalkaushalya@gmail.com', 'Email Verification'); // Sender's Email, Sender's Email
+        $mail->addReplyTo('ayomalkaushalya@gmail.com', 'Email Verification'); // Sender's Email, Sender's Email
         $mail->addAddress($email); //Receiver's Email 
         $mail->addEmbeddedImage('../img/email_img.png', 'logo_img');
         // $mail->addEmbeddedImage('img/social_icons/facebook.ico', 'fb_img');
