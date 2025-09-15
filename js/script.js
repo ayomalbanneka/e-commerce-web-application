@@ -183,17 +183,17 @@ function signIn() {
 
     let isValid = true;
 
-    if(email.value.trim() ===""){
+    if (email.value.trim() === "") {
         emailError.classList.remove("d-none");
         isValid = false;
     }
 
-    if(password.value.trim() ===""){
+    if (password.value.trim() === "") {
         pwdError.classList.remove("d-none");
         isValid = false;
     }
 
-    if(!isValid){
+    if (!isValid) {
         return;
     }
 
@@ -267,6 +267,23 @@ function emailSend() {
     var emaildiv = document.getElementById("emaildiv");
     var vcodeDiv = document.getElementById("vcodeDiv");
 
+    const emailError = document.getElementById('email_err');
+
+    [emailError].forEach(el => {
+        el.classList.add('d-none');
+    });
+
+    let isValid = true;
+
+    if (email.value.trim() === "") {
+        emailError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
+
     addEventListener('click', (e) => {
 
         setTimeout(() => {
@@ -324,6 +341,7 @@ document.getElementById("sweetBtn").addEventListener('click', function (event) {
     event.preventDefault();
     emailSend();
 });
+
 
 function adminEmailSend() {
     var email = document.getElementById("email2");
@@ -500,7 +518,23 @@ function showPassword2() {
 function verifyCode() {
     const email = document.getElementById("email2");
     var newPasswordDiv = document.getElementById("newPasswordDiv");
-    // var vcodeDiv = document.getElementById("vcodeDiv");
+
+    const vcodeError = document.getElementById('vcode_err');
+
+    [vcodeError].forEach(el => {
+        el.classList.add('d-none');
+    });
+
+    let isValid = true;
+
+    if (vcode.value.trim() === "") {
+        vcodeError.classList.remove('d-none');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
 
     var form = new FormData();
 
@@ -543,6 +577,29 @@ function resetPassword() {
 
     var newPasswordDiv = document.getElementById("newPasswordDiv");
     var vcodeDiv = document.getElementById("vcodeDiv");
+
+    const newpwdError = document.getElementById('newpwd_err');
+    const cpwdError = document.getElementById('cpwd_err');
+
+    [newpwdError, cpwdError].forEach(el => {
+        el.classList.add('d-none');
+    });
+
+    let isValid = true;
+
+    if (newPassword.value.trim() === "") {
+        newpwdError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (retypedPassword.value.trim() === "" || retypedPassword.value !== newPassword.value) {
+        cpwdError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
 
     var form = new FormData();
 
