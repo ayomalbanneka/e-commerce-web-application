@@ -837,31 +837,6 @@ function changeProductImage() {
     }
 }
 
-// function addSize(x) {
-//     var checkboxes = document.querySelectorAll('input[name="size"]:checked');
-//     var sizes = [x];
-
-//     checkboxes.forEach(function (checkbox) {
-//         sizes.push(checkbox.value);
-//     });
-
-//     var request = new XMLHttpRequest();
-
-//     request.onreadystatechange = function () {
-//         if (request.readyState == 4 && request.status == 200) {
-//             var response = request.responseText;
-//             alert(response);
-//         }
-//     }
-
-//     // Convert the sizes array to a query string format
-//     var sizesParam = sizes.join(",");
-
-//     request.open("GET", "add-product-process.php?size=" + sizes, true);
-//     request.send();
-// }
-
-
 function addColor(x) {
     var checkboxes = document.querySelectorAll('input[name="color"]:checked');
     var colors = [x];
