@@ -183,17 +183,17 @@ function signIn() {
 
     let isValid = true;
 
-    if(email.value.trim() ===""){
+    if (email.value.trim() === "") {
         emailError.classList.remove("d-none");
         isValid = false;
     }
 
-    if(password.value.trim() ===""){
+    if (password.value.trim() === "") {
         pwdError.classList.remove("d-none");
         isValid = false;
     }
 
-    if(!isValid){
+    if (!isValid) {
         return;
     }
 
@@ -267,6 +267,23 @@ function emailSend() {
     var emaildiv = document.getElementById("emaildiv");
     var vcodeDiv = document.getElementById("vcodeDiv");
 
+    const emailError = document.getElementById('email_err');
+
+    [emailError].forEach(el => {
+        el.classList.add('d-none');
+    });
+
+    let isValid = true;
+
+    if (email.value.trim() === "") {
+        emailError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
+
     addEventListener('click', (e) => {
 
         setTimeout(() => {
@@ -325,142 +342,7 @@ document.getElementById("sweetBtn").addEventListener('click', function (event) {
     emailSend();
 });
 
-function adminEmailSend() {
-    var email = document.getElementById("email2");
-    var emaildiv = document.getElementById("emaildiv");
-    var vcodeDiv = document.getElementById("vcodeDiv");
 
-    var request = new XMLHttpRequest();
-
-    addEventListener('click', (e) => {
-
-        setTimeout(() => {
-            document.getElementById("adminForgotPasswordSpinner").classList.remove("d-none");
-            //Disable the button while processing
-            document.getElementById("sendBtn").disabled = true;
-
-        }, e ? 1000 : 0);
-
-    })
-
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            if (response == "success") {
-
-                setTimeout(() => {
-                    document.getElementById("adminForgotPasswordSpinner").classList.add("d-none");
-                    //Disable the button while processing
-                    document.getElementById("sendBtn").disabled = false;
-
-                }, response == "success" ? 3000 : 0);
-
-                setTimeout(() => {
-                    Swal.fire({
-                        title: "Verification code send successfully",
-                        icon: "success",
-                        text: "Verification send to your email address"
-                    }).then(() => {
-                        emaildiv.classList.toggle("d-none");
-                        vcodeDiv.classList.toggle("d-none");
-                    });
-                }, response == "success" ? 3000 : 0)
-
-
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "User Not Found",
-                    text: response
-                });
-            }
-        }
-    };
-
-    request.open("GET", "backend/admin-forgot-password-process.php?email=" + email.value, true);
-    request.send();
-}
-
-function adminVerifyCode() {
-    const email = document.getElementById("email2");
-    var newPasswordDiv = document.getElementById("newPasswordDiv");
-    // var vcodeDiv = document.getElementById("vcodeDiv");
-
-    var form = new FormData();
-
-    form.append("vcode", vcode.value);
-    form.append("email", email.value);
-
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            if (response == "success") {
-                Swal.fire({
-                    title: "Verification code verified successfully",
-                    icon: "success"
-                }).then(() => {
-                    vcodeDiv.classList.toggle("d-none");
-                    newPasswordDiv.classList.toggle("d-none");
-                });
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops :(",
-                    text: response
-                });
-            }
-        }
-    }
-
-    request.open("POST", "backend/admin-code-verification-process.php", true);
-    request.send(form);
-}
-
-function AdminResetPassword() {
-    var email = document.getElementById("email2");
-    var newPassword = document.getElementById("np");
-    var retypedPassword = document.getElementById("rp");
-    var vcode = document.getElementById("vcode");
-
-    var newPasswordDiv = document.getElementById("newPasswordDiv");
-    var vcodeDiv = document.getElementById("vcodeDiv");
-
-    var form = new FormData();
-
-    form.append("email", email.value);
-    form.append("np", newPassword.value);
-    form.append("rp", retypedPassword.value);
-    form.append("vcode", vcode.value);
-
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            var response = request.responseText;
-            if (response == "success") {
-                Swal.fire({
-                    title: "Password changed successfully",
-                    icon: "success"
-                }).then(() => {
-                    newPasswordDiv.classList.toggle("d-none");
-                    vcodeDiv.classList.toggle("d-none");
-                    window.location = "admin-sign-in.php";
-                });
-            } else {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Oops :(",
-                    text: response
-                });
-            }
-        }
-    }
-
-    request.open("POST", "backend/admin-reset-password-process.php", true);
-    request.send(form);
-}
 
 //This will stop multiple alert repeting when click the button
 document.getElementById("sweetBtn").removeEventListener('click', adminEmailSend);
@@ -500,7 +382,23 @@ function showPassword2() {
 function verifyCode() {
     const email = document.getElementById("email2");
     var newPasswordDiv = document.getElementById("newPasswordDiv");
-    // var vcodeDiv = document.getElementById("vcodeDiv");
+
+    const vcodeError = document.getElementById('vcode_err');
+
+    [vcodeError].forEach(el => {
+        el.classList.add('d-none');
+    });
+
+    let isValid = true;
+
+    if(vcode.value.trim() === ""){
+        vcodeError.classList.remove('d-none');
+        isValid = false;
+    }
+
+    if(!isValid){
+        return;
+    }
 
     var form = new FormData();
 
@@ -543,6 +441,29 @@ function resetPassword() {
 
     var newPasswordDiv = document.getElementById("newPasswordDiv");
     var vcodeDiv = document.getElementById("vcodeDiv");
+
+    const newpwdError = document.getElementById('newpwd_err');
+    const cpwdError = document.getElementById('cpwd_err');
+
+    [newpwdError, cpwdError].forEach(el => {
+        el.classList.add('d-none');
+    });
+
+    let isValid = true;
+
+    if (newPassword.value.trim() === "") {
+        newpwdError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if (retypedPassword.value.trim() === "" || retypedPassword.value !== newPassword.value) {
+        cpwdError.classList.remove("d-none");
+        isValid = false;
+    }
+
+    if(!isValid){
+        return;
+    }
 
     var form = new FormData();
 
@@ -787,31 +708,6 @@ function changeProductImage() {
 
     }
 }
-
-// function addSize(x) {
-//     var checkboxes = document.querySelectorAll('input[name="size"]:checked');
-//     var sizes = [x];
-
-//     checkboxes.forEach(function (checkbox) {
-//         sizes.push(checkbox.value);
-//     });
-
-//     var request = new XMLHttpRequest();
-
-//     request.onreadystatechange = function () {
-//         if (request.readyState == 4 && request.status == 200) {
-//             var response = request.responseText;
-//             alert(response);
-//         }
-//     }
-
-//     // Convert the sizes array to a query string format
-//     var sizesParam = sizes.join(",");
-
-//     request.open("GET", "add-product-process.php?size=" + sizes, true);
-//     request.send();
-// }
-
 
 function addColor(x) {
     var checkboxes = document.querySelectorAll('input[name="color"]:checked');
