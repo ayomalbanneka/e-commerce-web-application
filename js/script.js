@@ -2345,12 +2345,11 @@ function contactUs() {
 
 var model3;
 
-
 function verifyEmail() {
     // alert("OK");
 
     var vemail = document.getElementById("email").value;
-    var emodel = document.getElementById("spanModel3");
+    var emodel = document.getElementById("emailVerificationModal");
 
     var request = new XMLHttpRequest();
 
@@ -2409,8 +2408,8 @@ function verifyEmail() {
 
 }
 
-function verifyOtp() {
-    var code = document.getElementById("i");
+function verifyOtp(email) {
+    var code = document.getElementById("otpInput");
     var email = document.getElementById("email");
 
     var form = new FormData();

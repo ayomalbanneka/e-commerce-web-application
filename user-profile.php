@@ -56,7 +56,7 @@
 
                                 <!-- Header -->
                                 <div class="mb-4">
-                                    <i class="bi bi-envelope-check fs-1 text-primary mb-3"></i>
+                                    <i class="bi bi-envelope-check fs-1 text-dark mb-3"></i>
                                     <h2 class="h4 mb-2">Email Verification</h2>
                                     <p class="text-muted mb-0">Verification code sent to <span class="fw-bold text-dark"><?php echo $email; ?></span></p>
                                 </div>
@@ -69,14 +69,13 @@
                                         id="otpInput"
                                         maxlength="6"
                                         placeholder="••••••"
-                                        aria-describedby="otpHelp"
                                         autofocus>
                                     <div id="otpHelp" class="form-text mt-2">Enter the 6-digit code from your email</div>
                                 </form>
 
                                 <!-- Action Buttons -->
                                 <div class="d-grid gap-2">
-                                    <button type="button" class="btn btn-primary">Verify Email</button>
+                                    <button type="button" class="btn btn-dark" onclick="verifyOtp('<?php echo $email; ?>')">Verify Email</button>
                                     <button type="button" class="btn btn-link text-muted text-decoration-none">
                                         Didn't receive code? <span class="fw-bold">Resend</span>
                                     </button>
@@ -414,9 +413,9 @@
     <?php include "footer.php"; ?>
 
 
+    <script src="js/script.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/script.js"></script>
 </body>
 
 </html>
