@@ -1237,8 +1237,16 @@ function addToCart(id, qty) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-            alert(response);
-            location.reload();
+            if (response == "success") {
+                Swal.fire({
+                    title: "Product added to cart successfully",
+                    icon: "success"
+                }).then(() => {
+                    window.location.reload;
+                });
+            } else {
+                alert(response);
+            }
         }
     }
 
@@ -2486,7 +2494,12 @@ function addToCartFromWatchlist(id) {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             if (response == "Added to cart successfully") {
-                window.location.reload()
+                Swal.fire({
+                    title: "Added to cart successfully",
+                    icon: "success"
+                }).then(() => {
+                    window.location.reload;
+                });
             } else {
                 alert(response);
             }

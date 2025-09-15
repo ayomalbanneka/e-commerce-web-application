@@ -39,7 +39,7 @@ if (isset($_SESSION["u"])) {
                 Database::iud("INSERT INTO `cart`(`cart_qty`,`cart_users_email`,`cart_products_id`) 
             VALUES ('1','" . $user_email . "','" . $pid . "') ");
 
-                echo ("Product added to the cart");
+                echo ("success");
             }
         }else{
             echo "Please verify your email address";
