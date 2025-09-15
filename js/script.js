@@ -1124,14 +1124,26 @@ function payNow(id) {
             var amount = obj['amount'];
 
             if (response == 1) {
-                alert('Please login to your account');
-                window.location = 'sign-in.php';
+                Swal.fire({
+                    title: "Please login to your account",
+                    icon: "warning"
+                }).then(() => {
+                    window.location = 'sign-in.php';
+                });
             } else if (response == 2) {
-                alert('Please update your address');
-                window.location = 'user-profile.php';
+                Swal.fire({
+                    title: "Please update your address",
+                    icon: "warning"
+                }).then(() => {
+                    window.location = 'user-profile.php';
+                });
             } else if (response == 3) {
-                alert('Please verify your email address');
-                window.location = 'user-profile.php';
+                Swal.fire({
+                    title: "Please verify your email address",
+                    icon: "warning"
+                }).then(() => {
+                    window.location = 'user-profile.php';
+                });
             } else {
 
 
