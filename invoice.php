@@ -210,7 +210,6 @@ if (empty($_GET['id'])) {
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Product</th>
                                 <th>Price</th>
                                 <th>Size</th>
@@ -240,7 +239,6 @@ if (empty($_GET['id'])) {
                             ?>
 
                                 <tr>
-                                    <td><?php echo $checkot_cloths_data["invoice_id"]; ?></td>
                                     <td>
                                         <span class="fw-bold text-dark p-2"><?php echo $checkot_cloths_data["title"]; ?></span><br />
                                         <!-- <span class="fw-bold text-secondary text-decoration-none p-2"><?php echo $oid; ?></span> -->

@@ -2173,25 +2173,36 @@ function findOrders() {
 function checkout(productId) {
     let selectedItems = [];
 
-    // ✅ Collect checked size
-    const sizeInput = document.querySelector(`input[name="size_${productId}"]:checked`);
-    let selectedSize = sizeInput ? sizeInput.dataset.size : null;
+    let cartItems = document.querySelectorAll("[id^='cart_item_']");
 
-    // ✅ Collect checked color
-    const colorInput = document.querySelector(`input[name="color_${productId}"]:checked`);
-    let selectedColor = colorInput ? colorInput.dataset.color : null;
+    cartItems.forEach(item => {
+        let productId = item.dataset.pid;
 
-    if (!selectedSize || !selectedColor) {
-        alert("Please select both size and color before checkout.");
+        const sizeInput = item.querySelector(`input[name="size_${productId}"]:checked`);
+        let selectedSize = sizeInput ? sizeInput.dataset.size : null;
+
+        const colorInput = item.querySelector(`input[name="color_${productId}"]:checked`);
+        let selectedColor = colorInput ? colorInput.dataset.color : null;
+
+        if (!selectedSize || !selectedColor) {
+            Swal.fire({
+                title: "Select a size and color",
+                icon: "warning",
+                text: "Please select size and color for product"
+            });
+            return;
+        }
+
+        selectedItems.push({
+            productId: productId,
+            size: selectedSize,
+            color: selectedColor
+        });
+    });
+
+    if (selectedItems.length === 0) {
         return;
     }
-
-    // ✅ Store both size + color for this product
-    selectedItems.push({
-        productId: productId,
-        size: selectedSize,
-        color: selectedColor
-    });
 
     // AJAX request to backend
     var request = new XMLHttpRequest();
