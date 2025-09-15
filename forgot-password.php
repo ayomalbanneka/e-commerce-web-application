@@ -39,7 +39,6 @@
                                 <div class="col-12 col-lg-10 col-md-12 mb-2">
                                     <label class="form-label" for="email2"> Enter Your Email Address <i class="bi bi-envelope"></i></label>
                                     <input class="form-control bg-body-secondary" type="email" id="email2" required placeholder="example@email.com" />
-                                    <h6 class="text-danger small mt-1 d-none" id="email_err">Enter your email address</h6>
                                 </div>
 
                                 <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
@@ -56,7 +55,6 @@
                                 <div class="col-12 col-lg-10 col-md-12 mb-2">
                                     <label class="form-label" for="vcode"> Verification Code </i></label>
                                     <input class="form-control bg-body-secondary text-center" type="text" id="vcode" required />
-                                    <h6 class="text-danger d-none mt-1 small" id="vcode_err">Enter the verifivation code</h6>
                                 </div>
 
                                 <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
@@ -76,7 +74,6 @@
                                                 <i class="bi bi-eye-fill"></i>
                                             </button>
                                         </div>
-                                        <h6 class="text-danger small mt-1 d-none" id="newpwd_err">Enter the new password</h6>
                                     </div>
 
                                     <!-- Re-type New Password -->
@@ -88,7 +85,6 @@
                                                 <i class="bi bi-eye-fill"></i>
                                             </button>
                                         </div>
-                                        <h6 class="text-danger small mt-1 d-none" id="cpwd_err">Entered password doesn't match</h6>
                                     </div>
                                 </div>
 
