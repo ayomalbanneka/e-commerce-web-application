@@ -9,8 +9,8 @@ include "connection.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart | UrbanElegance</title>
-    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.0/dist/sweetalert2.min.css" />
 </head>
@@ -111,7 +111,7 @@ include "connection.php";
 
                                                 ?>
 
-                                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                                    <div class="row mb-4 d-flex justify-content-between align-items-center" id="cart_item_<?php echo $cart_data['id']; ?>" data-pid="<?php echo $cart_data['id']; ?>">
                                                         <div class="col-4 col-md-2">
                                                             <?php
                                                             $image_rs = Database::search("SELECT * FROM `product_img` WHERE `products_id` = '" . $cart_data["id"] . "'");
@@ -121,7 +121,6 @@ include "connection.php";
                                                         </div>
 
                                                         <div class="col-8 col-md-4">
-                                                            <h6 class="text-muted"><?php echo $cart_data["sub_cat_name"]; ?></h6>
                                                             <h6 class="mb-0"><?php echo $cart_data["title"]; ?></h6>
                                                             <h6 class="mt-2 text-secondary">Shipping: Rs.<?php echo $ship; ?>.00</h6>
 
@@ -147,6 +146,7 @@ include "connection.php";
                                                                     <?php
                                                                     }
                                                                     ?>
+                                                                    <h6 class="text-danger mt-1 small d-none" id="size_err">Select a size</h6>
 
                                                                     <h6 class="mt-2 text-dark">Select a color:</h6>
                                                                     <?php
@@ -167,6 +167,8 @@ include "connection.php";
                                                                     <?php
                                                                     }
                                                                     ?>
+
+                                                                    <h6 class="text-danger mt-1 small d-none" id="color_err">Select a color</h6>
                                                                 </div>
                                                             </div>
                                                         </div>
