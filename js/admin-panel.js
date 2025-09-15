@@ -217,7 +217,7 @@ function verifyAdminCode() {
         Swal.fire({
           title: "Login Successful",
           icon: "success",
-          text: "You are now logged in as an admin."
+          text: "You are now logged in"
         }).then(() => {
           window.location.href = "admin-panel.php";
         });
@@ -463,6 +463,8 @@ function adminEmailSend() {
   var email = document.getElementById("email2");
   var emaildiv = document.getElementById("emaildiv");
   var vcodeDiv = document.getElementById("vcodeDiv");
+  const emailtxt = document.getElementById('emailtxt');
+  const vcodetxt = document.getElementById('vcodetxt');
 
   const emailError = document.getElementById("email_err");
 
@@ -514,6 +516,8 @@ function adminEmailSend() {
           }).then(() => {
             emaildiv.classList.toggle("d-none");
             vcodeDiv.classList.toggle("d-none");
+            emailtxt.classList.toggle("d-none");
+            vcodetxt.classList.toggle("d-none");
           });
         }, response == "success" ? 3000 : 0)
 
@@ -535,6 +539,8 @@ function adminEmailSend() {
 function adminVerifyCode() {
   const email = document.getElementById("email2");
   var newPasswordDiv = document.getElementById("newPasswordDiv");
+  const newpwdtxt = document.getElementById("newPasswordtxt");
+  const vcodetxt = document.getElementById('vcodetxt');
 
   const codeError = document.getElementById('code_err');
 
@@ -570,6 +576,8 @@ function adminVerifyCode() {
         }).then(() => {
           vcodeDiv.classList.toggle("d-none");
           newPasswordDiv.classList.toggle("d-none");
+          vcodetxt.classList.toggle('d-none');
+          newpwdtxt.classList.toggle("d-none");
         });
       } else {
         Swal.fire({

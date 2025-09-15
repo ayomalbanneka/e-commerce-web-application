@@ -120,7 +120,7 @@ if (isset($_SESSION["au"])) {
             if ($user_datas["role"] != "Admin") {
             ?>
                 <div style="pointer-events: none; opacity: 10.5;" class="alert alert-danger" role="alert">
-                    <i class="bi bi-exclamation-triangle-fill"></i> You don't have permission to access Admin Management Page. Please contact the system administrator.
+                    <i class="bi bi-exclamation-triangle-fill"></i> You don't have permission to access Admin Management Page. Please contact the system administrator or support.
                 </div>
             <?php
 
@@ -134,7 +134,7 @@ if (isset($_SESSION["au"])) {
                 <?php
                 if ($user_datas["role"] != "Admin") {
                 ?>
-                style="pointer-events: none; opacity: 0.5;"
+                style="pointer-events: none; visibility: hidden;"
                 <?php
                 } ?>>
 
