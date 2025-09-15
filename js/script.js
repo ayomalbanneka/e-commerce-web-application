@@ -1410,7 +1410,6 @@ function removeFromCart(id) {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             if (response == "Removed") {
-                alert("Product removed from the cart");
                 window.location.reload();
             } else {
                 alert(response);
