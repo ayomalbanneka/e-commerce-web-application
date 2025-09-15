@@ -202,12 +202,11 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">New</a></li>
-                <li><a class="dropdown-item" href="#">T-Shirt</a></li>
                 <li><a class="dropdown-item" href="../../product-category/Ladies/dresses.php">Dresses</a></li>
-                <li><a class="dropdown-item" href="#">Top</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Ladies/ladies-tops.php">Top</a></li>
                 <li><a class="dropdown-item" href="#">Pants & Leggins</a></li>
                 <li><a class="dropdown-item" href="#">Jump Suit</a></li>
-                <li><a class="dropdown-item" href="#">Skirt</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Ladies/skirts.php">Skirt</a></li>
                 <li><a class="dropdown-item" href="#">Jeans</a></li>
             </ul>
         </li>
