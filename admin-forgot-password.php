@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password | UrbanElagance</title>
+    <title>Admin Forgot Password | UrbanElagance</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -28,9 +28,11 @@
 
                     <div class="col-12 col-lg-7">
 
-                        <h2 class="mb-4 fw-bolder">Forgot Password</h2>
+                        <h2 class="mb-4 fw-bolder">Admin Forgot Password</h2>
 
-                        <h6 class="mb-4">Enter your email address below and we'll send you a code to reset your password</h6>
+                        <h6 class="mb-4" id="emailtxt">Enter your email address below and we'll send you a code to reset your password</h6>
+                        <h6 class="mb-4 d-none" id="vcodetxt">Enter your verifivation code below to verify you</h6>
+                        <h6 class="mb-4 d-none" id="newPasswordtxt">Enter your new password</h6>
 
                         <div class="row">
 
