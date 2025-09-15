@@ -39,7 +39,6 @@
                                 <div class="col-12 col-lg-10 col-md-12 mb-2">
                                     <label class="form-label" for="email2"> Enter Your Email Address <i class="bi bi-envelope"></i></label>
                                     <input class="form-control bg-body-secondary" type="email" id="email2" required placeholder="example@email.com" />
-                                    <h6 class="text-danger small mt-1 d-none" id="email_err">Enter your email address</h6>
                                 </div>
 
                                 <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
@@ -56,7 +55,6 @@
                                 <div class="col-12 col-lg-10 col-md-12 mb-2">
                                     <label class="form-label" for="vcode"> Verification Code </i></label>
                                     <input class="form-control bg-body-secondary text-center" type="text" id="vcode" required />
-                                    <h6 class="text-danger small mt-1 d-none" id="code_err">Enter the verifivation code</h6>
                                 </div>
 
                                 <div class="col-12 col-lg-10 col-md-12 mt-3 d-grid">
@@ -75,7 +73,6 @@
                                             <button class="btn btn-outline-dark" type="button" id="npb" onclick="showPassword1();">
                                                 <i class="bi bi-eye-fill"></i>
                                             </button>
-                                            <h6 class="text-danger small mt-1 d-none" id="newpwd_err">Enter the new password</h6>
                                         </div>
                                     </div>
 
@@ -88,7 +85,6 @@
                                                 <i class="bi bi-eye-fill"></i>
                                             </button>
                                         </div>
-                                        <h6 class="text-danger small mt-1 d-none" id="pwd_match_err">password doesn't match</h6>
                                     </div>
                                 </div>
 
@@ -135,7 +131,7 @@
     <!-- footer  -->
 
 
-    <script src="js/admin-panel.js"></script>
+    <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/bootstrap.bundle.js"></script>
 </body>
