@@ -1242,7 +1242,7 @@ function addToCart(id, qty) {
                     title: "Product added to cart successfully",
                     icon: "success"
                 }).then(() => {
-                    window.location.reload;
+                    window.location.reload();
                 });
             } else {
                 alert(response);
