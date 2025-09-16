@@ -2540,7 +2540,7 @@ function addToCartFromWatchlist(id) {
                     title: "Added to cart successfully",
                     icon: "success"
                 }).then(() => {
-                    window.location.reload;
+                    window.location.reload();
                 });
             } else {
                 alert(response);
@@ -2548,7 +2548,7 @@ function addToCartFromWatchlist(id) {
         }
     }
 
-    request.open("GET", "backend/add-to-cart-from-watchlist.php?id=" + id, true);
+    request.open("GET", "backend/add-to-cart-from-watchlist-process.php?id=" + id, true);
     request.send()
 
 }
