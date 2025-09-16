@@ -33,8 +33,10 @@ if (isset($_GET["on"])) {
                 $user_rs = Database::search("SELECT * FROM `users` WHERE `email`='" . $selected_data["users_email"] . "'");
                 $users_data = $user_rs->fetch_assoc();
                 // Fetch the product data
-                $product_rs = Database::search("SELECT * FROM `products` INNER JOIN `sizes` ON products.sizes_sizes_id=sizes.sizes_id 
-    WHERE `id`='" . $selected_data["products_id"] . "'");
+                $product_rs = Database::search("SELECT * FROM `products` 
+                INNER JOIN products_has_sizes ON products.id=products_has_sizes.products_id 
+                INNER JOIN sizes ON products_has_sizes.sizes_sizes_id = sizes.sizes_id
+                WHERE `id`='" . $selected_data["products_id"] . "'");
 
                 $product_data = $product_rs->fetch_assoc();
 
