@@ -189,6 +189,7 @@ include "connection.php";
 
     <script src="js/script.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
