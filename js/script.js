@@ -978,7 +978,26 @@ function basicSearch(pageNum, event = null) {
     if (event) event.preventDefault();
 
     const txt = document.getElementById("basic_search_txt");
+
+    const searchError = document.getElementById("search_err");
+
+    [searchError].forEach(el => {
+        el.classList.remove("d-none");
+    });
+
+    let isValid = true;
+
+    if (txt.value.trim() === "") {
+        searchError.classList.remove('d-none');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
+
     const form = new FormData();
+
     form.append("t", txt.value);
     form.append("page", pageNum);
 
@@ -1002,7 +1021,26 @@ function basicSearch2(pageNum, event = null) {
     if (event) event.preventDefault();
 
     const txt = document.getElementById("basic_search_txt");
+
+    const searchError = document.getElementById("search_err");
+
+    [searchError].forEach(el => {
+        el.classList.remove("d-none");
+    });
+
+    let isValid = true;
+
+    if (txt.value.trim() === "") {
+        searchError.classList.remove('d-none');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
+
     const form = new FormData();
+
     form.append("t", txt.value);
     form.append("page", pageNum);
 
@@ -1026,7 +1064,26 @@ function basicSearch3(pageNum, event = null) {
     if (event) event.preventDefault();
 
     const txt = document.getElementById("basic_search_txt");
+
+    const searchError = document.getElementById("search_err");
+
+    [searchError].forEach(el => {
+        el.classList.remove("d-none");
+    });
+
+    let isValid = true;
+
+    if (txt.value.trim() === "") {
+        searchError.classList.remove('d-none');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
+
     const form = new FormData();
+
     form.append("t", txt.value);
     form.append("page", pageNum);
 

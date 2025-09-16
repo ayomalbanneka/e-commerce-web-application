@@ -76,6 +76,7 @@
                                             <div class="col-3">
                                                 <button type="submit" class="btn btn-outline-dark w-100" onclick="basicSearch(0);">Search</button>
                                             </div>
+                                            <h6 class="text-danger small d-none" id="search_err">Type a search keyword</h6> 
                                             <!-- Advanced Search Link -->
                                             <div class="col-12 text-center">
                                                 <a href="advanced-search.php" class="text-decoration-none text-black">Advanced Search</a>
@@ -154,6 +155,7 @@
                                             <div class="col-3">
                                                 <button type="submit" class="btn btn-outline-dark w-100" onclick="basicSearch(0);">Search</button>
                                             </div>
+                                            <h6 class="text-danger small mt-1 d-none" id="search_err">Type a search keyword</h6>
                                             <!-- Advanced Search Link -->
                                             <div class="col-12 text-center">
                                                 <a href="advanced-search.php" class="text-decoration-none text-black">Advanced Search</a>

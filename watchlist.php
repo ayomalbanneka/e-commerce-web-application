@@ -37,8 +37,7 @@ include "connection.php";
                 }
 
                 $query = "SELECT * FROM `watchlist` 
-                          INNER JOIN `products` ON watchlist.products_id=products.id 
-                          INNER JOIN `color` ON products.color_color_id=color.color_id 
+                          INNER JOIN `products` ON watchlist.products_id=products.id
                           INNER JOIN `users` ON watchlist.users_email=users.email
                           INNER JOIN `category` ON products.category_cat_id=category.cat_id 
                           INNER JOIN `category_has_sub_category` ON products.category_has_sub_category_category_has_sub_category_id=category_has_sub_category.category_has_sub_category_id 
@@ -87,7 +86,7 @@ include "connection.php";
                                     <div class="col-8 col-sm-6 col-md-7">
                                         <h6 class="text-truncate"><?php echo $selected_data["title"]; ?></h6>
                                         <p class="text-muted mb-1">Categories: <?php echo $selected_data["sub_cat_name"]; ?>, <?php echo $selected_data["cat_name"]; ?></p>
-                                        <p class="mb-1">Color: <?php echo $selected_data["color_name"]; ?></p>
+                                        <!-- <p class="mb-1">Color: <?php echo $selected_data["color_name"]; ?></p> -->
                                         <p class="mb-0">Quantity: <?php echo $selected_data["qty"]; ?></p>
                                     </div>
                                     <div class="col-4 col-sm-2 text-end">

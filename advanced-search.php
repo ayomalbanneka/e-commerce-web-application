@@ -309,10 +309,10 @@ include "connection.php";
                         <div class="modal fade" tabindex="-1" id="spanModel2">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
-                                    <div class="modal-header">
+                                    <!-- <div class="modal-header">
                                         <h5 class="modal-title">Sort</h5>
                                         <span data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></span>
-                                    </div>
+                                    </div> -->
                                     <div class="modal-body">
                                         <div class="container-fluid border border-2 rounded-2 border-black">
                                             <div class="row">
@@ -567,8 +567,8 @@ include "connection.php";
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearSearch();">Clear</button>
-                                        <button type="button" class="btn btn-primary" onclick="advancedSearch2(0);">Search</button>
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clearSearch();">Clear</button>
+                                        <button type="button" class="btn btn-outline-dark" onclick="advancedSearch2(0);">Search</button>
                                     </div>
                                 </div>
                             </div>

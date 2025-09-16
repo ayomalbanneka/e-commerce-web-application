@@ -44,13 +44,23 @@ if ($sub_cat != 0) {
 
 // Color
 if ($color != 0) {
-    $query .= " AND `color_color_id` = '" . $color . "'";
+    $query .= " AND `id` IN 
+(
+        SELECT products_id
+        FROM `products_has_colors`
+        WHERE `color_color_id` = '" . $color . "'
+)";
 }
 
 // Size
 
 if ($size != 0) {
-    $query .= " AND `sizes_sizes_id` = '".$size."'";
+    $query .= " AND `id` IN 
+(
+        SELECT products_id
+        FROM `products_has_sizes`
+        WHERE `sizes_sizes_id` = '" . $size . "'
+)";
 }
 
 // Brand
@@ -62,7 +72,7 @@ if ($brand != 0) {
 // Product Gender
 
 if ($gender != 0) {
-    $query .= " AND `product_collection_id` = '".$gender."'";
+    $query .= " AND `product_collection_id` = '" . $gender . "'";
 }
 
 // Quantity
@@ -161,9 +171,9 @@ if (!empty($to)) {
                                                                     echo ("#");
                                                                 } else {
                                                                 ?> onclick="advancedSearch2(<?php echo ($pageno - 1); ?>);" <?php
-                                                                                                                    }
+                                                                                                                        }
 
-                                                                                                                        ?> aria-label="Previous">
+                                                                                                                            ?> aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
@@ -204,9 +214,9 @@ if (!empty($to)) {
                                                                     echo ("#");
                                                                 } else {
                                                                 ?> onclick="advancedSearch2(<?php echo ($pageno + 1); ?>);" <?php
-                                                                                                                    }
+                                                                                                                        }
 
-                                                                                                                        ?> aria-label=" Next">
+                                                                                                                            ?> aria-label=" Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
