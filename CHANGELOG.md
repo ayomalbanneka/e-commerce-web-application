@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/ayomalbanneka/e-commerce-web-application/compare/v1.0.1...v1.0.2) (2026-06-11)
+
+
+### Bug Fixes
+
+* unblock dependabot composer security updates ([df51883](https://github.com/ayomalbanneka/e-commerce-web-application/commit/df518831c2f8d7afb3959d404ed371c4273050cd))
+
 ## [1.0.1](https://github.com/ayomalbanneka/e-commerce-web-application/compare/v1.0.0...v1.0.1) (2026-01-18)
 
 
