@@ -2077,6 +2077,28 @@ function productStatus(id) {
 
 }
 
+function deleteProduct(id) {
+    if (!confirm("Delete this product? This cannot be undone.")) {
+        return;
+    }
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            if (response == "Deleted") {
+                window.location.reload();
+            } else {
+                alert(response);
+            }
+        }
+    }
+
+    request.open("GET", "backend/delete-product-process.php?id=" + id, true);
+    request.send();
+}
+
 function advancedSearch(x) {
 
     var size = document.getElementById("size");
