@@ -1099,7 +1099,7 @@ function basicSearch3(pageNum, event = null) {
             window.location.href = "../search-result.php";
         }
     };
-    request.open("POST", "backend/basic-search-process.php", true);
+    request.open("POST", "../backend/basic-search-process.php", true);
     request.send(form);
 }
 
