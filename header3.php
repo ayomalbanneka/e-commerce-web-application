@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/bootstrap.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 
@@ -86,7 +86,6 @@
                             </div>
                         </div>
 
-                        <!-- <span class=" text-dark user-name-nav"><b>Hi, </b><?php echo $data["fname"] . " " . $data["lname"]; ?></span> | -->
                         <a class="btn btn-outline-dark custom-nav-btn" id="openSearchModal" href="#"><i class="bi bi-search"></i></a>
                         <a class="btn btn-outline-dark custom-nav-btn position-relative" href="../cart.php"><i class="bi bi-bag"></i>
 

@@ -1099,7 +1099,7 @@ function basicSearch3(pageNum, event = null) {
             window.location.href = "../search-result.php";
         }
     };
-    request.open("POST", "backend/basic-search-process.php", true);
+    request.open("POST", "../backend/basic-search-process.php", true);
     request.send(form);
 }
 
@@ -2075,6 +2075,28 @@ function productStatus(id) {
     request.open("GET", "backend/change-product-status-process.php?id=" + id, true);
     request.send();
 
+}
+
+function deleteProduct(id) {
+    if (!confirm("Delete this product? This cannot be undone.")) {
+        return;
+    }
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            if (response == "Deleted") {
+                window.location.reload();
+            } else {
+                alert(response);
+            }
+        }
+    }
+
+    request.open("GET", "backend/delete-product-process.php?id=" + id, true);
+    request.send();
 }
 
 function advancedSearch(x) {

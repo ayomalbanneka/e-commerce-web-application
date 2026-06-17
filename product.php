@@ -2,7 +2,7 @@
 
 session_start();
 include "connection.php";
-$pageno;
+$pageno = 1;
 
 if (isset($_SESSION["au"])) {
     $email = $_SESSION["au"]["email"];
@@ -119,6 +119,10 @@ if (isset($_SESSION["au"])) {
                                                 <a href="update-product.php?id=<?php echo $selected_data["id"]; ?>" class="btn btn-outline-dark border border-1 mb-2">
                                                     UPDATE
                                                 </a>
+
+                                                <button class="btn btn-outline-danger border border-1 mb-2" onclick="deleteProduct('<?php echo $selected_data['id']; ?>');">
+                                                    DELETE
+                                                </button>
 
                                                 <?php
 

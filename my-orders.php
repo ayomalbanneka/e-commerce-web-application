@@ -1,5 +1,8 @@
 <?php
 include "connection.php";
+$pageno = 1;
+$number_of_pages = 0;
+$selected_num = 0;
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +30,6 @@ include "connection.php";
 
             if (isset($_SESSION['u'])) {
                 $email = $_SESSION['u']['email'];
-
-                $pageno;
 
                 if (isset($_GET["page"])) {
                     $pageno = $_GET["page"];

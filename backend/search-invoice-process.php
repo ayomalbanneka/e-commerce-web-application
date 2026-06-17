@@ -4,9 +4,9 @@ include "../connection.php";
 
 if (isset($_GET["on"])) {
 
-    $order_number = $_GET["on"];
+    $order_number = trim($_GET["on"]);
 
-    $invoice_rs = Database::search("SELECT * FROM `invoice` WHERE `order_id` = '" . $order_number . "'");
+    $invoice_rs = Database::search("SELECT * FROM `invoice` WHERE `order_id` LIKE '%" . $order_number . "%' OR `invoice_id` LIKE '%" . $order_number . "%' ORDER BY `date` DESC");
     $invoice_num = $invoice_rs->num_rows;
 
     if ($invoice_num > 0) {
@@ -202,6 +202,10 @@ if (isset($_GET["on"])) {
 
 
 <?php
+
+    if ($invoice_num == 0) {
+        echo '<tr><td colspan="7" class="text-center py-4">No orders found</td></tr>';
+    }
 
 } else {
     echo ("Please add a invoice number first");

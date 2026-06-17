@@ -47,7 +47,7 @@ if (isset($_SESSION["au"])) {
                         <?php
 
                         $query = "SELECT * FROM `users`";
-                        $pageno;
+                        $pageno = 1;
 
                         if (isset($_GET["page"])) {
                             $pageno = $_GET["page"];

@@ -98,7 +98,7 @@ if (!empty($to)) {
                 <div class="col-12 mt-3 px-5 py-5">
                     <div class="row">
                         <?php
-                        $pageno;
+                        $pageno = 1;
 
                         if ("0" != $_POST["page"]) {
                             $pageno = $_POST["page"];

@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. Get saved information from browser memory
     const searchResults = sessionStorage.getItem('searchResults'); // The search results
     const searchQuery = sessionStorage.getItem('searchQuery'); // What you searched for
-    const currentPage = sessionStorage.getItem('currentPage') || 1; // Which page you're on
-    
     // 3. Show the results if they exist
     if (searchResults) {
         // Put the results in the results area
@@ -43,11 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.pagination a').forEach(link => {
             const href = link.getAttribute('href') || '';
             if (href.includes('page=')) {
-                // Update the page number in the link
-                const newHref = href.replace(/(page=)\d+/, `$1${currentPage}`);
-                link.setAttribute('href', newHref);
-                // Make sure clicking the link calls the search function
-                link.setAttribute('onclick', `basicSearch(${currentPage}, event)`);
+                const pageMatch = href.match(/page=(\d+)/);
+                if (pageMatch) {
+                    const pageNumber = pageMatch[1];
+                    link.setAttribute('href', '#');
+                    link.setAttribute('onclick', `basicSearch(${pageNumber}, event)`);
+                }
             }
         });
     } else {

@@ -41,12 +41,17 @@ document.getElementById('productImg').addEventListener('change', function () {
 function searchInvoice() {
   var orderNumber = document.getElementById("order_number");
 
+  if (orderNumber.value.trim() === "") {
+    window.location.reload();
+    return;
+  }
+
   var request = new XMLHttpRequest();
 
   request.onreadystatechange = function () {
     if (request.readyState == 4 && request.status == 200) {
       var response = request.responseText;
-      if (response == "Invalid Invoice Id" || response == "Please add a invoice number first") {
+      if (response == "Please add a invoice number first") {
         alert(response);
         window.location.reload();
       }
