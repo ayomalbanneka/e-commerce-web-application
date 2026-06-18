@@ -232,14 +232,13 @@ if (isset($_GET["id"])) {
                         LADIES
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">New</a></li>
-                        <li><a class="dropdown-item" href="#">T-Shirt</a></li>
                         <li><a class="dropdown-item" href="product-category/Ladies/dresses.php">Dresses</a></li>
                         <li><a class="dropdown-item" href="product-category/Ladies/ladies-tops.php">Top</a></li>
-                        <li><a class="dropdown-item" href="#">Pants & Leggins</a></li>
-                        <li><a class="dropdown-item" href="#">Jump Suit</a></li>
+                        <li><a class="dropdown-item" href="product-category/Ladies/pants-leggings.php">Pants & Leggings</a></li>
+                        <li><a class="dropdown-item" href="product-category/Ladies/jump-suit.php">Jump Suit</a></li>
                         <li><a class="dropdown-item" href="product-category/Ladies/skirts.php">Skirt</a></li>
-                        <li><a class="dropdown-item" href="#">Jeans</a></li>
+                        <li><a class="dropdown-item" href="product-category/Ladies/jeans.php">Jeans</a></li>
+
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -247,12 +246,12 @@ if (isset($_GET["id"])) {
                         GENTS
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="product-category/Gents/t-shirts.php">T-Shirt</a></li>
                         <li><a class="dropdown-item" href="#">New</a></li>
-                        <li><a class="dropdown-item" href="#">T-Shirts</a></li>
                         <li><a class="dropdown-item" href="product-category/Gents/shirts.php">Shirts</a></li>
-                        <li><a class="dropdown-item" href="#">Trousers</a></li>
-                        <li><a class="dropdown-item" href="#">Jeans</a></li>
-                        <li><a class="dropdown-item" href="#">Shorts</a></li>
+                        <li><a class="dropdown-item" href="product-category/Gents/trousers.php">Trousers</a></li>
+                        <li><a class="dropdown-item" href="product-category/Gents/jeans.php">Jeans</a></li>
+                        <li><a class="dropdown-item" href="product-category/Gents/shorts.php">Shorts</a></li>
                     </ul>
                 </li>
 
@@ -281,9 +280,8 @@ if (isset($_GET["id"])) {
                         FOOTWEAR
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Gents</a></li>
-                        <li><a class="dropdown-item" href="#">Ladies</a></li>
-                        <li><a class="dropdown-item" href="#">Kids Shoes</a></li>
+                        <li><a class="dropdown-item" href="product-category/Footwear/gents.php">Gents</a></li>
+                        <li><a class="dropdown-item" href="product-category/Footwear/ladies.php">Ladies</a></li>
                     </ul>
                 </li>
 
@@ -405,7 +403,7 @@ if (isset($_GET["id"])) {
                                                         <?php echo $size_data['size']; ?>
                                                     </label>
 
-                                                    <?php
+                                                <?php
                                                 }
                                                 ?>
                                                 <h6 class="h6 text-danger mt-1 d-none" id="size_error">Please select a size</h6>

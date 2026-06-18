@@ -6,7 +6,7 @@ $query = "SELECT * FROM `products`
         INNER JOIN `category` ON products.category_cat_id = category.cat_id 
         INNER JOIN `category_has_sub_category` ON products.category_has_sub_category_category_has_sub_category_id = category_has_sub_category.category_has_sub_category_id 
         INNER JOIN `sub_category` ON category_has_sub_category.sub_category_sub_cat_id = sub_category.sub_cat_id  
-        WHERE category.cat_name='Ladies' AND sub_category.sub_cat_name = 'Top' ";
+        WHERE category.cat_name='Accessories' AND sub_category.sub_cat_name = 'Ladies' ";
 
 $product_rs = Database::search($query);
 $product_num = $product_rs->num_rows;
@@ -31,7 +31,7 @@ $selected_num = $selected_rs->num_rows;
     <link rel="stylesheet" href="../../css/product-view.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="shortcut icon" href="../../favicon.ico" />
-    <title>Women - Dresses | UrbanElegance</title>
+    <title>Accessories - Ladies | UrbanElegance</title>
 </head>
 
 <body>

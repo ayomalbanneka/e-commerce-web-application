@@ -202,13 +202,13 @@
                 LADIES
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">New</a></li>
                 <li><a class="dropdown-item" href="../../product-category/Ladies/dresses.php">Dresses</a></li>
                 <li><a class="dropdown-item" href="../../product-category/Ladies/ladies-tops.php">Top</a></li>
-                <li><a class="dropdown-item" href="#">Pants & Leggins</a></li>
-                <li><a class="dropdown-item" href="#">Jump Suit</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Ladies/pants-leggings.php">Pants & Leggings</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Ladies/jump-suit.php">Jump Suit</a></li>
                 <li><a class="dropdown-item" href="../../product-category/Ladies/skirts.php">Skirt</a></li>
-                <li><a class="dropdown-item" href="#">Jeans</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Ladies/jeans.php">Jeans</a></li>
+
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -216,12 +216,11 @@
                 GENTS
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">New</a></li>
-                <li><a class="dropdown-item" href="#">T-Shirts</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Gents/t-shirts.php">T-Shirt</a></li>
                 <li><a class="dropdown-item" href="../../product-category/Gents/shirts.php">Shirts</a></li>
-                <li><a class="dropdown-item" href="#">Trousers</a></li>
-                <li><a class="dropdown-item" href="#">Jeans</a></li>
-                <li><a class="dropdown-item" href="#">Shorts</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Gents/trousers.php">Trousers</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Gents/jeans.php">Jeans</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Gents/shorts.php">Shorts</a></li>
             </ul>
         </li>
 
@@ -240,8 +239,8 @@
                 ACCESSORIES
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gents</a></li>
-                <li><a class="dropdown-item" href="#">Ladies</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Accessories/gents.php">Gents</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Accessories/ladies.php">Ladies</a></li>
             </ul>
         </li>
 
@@ -250,9 +249,8 @@
                 FOOTWEAR
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gents</a></li>
-                <li><a class="dropdown-item" href="#">Ladies</a></li>
-                <li><a class="dropdown-item" href="#">Kids Shoes</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Footwear/gents.php">Gents</a></li>
+                <li><a class="dropdown-item" href="../../product-category/Footwear/ladies.php">Ladies</a></li>
             </ul>
         </li>
 
