@@ -23,8 +23,7 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
         $t = $date[1];
 
         $product_rs = Database::search("SELECT * FROM `products`
-        INNER JOIN `sizes` ON products.sizes_sizes_id=sizes.sizes_id
-        WHERE `id` = '" . $invoice_data["products_id"] . "' ");
+        WHERE `products`.`id` = '" . $invoice_data["products_id"] . "' ");
         $product_data = $product_rs->fetch_assoc();
 
         $user_rs = Database::search("SELECT * FROM `users` WHERE `email` = '" . $invoice_data["users_email"] . "'");
@@ -81,7 +80,7 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
                     </td>
 
                     <td>
-                        <P class="fw-normal mb-1"><?php echo $product_data["size"]; ?></P>
+                        <P class="fw-normal mb-1"><?php echo $invoice_data["size"]; ?></P>
                     </td>
                     <td>
                         <p class="fw-normal mb-1"><?php echo $invoice_data["invoice_qty"]; ?></p>
@@ -232,7 +231,7 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
                     </td>
 
                     <td>
-                        <P class="fw-normal mb-1"><?php echo $product_data["size"]; ?></P>
+                        <P class="fw-normal mb-1"><?php echo $invoice_data["size"]; ?></P>
                     </td>
                     <td>
                         <p class="fw-normal mb-1"><?php echo $invoice_data["invoice_qty"]; ?></p>
@@ -380,7 +379,7 @@ if (isset($_GET["f"]) && isset($_GET["t"])) {
                 </td>
 
                 <td>
-                    <P class="fw-normal mb-1"><?php echo $product_data["size"]; ?></P>
+                    <P class="fw-normal mb-1"><?php echo $invoice_data["size"]; ?></P>
                 </td>
                 <td>
                     <p class="fw-normal mb-1"><?php echo $invoice_data["invoice_qty"]; ?></p>

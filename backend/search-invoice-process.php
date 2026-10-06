@@ -10,33 +10,28 @@ if (isset($_GET["on"])) {
     $invoice_num = $invoice_rs->num_rows;
 
     if ($invoice_num > 0) {
-?>
+        ?>
+        <thead>
+            <tr>
+                <th>Product & Invoice ID</th>
+                <th>Buyer</th>
+                <th>Amount</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <?php
 
-        <table class="table align-middle mb-0 bg-white mb-3">
-            <thead>
-                <tr>
-                    <th>Product & Invoice ID</th>
-                    <th>Buyer</th>
-                    <th>Amount</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-
-            <?php
-
-            while ($selected_data = $invoice_rs->fetch_assoc()) {
+        while ($selected_data = $invoice_rs->fetch_assoc()) {
 
                 // Fetch the user data
                 $user_rs = Database::search("SELECT * FROM `users` WHERE `email`='" . $selected_data["users_email"] . "'");
                 $users_data = $user_rs->fetch_assoc();
                 // Fetch the product data
-                $product_rs = Database::search("SELECT * FROM `products` 
-                INNER JOIN products_has_sizes ON products.id=products_has_sizes.products_id 
-                INNER JOIN sizes ON products_has_sizes.sizes_sizes_id = sizes.sizes_id
-                WHERE `id`='" . $selected_data["products_id"] . "'");
+                $product_rs = Database::search("SELECT * FROM `products`
+                WHERE `products`.`id`='" . $selected_data["products_id"] . "'");
 
                 $product_data = $product_rs->fetch_assoc();
 
@@ -89,7 +84,7 @@ if (isset($_GET["on"])) {
                         </td>
 
                         <td>
-                            <P class="fw-normal mb-1"><?php echo $product_data["size"]; ?></P>
+                            <P class="fw-normal mb-1"><?php echo $selected_data["size"]; ?></P>
                         </td>
                         <td>
                             <p class="fw-normal mb-1"><?php echo $selected_data["invoice_qty"]; ?></p>
@@ -193,10 +188,7 @@ if (isset($_GET["on"])) {
             ?>
 
 
-        </table>
-
-    <?php
-    }
+    <?php }
 
     ?>
 
