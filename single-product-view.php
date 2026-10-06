@@ -153,9 +153,9 @@ if (isset($_GET["id"])) {
                                     <ul class="dropdown-menu ">
                                         <li><a class="dropdown-item" href="user-profile.php">My Profile</a></li>
                                         <li><a class="dropdown-item" href="watchlist.php">Watchlist</a></li>
-                                        <li><a class="dropdown-item" href="#">Purchase History</a></li>
-                                        <li><a class="dropdown-item" href="#">Messages</a></li>
-                                        <li><a class="dropdown-item" href="#">Contact Admin</a></li>
+                                        <li><a class="dropdown-item" href="my-orders.php">My Orders</a></li>
+                                        <li><a class="dropdown-item" href="purchase-history.php">Purchase History</a></li>
+                                        <li><a class="dropdown-item" href="contact-us.php">Contact Us</a></li>
                                         <li><a class="dropdown-item" href="#" onclick="signOut();">Sign Out</a></li>
                                     </ul>
                                 </div>
