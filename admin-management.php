@@ -310,7 +310,7 @@ if (isset($_SESSION["au"])) {
 
                                         ?>
 
-                                        <p class="fw-normal mb-1"><?php echo "******" . $split_mobile[1]; ?></p>
+                                        <p class="fw-normal mb-1"><?php echo "******" . ($split_mobile[1] ?? ""); ?></p>
                                     </td>
                                     <td>
 
